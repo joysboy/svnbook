@@ -1,12 +1,8 @@
 <chapter id="svn.advanced">
-  <!-- @ENGLISH {{{
   <title>Advanced Topics</title>
-  @ENGLISH }}} -->
-  <title>Avanserte emner</title>
 
   <simplesect>
 
-    <!-- @ENGLISH {{{
     <para>If you've been reading this book chapter by chapter, from
       start to finish, you should by now have acquired enough
       knowledge to use the Subversion client to perform the most
@@ -18,29 +14,10 @@
       you to run the <command>svn status</command> command almost
       unconsciously.  For all intents and purposes, you are ready to
       use Subversion in a typical environment.</para>
-    @ENGLISH }}} -->
-    <para>Hvis du har lest denne boka kapittel for kapittel, fra start 
-      til slutt, skal du nå ha samlet opp nok kunnskap til å kunne bruke 
-      Subversionklienten til å utføre de vanligste operasjonene innen 
-      versjonskontroll.
-      Du forstår hvordan du henter ut en arbeidskopi fra et 
-      Subversiondepot.
-      Du er komfortabel med å legge inn og hente ut forandringer ved å 
-      bruke kommandoene <command>svn commit</command> og <command>svn 
-      update</command>.
-      Du har til og med kanskje utviklet en refleks som gjør at du 
-      kjører <command>svn status</command> nærmest ubevisst.
-      Hva oppgaven enn er, er du klar til å bruke Subversion i et typisk 
-      arbeidsmiljø.</para>
 
-    <!-- @ENGLISH {{{
     <para>But the Subversion feature set doesn't stop at <quote>common
       version control operations</quote>.</para>
-    @ENGLISH }}} -->
-    <para>Men funksjonaliteten til Subversion stopper ikke ved 
-      <quote>vanlige versjonskontrolloperasjoner</quote>.</para>
 
-    <!-- @ENGLISH {{{
     <para>This chapter highlights some of Subversion's features that
       aren't quite so regularly used.  In it, we will discuss
       Subversion's property (or <quote>metadata</quote>) support, and
@@ -50,20 +27,7 @@
       multiple repositories.  We'll cover in detail some of the
       additional client- and server-side tools that are part of the
       Subversion distribution.</para>
-    @ENGLISH }}} -->
-    <para>Dette kapittelet setter fokus på litt av funksjonaliteten til 
-      Subversion som ikke blir brukt i like stor grad.
-      Her vil vi diskutere Subversions støtte for egenskaper (eller 
-      <quote>metadata</quote>) og hvordan standardoppførselen til 
-      Subversion kan forandres ved å gjøre forandringer i 
-      konfigurasjonsområdet.
-      Vi vil beskrive hvordan du kan bruke eksterne defineringer for å 
-      instruere Subversion til å hente data fra flere depoter.
-      Vi vil dekke i detalj noen av de verktøyene som er med i 
-      Subversiondistribusjonen for bruk på klient- og 
-      &server;siden.</para>
 
-    <!-- @ENGLISH {{{
     <para>Before reading this chapter, you should be familiar with the
       basic file and directory versioning capabilities of Subversion.
       If you haven't already read about those, or if you need a
@@ -72,27 +36,12 @@
       you've mastered the basics and consumed this chapter, you'll be
       a Subversion power-user!
     </para>
-    @ENGLISH }}} -->
-    <para>Før du leser dette kapittelet bør du gjøre deg kjent med de 
-      grunnleggende mulighetene Subversion har for versjonering av filer 
-      og kataloger.
-      Hvis du ikke allerede har lest om dette, eller hvis du trenger å 
-      friske det opp, anbefaler vi at du leser <xref linkend="svn.basic" 
-      /> og <xref linkend="svn.tour" />.
-      Når du mestrer de grunnleggende tingene og har fordøyd dette 
-      kapittelet, vil du være en <!-- ¤ 
-      -->Subversionmuskelbruker!</para>
 
   </simplesect>
 
   <sect1 id="svn.advanced.confarea">
-    <!-- @ENGLISH {{{
     <title>Runtime Configuration Area</title>
-    @ENGLISH }}} -->
-    <title><!-- ¤ Må finne en bedre omskriving for «runtime». Nuh! 
-      -->Konfigurasjonsområdet for bruk under kjøring</title>
     
-    <!-- @ENGLISH {{{
     <para>Subversion provides many optional behaviors that can be
       controlled by the user.  Many of these options are of the kind
       that a user would wish to apply to all Subversion operations.
@@ -100,18 +49,7 @@
       for specifying these options, and to use them for each and every
       operation they perform, Subversion uses configuration files,
       segregated into a Subversion configuration area.</para>
-    @ENGLISH }}} -->
-    <para>Subversion inneholder mange valg for å modifisere oppførselen 
-      under kjøring, og dette kan kontrolleres av brukeren.
-      Mange av disse valgene er av typen som en bruker ønsker å bruke 
-      ved alle Subversionoperasjoner.
-      Så, istedenfor å tvinge brukere til å huske 
-      kommandolinjeargumenter for å spesifisere disse valgene, og å 
-      bruke dem for hver eneste operasjon som utføres, bruker Subversion 
-      konfigurasjonsfiler som er lagt for seg selv i et eget 
-      konfigurasjonsområde.</para>
 
-    <!-- @ENGLISH {{{
     <para>The Subversion <firstterm>configuration area</firstterm> is
       a two-tiered hierarchy of option names and their values.
       Usually, this boils down to a special directory that contains
@@ -122,26 +60,11 @@
       Emacs or vi), and contain directives read by the client to
       determine which of several optional behaviors the user
       prefers.</para>
-    @ENGLISH }}} -->
-    <para>Subversions <firstterm>konfigurasjonsområde</firstterm> er et 
-      to-lags hierarki med valgnavn og deres verdier.
-      Vanligvis koker dette ned til en spesiell katalog som inneholder 
-      <firstterm>konfigurasjonsfiler</firstterm> (første lag) som er 
-      rene tekstfiler i standard INI-format (med 
-      <quote>seksjoner</quote> som er det andre laget).
-      Disse filene kan enkelt redigeres med favoritt-tekstbehandleren 
-      din (som for eksempel Emacs eller vi), og inneholder direktiver 
-      som leses av klienten for å anslå hvilken av de valgfrie 
-      oppførslene brukeren foretrekker.</para>
 
     <!-- =============================================================== -->
     <sect2 id="svn.advanced.confarea.layout">
-      <!-- @ENGLISH {{{
       <title>Configuration Area Layout</title>
-      @ENGLISH }}} -->
-      <title>Oppbygningen av konfigurasjonsområdet</title>
 
-      <!-- @ENGLISH {{{
       <para>The first time that the <command>svn</command>
         command-line client is executed, it creates a per-user
         configuration area.  On Unix-like systems, this area appears
@@ -161,31 +84,7 @@
         </footnote>
         We will refer to the per-user configuration area using its Unix
         name, <filename>.subversion</filename>.</para>
-      @ENGLISH }}} -->
-      <para>Den første gangen kommandolinjeklienten 
-        <command>svn</command> kjøres, lages et eget 
-        konfigurasjonsområde for brukeren.
-        På Unix-lignende systemer opptrer dette området som en katalog 
-        kalt <filename>.subversion</filename> i brukerens hjemmekatalog.
-        På Win32-systemer oppretter Subversion en katalog kalt 
-        <filename>Subversion</filename>, vanligvis i <!-- ¤ Finn ut hva 
-        det heter på norsk. --><filename>Application 
-        Data</filename>-området til brukerens profilkatalog (som 
-        forresten er en skjult katalog).
-        På denne plattformen varierer imidlertid den eksakte 
-        plasseringen fra system til system, og bestemmes av 
-        registryen.<footnote>
-          <para>Miljøvariabelen <literal>APPDATA</literal> peker til 
-            <!-- ¤ Mulig fornorsking her når jeg finner ut hva det heter 
-            på norsk. --><filename>Application Data</filename>-området, 
-            så du kan alltids henvise til denne katalogen som 
-            <filename>%APPDATA%\Subversion</filename>.</para>
-        </footnote>
-        Vi vil referere til brukerkonfigurasjonsområdet ved å bruke 
-        navnet som brukes under Unix, 
-        <filename>.subversion</filename>.</para>
 
-      <!-- @ENGLISH {{{
       <para>In addition to the per-user configuration area, Subversion
         also recognizes the existence of a system-wide configuration
         area.  This gives system administrators the ability to
@@ -203,31 +102,7 @@
         specified by the Windows Registry).  Unlike the per-user
         case, the <command>svn</command> program does not attempt
         to create the system-wide configuration area.</para>
-      @ENGLISH }}} -->
-      <para>I tillegg til konfigurasjonsområdet som brukes på 
-        brukernivå, kjenner også Subversion til eksistensen av et 
-        konfigurasjonsområde som gjelder for hele systemet på maskinen.
-        Dette gir systemadministratorer muligheten til å opprette 
-        standardinnstillinger for alle brukerne på en gitt maskin.
-        Legg merke til at det felles konfigurasjonsområdet på maskinen 
-        ikke alene bestemmer <!-- ¤ mandatory policy 
-        -->standardoppførselen – oppsettet i konfigurasjonsområdet for 
-        brukeren overstyrer de som er i området som er felles for alle 
-        brukerne, og kommandolinjeargumenter som gis til 
-        <command>svn</command>-programmet har det siste ordet hva 
-        oppførsel angår.
-        På Unix-lignende plattformer forventes det at 
-        konfigurasjonsområdet som er felles for alle brukerne er i 
-        katalogen <filename>/etc/subversion</filename>; på MS 
-        Windows-maskiner letes det etter en 
-        <filename>Subversion</filename>-katalog i det felles <!-- ¤ Finn 
-        ut norsk navn --><filename>Application Data</filename>-området 
-        (og igjen, som spesifisert i Windowsregistryen).
-        Ulikt med det brukerbaserte tilfellet, vil ikke 
-        <command>svn</command>-klienten prøve å opprette et nytt 
-        maskinkonfigurasjonsområde.</para>
 
-      <!-- @ENGLISH {{{
       <para>The configuration area currently contains three
         files&mdash;two configuration files (<filename>config</filename> and
         <filename>servers</filename>), and a <filename>README.txt</filename> 
@@ -241,30 +116,10 @@
         any time you wish to have the default configuration settings
         restored, you can simply remove (or rename) your configuration
         directory and then run some innocuous <command>svn</command>
-        command, such as <command>svn -&#64738;-version</command>.  A new
+        command, such as <command>svn --version</command>.  A new
         configuration directory with the default contents will be
         created.</para>
-      @ENGLISH }}} -->
-      <para>Konfigurasjonsområdet inneholder for tiden tre filer – to 
-        konfigurasjonsfiler (<filename>config</filename> og 
-        <filename>servers</filename>) og en 
-        <filename>README.txt</filename>-fil som beskriver INI-formatet.
-        På tidspunktet de ble laget, inneholder filene standardverdier 
-        for alle valgene som Subversion støtter.
-        For det meste er de kommentert ut og gruppert sammen med 
-        beskrivelser om hvordan verdiene påvirker oppførselen til 
-        Subversion.
-        For å forandre en viss oppførsel, trenger du bare å forandre 
-        verdien til et valg med en vanlig teksteditor.
-        Hvis du en eller annen gang du vil ha tilbake 
-        standardinnstillingene, kan du fjerne (eller skifte navn på) 
-        katalogen med konfigurasjonsfilene og deretter kjøre noen 
-        uskyldige <command>svn</command>-kommandoer som for eksempel 
-        <command>svn --version</command> som oppretter en ny 
-        konfigurasjonskatalog som inneholder 
-        standardinnstillingene.</para>
 
-      <!-- @ENGLISH {{{
       <para>The per-user configuration area also contains a cache of
         authentication data.  The <filename>auth</filename> directory
         holds a set of subdirectories that contain pieces of cached
@@ -272,25 +127,13 @@
         authentication methods.  This directory is created in such a
         way that only the user herself has permission to read its
         contents.</para>
-      @ENGLISH }}} -->
-      <para>Brukerkonfigurasjonsområdet inneholder også et lager med 
-        autentiseringsdata.
-        <filename>auth</filename>-katalogen inneholder et sett med 
-        underkataloger som inneholder deler av lagret informasjon som 
-        brukes av Subversions forskjellige autentiseringsmetoder.
-        Denne katalogen er laget på en måte som gjør at kun den ene 
-        brukeren har tillatelse til å lese innholdet.</para>
 
     </sect2>
 
     <!-- =============================================================== -->
     <sect2 id="svn.advanced.confarea.windows-registry">
-      <!-- @ENGLISH {{{
       <title>Configuration and the Windows Registry</title>
-      @ENGLISH }}} -->
-      <title>Konfigurasjon og Windows-registryen</title>
 
-      <!-- @ENGLISH {{{
       <para>In addition to the usual INI-based configuration area,
         Subversion clients running on Windows platforms may also use
         the Windows registry to hold the configuration data.  The
@@ -299,16 +142,7 @@
         preserved as well, though addressed in a slightly different
         fashion&mdash;in this schema, files and sections are just
         levels in the registry key tree.</para>
-      @ENGLISH }}} -->
-      <para>I tillegg til det vanlige INI-baserte konfigurasjonsområdet, 
-        kan Subversionklienter som kjører på MS Windows-plattformer også 
-        bruke registryen til å lagre konfigurasjonsdataene.
-        Valgnavnene og deres verdier er de samme som i INI-filene.
-        <quote>fil/seksjon</quote>-hierarkiet blir også tatt vare på, 
-        selv om det noteres på en litt annen måte – i dette skjemaet er 
-        filer og seksjoner kun nivåer i nøkkeltreet i registryen.</para>
 
-      <!-- @ENGLISH {{{
       <para>Subversion looks for system-wide configuration values
         under the
         <literal>HKEY_LOCAL_MACHINE\Software\Tigris.org\Subversion</literal>
@@ -319,67 +153,31 @@
         Per-user configuration values should be stored under
         <literal>HKEY_CURRENT_USER\Software\Tigris.org\Subversion</literal>.
       </para>
-      @ENGLISH }}} -->
-      <para>Subversion ser etter konfigurasjonsverdier for hele systemet 
-        under nøkkelen 
-        <literal>HKEY_LOCAL_MACHINE\Software\Tigris.org\Subversion</literal>.
-        For eksempel, valget <literal>global-ignores</literal> som er i 
-        <literal>miscellany</literal>-seksjonen i 
-        <filename>config</filename>-fila finnes i 
-        <literal>HKEY_LOCAL_MACHINE\Software\Tigris.org\Subversion\Config\Miscellany\global-ignores</literal>.
-        Konfigurasjonsverdier for hver enkelt bruker bør lagres under 
-        <literal>HKEY_CURRENT_USER\Software\Tigris.org\Subversion</literal>.</para>
 
-      <!-- @ENGLISH {{{
       <para>Registry-based configuration options are parsed
         <emphasis>before</emphasis> their file-based counterparts,
         so are overridden by values found in the configuration
         files.  In other words, configuration priority is granted in
         the following order on a Windows system:</para>
-      @ENGLISH }}} -->
-      <para><!-- ¤ Den setninga der er uklar, og jeg vet ikke hvordan 
-        windowsversjonen virker. Så foreløpig får den være uoversatt. 
-        Stygg sak. -->Registry-based configuration options are parsed
-        <emphasis>before</emphasis> their file-based counterparts,
-        so are overridden by values found in the configuration
-        files.
-        Med andre ord er dette rekkefølgen konfigurasjonen blir 
-        prioritert på et MS Windows-system:</para>
       
       <orderedlist>
         <listitem>
-          <!-- @ENGLISH {{{
           <para>Command-line options</para>
-          @ENGLISH }}} -->
-          <para>Valg på kommandolinja</para>
         </listitem>
         <listitem>
-          <!-- @ENGLISH {{{
           <para>The per-user INI files</para>
-          @ENGLISH }}} -->
-          <para>Brukerbaserte INI-filer</para>
         </listitem>
         <listitem>
-          <!-- @ENGLISH {{{
           <para>The per-user Registry values</para>
-          @ENGLISH }}} -->
-          <para>Brukerbaserte verdier i registryen</para>
         </listitem>
         <listitem>
-          <!-- @ENGLISH {{{
           <para>The system-wide INI files</para>
-          @ENGLISH }}} -->
-          <para>INI-filer som gjelder for hele systemet</para>
         </listitem>
         <listitem>
-          <!-- @ENGLISH {{{
           <para>The system-wide Registry values</para>
-          @ENGLISH }}} -->
-          <para>Registry-verdier for hele systemet</para>
         </listitem>
       </orderedlist>
 
-      <!-- @ENGLISH {{{
       <para>Also, the Windows Registry doesn't really support the
         notion of something being <quote>commented out</quote>.
         However, Subversion will ignore any option key whose name
@@ -387,17 +185,7 @@
         allows you to effectively comment out a Subversion option
         without deleting the entire key from the Registry, obviously
         simplifying the process of restoring that option.</para>
-      @ENGLISH }}} -->
-      <para>I tillegg støtter ikke Windows-registryen at noe kan 
-        <quote>kommenteres ut</quote>.
-        Subversion vil imidlertid ignorere valg der navnet begynner med 
-        et <!-- ¤ Det heter vel hash på norsk også? -->hash-tegn 
-        (<literal>#</literal>),
-        Dette lar deg kommentere bort et Subversionvalg uten å slette 
-        hele nøkkelen fra registryen, noe som selvfølgelig gjør det 
-        lettere å hente tilbake dette valget.</para>
 
-      <!-- @ENGLISH {{{
       <para>The <command>svn</command> command-line client never
         attempts to write to the Windows Registry, and will not
         attempt to create a default configuration area there.  You can
@@ -406,22 +194,9 @@
         <filename>.reg</filename> file, and then double-click on that
         file from the Explorer shell, which will cause the data to be
         merged into your registry.</para>
-      @ENGLISH }}} -->
-      <para>Kommandolinjeklienten <command>svn</command> vil aldri prøve 
-        å skrive til Windowsregistryen, og vil ikke prøve å lage et <!-- 
-        ¤ «default» – trengs den? --> område der.
-        Du kan lage nøklene du trenger ved å bruke 
-        <command>REGEDIT</command>-programmet.
-        Alternativt kan du lage en <filename>.reg</filename>-fil og 
-        deretter dobbeltklikke på denne fila i Utforskeren, noe som vil 
-        flette dataene inn i registryen.</para>
 
       <example id="svn.advanced.confarea.windows-registry.ex-1">
-        <!-- @ENGLISH {{{
         <title>Sample Registration Entries (.reg) File.</title>
-        @ENGLISH }}} -->
-        <title>Eksempel på registryposter i en 
-          <filename>.reg</filename>-fil.</title>
 
         <programlisting>
 REGEDIT4
@@ -464,7 +239,6 @@ REGEDIT4
 </programlisting>
       </example>
 
-      <!-- @ENGLISH {{{
       <para>The previous example shows the contents of a
         <filename>.reg</filename> file which contains some of the most
         commonly used configuration options and their default values.
@@ -475,45 +249,20 @@ REGEDIT4
         remove the hash (<literal>#</literal>) character from the
         beginning of the option names, and set the values as you
         desire.</para>
-      @ENGLISH }}} -->
-      <para>Det foregående eksemplet viser innholdet av en 
-        <filename>.reg</filename>-fil som inneholder noen av de mest 
-        brukte konfigurasjonsvalgene og deres standardverdier.
-        Legg merke til <!-- ¤ Blir det litt sånn … formelt? 
-        -->tilstedeværelsen av både valg som gjelder for hele systemet 
-        (for valg relatert til mellom&servers; i nettverket og 
-        innstillinger for hver enkelt bruker (tekstbehandlingsprogrammer 
-        og lagring av passord, blant annet).
-        Legg også merke til at alle valgene er kommentert ut.
-        Du trenger bare å fjerne hash-tegnet (<literal>#</literal>) fra 
-        begynnelsen av valgnavnene og sette inn de verdiene du 
-        vil.</para>
 
     </sect2>
 
     <!-- =============================================================== -->
     <sect2 id="svn.advanced.confarea.opts">
-      <!-- @ENGLISH {{{
       <title>Configuration Options</title>
-      @ENGLISH }}} -->
-      <title>Konfigurasjonsvalg</title>
       
-      <!-- @ENGLISH {{{
       <para>In this section, we will discuss the specific
         run-time configuration options that are currently supported
         by Subversion.</para>
-      @ENGLISH }}} -->
-      <para>I denne seksjonen vil vi diskutere de spesifikke 
-        konfigurasjonsvalgene som brukes av Subversion under 
-        kjøring.</para>
 
       <sect3 id="svn.advanced.confarea.opts.servers">
-        <!-- @ENGLISH {{{
         <title>Servers</title>
-        @ENGLISH }}} -->
-        <title>&Servers;</title>
 
-        <!-- @ENGLISH {{{
         <para>The <filename>servers</filename> file contains
           Subversion configuration options related to the network
           layers.  There are two special section names in this
@@ -525,24 +274,7 @@ REGEDIT4
           tokens which possibly contain wildcard
           characters&mdash;that are compared against the hostnames of
           the machine to which Subversion requests are sent.</para>
-        @ENGLISH }}} -->
-        <para><filename>servers</filename>-fila inneholder valg for 
-          konfigurering av Subversion og som er relatert til 
-          nettverkslag.
-          Det er to spesielle seksjonsnavn i denne fila – 
-          <literal>groups</literal> og <literal>global</literal>.
-          <literal>groups</literal>-seksjonen er hovedsaklig en tabell 
-          med kryssreferanser.
-          Nøklene i denne seksjonen er navnene til andre seksjoner i 
-          fila; verdiene deres er <!-- ¤ Skal vel kanskje ikke 
-          oversettes + at det brukes en foreignphrase her.
-          --><foreignphrase><firstterm>globs</firstterm></foreignphrase> 
-          – tekstbaserte <!-- ¤ token -->nøkkelord som kan inneholde 
-          jokertegn — som blir sammenlignet med <!-- ¤ Er det skirveleif 
-          i den engelske? -->&server;navnene til maskinen som det sendes 
-          Subversionforespørsler til.</para>
 
-        <!-- @ENGLISH {{{
         <programlisting>
 [groups]
 beanie-babies = *.red-bean.com
@@ -554,20 +286,7 @@ collabnet = svn.collab.net
 [collabnet]
 &hellip;
 </programlisting>
-        @ENGLISH }}} -->
-        <programlisting>
-[groups]
-beanie-babies = *.red-bean.com
-collabnet = svn.collab.net
 
-[beanie-babies]
-…
-
-[collabnet]
-…
-</programlisting>
-
-        <!-- @ENGLISH {{{
         <para>When Subversion is used over a network, it attempts to
           match the name of the server it is trying to reach with a
           group name under the <literal>groups</literal> section.  If
@@ -575,17 +294,7 @@ collabnet = svn.collab.net
           <filename>servers</filename> file whose name is the matched
           group's name.  From that section it reads the actual network
           configuration settings.</para>
-        @ENGLISH }}} -->
-        <para>Når Subversion brukes over nettverket, forsøker den å 
-          matche navnet til &the_server; som den prøver å nå med et 
-          gruppenavn under <literal>groups</literal>-seksjonen.
-          Hvis dette stemmer, ser Subversion etter en seksjon i 
-          <filename>servers</filename>-fila som stemmer med navnet i den 
-          samsvarende gruppens navn.
-          Fra denne seksjonen leser den det faktiske 
-          nettverksoppsettet.</para>
 
-        <!-- @ENGLISH {{{
         <para>The <literal>global</literal> section contains the
           settings that are meant for all of the servers not matched
           by one of the globs under the <literal>groups</literal>
@@ -594,77 +303,43 @@ collabnet = svn.collab.net
           sections in the file (except, of course, the special
           <literal>groups</literal> section), and are as
           follows:</para>
-        @ENGLISH }}} -->
-        <para><literal>global</literal>-seksjonen inneholder 
-          innstillingene som er ment for alle &the_servers; som ikke 
-          samsvarer med en av søkestrengene i 
-          <literal>groups</literal>-seksjonen.
-          Valgene som er tilgjengelig i denne seksjonen er nøyaktig de 
-          samme som de som er gyldig for de andre &server;seksjonene i 
-          fila (selvfølgelig unntatt den spesielle 
-          <literal>groups</literal>-seksjonen), og er som følger:</para>
 
         <variablelist>
           <varlistentry>
             <term><literal>http-proxy-host</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the hostname of the proxy computer
                 through which your HTTP-based Subversion requests must
                 pass.  It defaults to an empty value, which means that
                 Subversion will not attempt to route HTTP requests
                 through a proxy computer, and will instead attempt to
                 contact the destination machine directly.</para>
-              @ENGLISH }}} -->
-              <para>Dette spesifiserer &server;navnet til 
-                mellom&the_server; som de HTTP-baserte 
-                Subversionforespørslene som du foretar må gå gjennom.
-                Standardverdien er en tom verdi, noe som betyr at 
-                Subversion ikke vil prøve å rute HTTP-forespørsler 
-                gjennom en mellom&server; og vil istedenfor prøve å 
-                kontakte målmaskinen direkte.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>http-proxy-port</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the port number on the proxy host
                 to use.  It defaults to an empty value.</para>
-              @ENGLISH }}} -->
-              <para>Dette spesifiserer hvilket portnummer som skal 
-                brukes på mellom&the_server;.
-                Standardverdien er en tom verdi.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>http-proxy-username</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the username to supply to the proxy
                 machine.  It defaults to an empty value.</para>
-              @ENGLISH }}} -->
-              <para>Spesifiserer brukernavnet som oppgis til 
-                mellom&the_server;.
-                Standardverdien er tom.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>http-proxy-password</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the password to supply to the proxy
                 machine.  It defaults to an empty value.</para>
-              @ENGLISH }}} -->
-              <para>Spesifiserer passordet som oppgis til 
-                mellom&the_server;.
-                Standardverdien er tom.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>http-timeout</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the amount of time, in seconds, to
                 wait for a server response.  If you experience
                 problems with a slow network connection causing
@@ -673,22 +348,11 @@ collabnet = svn.collab.net
                 <literal>0</literal>, which instructs the underlying
                 HTTP library, Neon, to use its default timeout
                 setting.</para>
-              @ENGLISH }}} -->
-              <para>Dette spesifiserer antall sekunder det ventes på 
-                respons fra &the_server;.
-                Hvis du opplever problemer med en sen 
-                nettvorksforbindelse som fører til at 
-                Subversionoperasjoner blir avbrutt, bør du øke verdien 
-                for dette valget.
-                Standardverdien er <literal>0</literal>, som ber det 
-                underliggende HTTP-biblioteket, Neon, til å bruke 
-                standardverdien for tidsavbrudd.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>http-compression</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies whether or not Subversion should
                 attempt to compress network requests made to DAV-ready
                 servers.  The default value is <literal>yes</literal>
@@ -696,72 +360,40 @@ collabnet = svn.collab.net
                 is compiled into the network layer).  Set this to
                 <literal>no</literal> to disable compression, such as
                 when debugging network transmissions.</para>
-              @ENGLISH }}} -->
-              <para>Dette spesifiserer om Subversion skal prøve å 
-                komprimere nettverksforespørsler som blir gjort til 
-                &servers; som er klargjort for DAV.
-                Srandardverdien er <literal>yes</literal> (selv om 
-                komprimering bare vil utføres hvis denne muligheten er 
-                kompilert inn i nettverkslaget).
-                Sett denne til <literal>no</literal> for å unngå 
-                komprimering, for eksempel når nettverkstrafikken skal 
-                analyseres under debugging.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>neon-debug-mask</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This is an integer mask that the underlying HTTP
                 library, Neon, uses for choosing what type of
                 debugging output to yield.  The default value is
                 <literal>0</literal>, which will silence all debugging
                 output.  For more information about how Subversion
                 makes use of Neon, see <xref linkend="svn.developer" />.</para>
-              @ENGLISH }}} -->
-              <para>Dette er en heltallsmaske som det underliggende 
-                HTTP-biblioteket, Neon, bruker for å velge hvilke 
-                debuggingsmeldinger som skal vises.
-                Standardverdien er <literal>0</literal>, som vil 
-                forhindre visning av alle debuggingsdata.
-                For mer informasjon om hvordan Subversion gjør bruk av 
-                Neon, se <xref linkend="svn.developer" />.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>ssl-authority-files</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This is a semicolon-delimited list of paths to files
                 containing certificates of the certificate authorities
                 (or CAs) that
                 are accepted by the Subversion client when accessing the
                 repository over HTTPS.</para>
-              @ENGLISH }}} -->
-              <para>Dette er en semikolon-separert liste over stier til 
-                filer som inneholder sertifikater fra 
-                sertifikatutstedere som aksepteres av Subversionklienten 
-                under aksessering av depotet over HTTPS.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>ssl-trust-default-ca</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>Set this variable to <literal>yes</literal> if you
                 want Subversion to automatically trust the set of
                 default CAs that ship with OpenSSL.</para>
-              @ENGLISH }}} -->
-              <para>Sett denne variabelen til <literal>yes</literal> 
-                hvis du vil at Subversion skal automatisk stole på 
-                settet med standard sertifikatutstedere som leveres med 
-                OpenSSL.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>ssl-client-cert-file</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>If a host (or set of hosts) requires an SSL client
                 certificate, you'll normally be prompted for a path to
                 your certificate.  By setting this variable to that
@@ -770,22 +402,11 @@ collabnet = svn.collab.net
                 There's no standard place to store your certificate on
                 disk; Subversion will grab it from any path you
                 specify.</para>
-              @ENGLISH }}} -->
-              <para>Hvis en &server; (eller et sett av &servers;) krever 
-                et SSL-klientsertifikat, vil du normalt bli spurt etter 
-                en sti til sertifikatet ditt.
-                Ved å sette denne variabelen til den samme stien, vil 
-                Subversion være i stand til å finne klientsertifikatet 
-                automatisk uten å spørre.
-                Det finnes ingen standard plass der sertifikatene blir 
-                lagret på disken; Subversion vil hente det fra enhver 
-                sti som du spesifiserer.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>ssl-client-cert-password</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>If your SSL client certificate file is encrypted
                 by a passphrase, Subversion will prompt you for the
                 passphrase whenever the certificate is used.  If you
@@ -793,55 +414,28 @@ collabnet = svn.collab.net
                 password in the <filename>servers</filename> file),
                 then you can set this variable to the certificate's
                 passphrase.  You won't be prompted anymore.</para>
-              @ENGLISH }}} -->
-              <para>Hvis fila med SSL-klientsertifikatet er krypter med 
-                et passord, vil Subversion be deg om passordet hver gang 
-                sertifikatet brukes.
-                Hvis du synes dette er irriterende (og synes det er 
-                greit at passordet lagres i 
-                <filename>servers</filename>-fila), kan du sette denne 
-                variabelen til passordet for for sertifikatet.
-                Etter dette blir du ikke bedt om å skrive det flere 
-                ganger.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
       </sect3>
       <sect3 id="svn.advanced.confarea.opts.config">
-        <!-- @ENGLISH {{{
         <title>Config</title>
-        @ENGLISH }}} -->
-        <title>Konfigurasjon</title>
 
-        <!-- @ENGLISH {{{
         <para>The <filename>config</filename> file contains the rest
           of the currently available Subversion run-time options,
           those not related to networking.  There are only a few
           options in use at this time, but they are again grouped into
           sections in expectation of future additions.</para>
-        @ENGLISH }}} -->
-        <para><filename>config</filename>-fila inneholder resten av de 
-          kjørevalgene som for øyeblikket er tilgjengelig i Subversion 
-          og ikke er relatert til nettverk.
-          Det er bare noen få valg som er i bruk nå, men de er gruppert 
-          i seksjoner med tanke på framtidige utvidelser.</para>
 
-        <!-- @ENGLISH {{{
         <para>The <literal>auth</literal> section contains settings
           related to Subversion's authentication and authorization
           against the repository.  It contains:</para>
-        @ENGLISH }}} -->
-        <para><literal>auth</literal>-seksjonen inneholder innstillinger 
-          relatert til Subversions autentisering og autorisasjon i 
-          depotet.
-          Den inneholder:</para>
 
         <variablelist>
           <varlistentry>
             <term><literal>store-passwords</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This instructs Subversion to cache, or not to
                 cache, passwords that are supplied by the user in
                 response to server authentication challenges.  The
@@ -849,158 +443,56 @@ collabnet = svn.collab.net
                 <literal>no</literal> to disable this on-disk password
                 caching.  You can override this option for a single
                 instance of the <command>svn</command> command using
-                the <option>-&#64738;-no-auth-cache</option> command-line
+                the <option>--no-auth-cache</option> command-line
                 parameter (for those subcommands that support it).
                 For more information, see <xref
-                linkend="svn.serverconfig.netmodel.credcache"/>.</para>
-              @ENGLISH }}} -->
-              <para>Dette ber Subversion om å lagre, eller ikke lagre, 
-                passord som blir skrevet av brukeren som respons til 
-                autentiseringskrav fra &servers;.
-                Standardverdien er <literal>yes</literal>.
-                Sett dette til <literal>no</literal> for å forhindre 
-                lagring av passord på disken.
-                Du kan overstyre dette valget for en enkeltstående 
-                <command>svn</command>-kjøring ved å bruke 
-                kommanolinjevalget <option>--no-auth-cache</option> 
-                sammen med de delkommandoene som støtter det.
-                For mer informasjon, se <xref 
                 linkend="svn.serverconfig.netmodel.credcache"/>.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>store-auth-creds</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This setting is the same as
-                <literal>store-passwords</literal>, except that it
+                <literal>store-passwords</literal>, except that
                 enables or disables disk-caching of
                 <emphasis>all</emphasis> authentication information:
                 usernames, passwords, server certificates, and any
                 other types of cacheable credentials.</para>
-              @ENGLISH }}} -->
-              <para>Denne valget er det samme som 
-                <literal>store-passwords</literal>, unntatt at det slår 
-                av/på disklagring av <emphasis>all</emphasis> 
-                autentiseringsinformasjon:
-                Brukernavn, passord, &server;sertifikater og alle andre 
-                typer <!-- ¤ -->lagringsbar legitimasjon.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <!-- @ENGLISH {{{
         <para>The <literal>helpers</literal> section controls which
           external applications Subversion uses to accomplish its
           tasks.  Valid options in this section are:</para>
-        @ENGLISH }}} -->
-        <para><literal>helpers</literal>-seksjonen kontrollerer hvilke 
-          eksterne programmer Subversion bruker for å utføre oppgavene 
-          sine.
-          Gyldige valig i denne seksjonen er:</para>
 
         <variablelist>
           <varlistentry>
             <term><literal>editor-cmd</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the program Subversion will use to
                 query the user for a log message during a commit
                 operation, such as when using <command>svn
                 commit</command> without either the
-                <option>-&#64738;-message</option> (<option>-m</option>) or
-                <option>-&#64738;-file</option> (<option>-F</option>) options.
+                <option>--message</option> (<option>-m</option>) or
+                <option>--file</option> (<option>-F</option>) options.
                 This program is also used with the <command>svn
                 propedit</command> command&mdash;a temporary file is
                 populated with the current value of the property the
                 user wishes to edit, and the edits take place right
                 in the editor program (see <xref
                 linkend="svn.advanced.props" />).  This option's default
-                value is empty.  The order of priority for determining the
-                editor command is:</para>
-              @ENGLISH }}} -->
-              <para>Dette spesifiserer hvilket program Subversion vil 
-                kjøre når brukeren skal skrive inn en loggmelding under 
-                en innleggingsoperasjon, som for eksempel ved bruk av 
-                <command>svn commit</command> uten valgene 
-                <option>--message</option> (<option>-m</option>) og 
-                <option>--file</option> (<option>-F</option>).
-                Dette programmet brukes også sammen med kommandoen 
-                <command>svn propedit</command> – en midlertidig fil 
-                blir fylt med den nåværende verdien til egenskapen 
-                brukeren vil redigere, og redigeringen skjer i 
-                tekstbehandleren (se <xref linkend="svn.advanced.props" 
-                />).
-                Standardverdien til dette valget er tom.
-                Prioriteringsrekkefølgen som brukes for å avgjøre 
-                hvilken kommando for tekstbehandleren som skal brukes, 
-                er:</para>
-              <orderedlist>
-                <listitem>
-                  <!-- @ENGLISH {{{
-                  <para>Command-line option <literal>-&#64738;-editor-cmd</literal></para>
-                  @ENGLISH }}} -->
-                  <para>Kommandolinjevalget 
-                    <literal>--editor-cmd</literal></para>
-                </listitem>
-                <listitem>
-                  <!-- @ENGLISH {{{
-                  <para>Environment variable <literal>SVN_EDITOR</literal></para>
-                  @ENGLISH }}} -->
-                  <para>Miljøvariabelen 
-                    <literal>SVN_EDITOR</literal></para>
-                </listitem>
-                <listitem>
-                  <!-- @ENGLISH {{{
-                  <para>Configuration option <literal>editor-cmd</literal></para>
-                  @ENGLISH }}} -->
-                  <para>Konfigurasjonsvalget 
-                    <literal>editor-cmd</literal></para>
-                </listitem>
-                <listitem>
-                  <!-- @ENGLISH {{{
-                  <para>Environment variable <literal>VISUAL</literal></para>
-                  @ENGLISH }}} -->
-                  <para>Miljøvariabelen <literal>VISUAL</literal></para>
-                </listitem>
-                <listitem>
-                  <!-- @ENGLISH {{{
-                  <para>Environment variable <literal>EDITOR</literal></para>
-                  @ENGLISH }}} -->
-                  <para>Miljøvariabelen <literal>EDITOR</literal></para>
-                </listitem>
-                <listitem>
-                  <!-- @ENGLISH {{{
-                  <para>Possibly, a default value built in to Subversion
-                    (not present in the official builds)</para>
-                  @ENGLISH }}} -->
-                  <para>Muligens en standardverdi som er bygget inn i 
-                    Subversion (ikke lagt inn i de offisielle 
-                    versjonene)</para>
-                </listitem>
-              </orderedlist>
-              <!-- @ENGLISH {{{
-              <para>The value of any of these options or variables is
-                (unlike <literal>diff-cmd</literal>) the beginning of a
-                command line to be executed by the shell.  Subversion
-                appends a space and the pathname of the temporary file to be
-                edited.  The editor should modify the temporary file and
-                return a zero exit code to indicate success.</para>
-              @ENGLISH }}} -->
-              <para>Verdien til alle disse valgene eller variablene er 
-                (i motsetning til <literal>diff-cmd</literal>) 
-                begynnelsen av en kommandolinje som kjøres av skallet.
-                Subversion legger til et mellomrom og stien til den 
-                midlertidige fila som skal redigeres.
-                Denne midlertidige fila redigeres med tekstbehandleren 
-                som returnerer en avslutningskode med verdien 0 for å 
-                indikere at operasjonen var vellykket.</para>
+                value is empty.  If the option is not set, Subversion
+                will fall back to checking the environment variables
+                <literal>SVN_EDITOR</literal>,
+                <literal>VISUAL</literal>, and
+                <literal>EDITOR</literal> (in that order) for an
+                editor command.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>diff-cmd</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the absolute path of a differencing
                 program, used when Subversion generates
                 <quote>diff</quote> output (such as when using the
@@ -1010,21 +502,11 @@ collabnet = svn.collab.net
                 perform this task using an external program.  See
                 <xref linkend="svn.advanced.externaldifftools"/> for
                 more details on using such programs.</para>
-              @ENGLISH }}} -->
-              <para>Dette spesifiserer den absolutte stien til et 
-                diff-program (viser forskjeller mellom filer) som blir 
-                brukt når Subversion lager <quote>diff</quote>-data (som 
-                når <command>svn diff</command>-kommandoen brukes).
-                Vanligvis bruker Subversion et internt diff-bibliotek, 
-                men ved å sette dette valget brukes et eksternt program.
-                Se <xref linkend="svn.advanced.externaldifftools"/> for 
-                flere detaljer om bruk av sånne programmer.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>diff3-cmd</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This specifies the absolute path of a three-way
                 differencing program.  Subversion uses this program to
                 merge changes made by the user with those received
@@ -1034,70 +516,37 @@ collabnet = svn.collab.net
                 external program.  See <xref
                 linkend="svn.advanced.externaldifftools"/> for more
                 details on using such programs.</para>
-              @ENGLISH }}} -->
-              <para>Her spesifiseres den absolutte stien til et treveis 
-                diff-program.
-                Subversion bruker dette programmet til å flette 
-                forandringer gjort av brukeren sammen med de som mottas 
-                fra depotet.
-                Vanligvis bruker Subversion et internt diff-bibliotek, 
-                men ved å sette dette valget brukes et eksternt program.
-                Se <xref linkend="svn.advanced.externaldifftools"/> for 
-                flere detaljer om bruk av sånne programmer.</para>
             </listitem>
           </varlistentry>
           <varlistentry>
             <term><literal>diff3-has-program-arg</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This flag should be set to <literal>true</literal>
                 if the program specified by the
                 <literal>diff3-cmd</literal> option accepts a
-                <option>-&#64738;-diff-program</option> command-line
+                <option>--diff-program</option> command-line
                 parameter.</para>
-              @ENGLISH }}} -->
-              <para>Dette flagget bør settes til <literal>true</literal> 
-                hvis programmet spesifisert i 
-                <literal>diff3-cmd</literal>-valget aksepterer et 
-                <option>--diff-program</option>-parameter på 
-                kommandolinja.</para>
             </listitem>
           </varlistentry>
         </variablelist>
 
-        <!-- @ENGLISH {{{
         <para>The <literal>tunnels</literal> section allows you to
           define new tunnel schemes for use with
           <command>svnserve</command> and <literal>svn://</literal>
           client connections.  For more details, see <xref
           linkend="svn.serverconfig.svnserve.sshauth"/>.</para>
-        @ENGLISH }}} -->
-        <para><literal>tunnels</literal>-seksjonen lar deg definere nye 
-          tunnelskjemaer for bruk sammen med <command>svnserve</command> 
-          og klienttilkoblinger med <literal>svn://</literal>.
-          For flere detaljer, se <xref 
-          linkend="svn.serverconfig.svnserve.sshauth"/>.</para>
 
-        <!-- @ENGLISH {{{
         <para>The <literal>miscellany</literal> section is where
           everything that doesn't belong elsewhere winds up.
           <footnote>
             <para>Anyone for potluck dinner?</para> 
           </footnote>
           In this section, you can find:</para>
-        @ENGLISH }}} -->
-        <para><literal>miscellany</literal>-seksjonen er der alt som 
-          ikke hører hjemme andre steder ender opp.<!-- ¤ --><!-- 
-          <footnote>
-            <para></para>
-          </footnote> -->
-          I denne seksjonen finner du:</para>
 
         <variablelist>
           <varlistentry>
             <term><literal>global-ignores</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>When running the <command>svn status</command>
                 command, Subversion lists unversioned files and
                 directories along with the versioned ones, annotating
@@ -1112,105 +561,49 @@ collabnet = svn.collab.net
                 display unless they are versioned.  The default value
                 is <literal>*.o *.lo *.la #*# .*.rej *.rej .*~ *~
                 .#* .DS_Store</literal>.</para>
-              @ENGLISH }}} -->
-              <para>Ved kjøring av <command>svn 
-                status</command>-kommandoen lister Subversion 
-                uversjonerte filer og kataloger sammen med de 
-                versjonerte og merker dem med et 
-                <literal>?</literal>-tegn (se <xref 
-                linkend="svn.tour.cycle.examine.status" />).
-                Noen ganger kan det være plagsomt å se uinteressante, 
-                uversjonerte elementer – for eksempel objektfiler som 
-                ligger igjen etter at et program er kompilert – i denne 
-                visningen.
-                Valget <literal>global-ignores</literal> er en liste med 
-                blanktegn-separerte <!-- ¤ globs --> strenger som 
-                beskriver navn på filer og kataloger som Subversion ikke 
-                skal vise unntatt hvis de er versjonert.
-                Standardverdien er <literal>*.o *.lo *.la #*# .*.rej 
-                *.rej .*~ *~ .#* .DS_Store</literal>.</para>
 
-              <!-- @ENGLISH {{{
               <para>As well as <command>svn status</command>, the
                 <command>svn add</command> and <command>svn import</command>
-                commands also ignore files that match the list
-                when they are scanning a directory.  You can override this
-                behaviour for a single instance of any of these commands
-                by explicitly specifying the file name, or by using
-                the <option>-&#64738;-no-ignore</option> command-line flag.</para>
-              @ENGLISH }}} -->
-              <para>I likhet med <command>svn status</command> ignorerer 
-                <command>svn add</command>- og <command>svn 
-                import</command>-kommandoen filer som samsvarer med 
-                listen når de tråler en katalog.
-                Du kan overstyre denne oppførselen for en enkelt kjøring 
-                av alle disse kommandoene ved å spesifisere filnavnet 
-                eller  ved å bruke kommandolinjevalget 
-                <option>--no-ignore</option>.</para>
-
-              <!-- @ENGLISH {{{
-              <para>For information on more fine-grained control of
+                commands also ignore files that match the list.
+                You can override this option for a single instance
+                of any of these commands by using
+                the <option>--no-ignore</option> command-line flag.
+                For information on more fine-grained control of
                 ignored items, see <xref linkend="svn.advanced.props.special.ignore"
                 />.</para>
-              @ENGLISH }}} -->
-              <para>For informasjon om mer finkontroll av ignorerte 
-                elementer, se <xref 
-                linkend="svn.advanced.props.special.ignore" />.</para>
             </listitem>
           </varlistentry>
           
           <varlistentry>
             <term><literal>enable-auto-props</literal></term>
             <listitem>
-              <!-- @ENGLISH {{{
               <para>This instructs Subversion to automatically set
                 properties on newly added or imported files.  The
                 default value is <literal>no</literal>, so set this to
                 <literal>yes</literal> to enable Auto-props.
                 The <literal>auto-props</literal> section of this file
                 specifies which properties are to be set on which files.</para>
-              @ENGLISH }}} -->
-              <para>Dette ber Subversion om å automatisk sette 
-                egenskaper på nye filer som legges til eller importeres.
-                Standardverdien er <literal>no</literal>, så sett denne 
-                til <literal>yes</literal> for å slå på autoegenskaper.
-                Seksjonen <literal>auto-props</literal> i denne fila 
-                spesifiserer hvilke egenskaper som skal settes på hvilke 
-                filer.</para>
             </listitem>            
           </varlistentry>
 
           <varlistentry>
             <term><literal>log-encoding</literal></term>
             <listitem>         
-              <!-- @ENGLISH {{{
               <para>This variable sets the default character set
                 encoding for commit log messages.  It's a permanent
-                form of the <option>-&#64738;-encoding</option> option (see
-                <xref linkend="svn.ref.svn.sw"/>).  The Subversion
-                repository stores log messages in UTF-8, and assumes
+                form of the <option>--encoding</option> option (see
+                <xref linkend="svn.ref.svn.sw"/>.)  The Subversion
+                repository stores log messages in UTF8, and assumes
                 that your log message is written using your operating
                 system's native locale.  You should specify a
                 different encoding if your commit messages are written
                 in any other encoding.</para>
-              @ENGLISH }}} -->
-              <para>Denne variabelen setter standardtegnsettet for 
-                loggmeldinger ved innlegging.
-                Det er en permanent form av 
-                <option>--encoding</option>-valget (se <xref 
-                linkend="svn.ref.svn.sw"/>).
-                Subversiondepotet lagrer loggmeldinger i UTF-8, og går 
-                ut i fra at loggmeldingene dine er skrevet med 
-                operativsystemets lokale tegnsett.
-                Du bør spesifisere en annen koding hvis loggmeldingene 
-                dine skrives med et annet tegnsett.</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
             <term><literal>use-commit-times</literal></term>
             <listitem>         
-              <!-- @ENGLISH {{{
               <para>Normally your working copy files have timestamps
                 that reflect the last time they were touched by any
                 process, whether that be your own editor or by some
@@ -1218,17 +611,7 @@ collabnet = svn.collab.net
                 convenient for people developing software, because
                 build systems often look at timestamps as a way of
                 deciding which files need to be recompiled.</para>
-              @ENGLISH }}} -->
-              <para>Normalt har filene i arbeidskopien din fildatoer som 
-                viser forrige gang de ble rørt av en prosess, enten det 
-                er tekstbehandleren din eller av en eller annen 
-                delkommando i <command>svn</command>.
-                Det er vanligvis praktisk for folk som utvikler 
-                programvare, fordi byggesystemer ofte ser på fildatoer 
-                som en måte å bestemme hvilke filer som trenger en ny 
-                kompilering.</para>
 
-              <!-- @ENGLISH {{{
               <para>In other situations, however, it's sometimes nice
                 for the working copy files to have timestamps that
                 reflect the last time they were changed in the
@@ -1241,20 +624,6 @@ collabnet = svn.collab.net
                 <command>svn switch</command>, and <command>svn
                 revert</command> commands will also set last-commit
                 timestamps on files that they touch.</para>
-              @ENGLISH }}} -->
-              <para>I andre situasjoner, derimot, er det greit å la 
-                filene i arbeidskopien ha fildatoen satt til tidspunktet 
-                de sist ble forandret i depotet.
-                Kommandoen <command>svn export</command> setter alltid 
-                disse <quote>tidspunktene for siste innlegging</quote> 
-                på trær som den produserer.
-                Ved å sette denne konfigurasjonsvariabelen til 
-                <literal>yes</literal>, vil kommandoene <command>svn 
-                checkout</command>, <command>svn update</command>, 
-                <command>svn switch</command> og <command>svn 
-                revert</command> også sette fildatoen på filer som 
-                berøres til forrige gangen de ble lagt inn i 
-                depotet.</para>
             </listitem>
           </varlistentry>
           
@@ -1262,7 +631,6 @@ collabnet = svn.collab.net
           registry file, e.g., template-root -->
         </variablelist>
 
-        <!-- @ENGLISH {{{
         <para>The <literal>auto-props</literal> section controls
           the Subversion client's ability to automatically set
           properties on files when they are added or imported.
@@ -1281,29 +649,6 @@ collabnet = svn.collab.net
           forget to set <literal>enable-auto-props</literal> to
           <literal>yes</literal> in the <literal>miscellany</literal>
           section if you want to enable auto-props.</para>
-        @ENGLISH }}} -->
-        <para>Seksjonen <literal>auto-props</literal> kontrollerer 
-          Subversionklientens mulighet til å automatisk sette egenskaper 
-          på filer når de legges til eller importeres.
-          Den inneholder et vilkårlig antall nøkkel/verdi-par på 
-          formatet <literal>MØNSTER = 
-          EGENSKAPSNAVN=EGENSKAPSVERDI</literal> der 
-          <literal>MØNSTER</literal> er en filnavnsøkestreng som passer 
-          med et sett av filnavn og resten av linja er egenskapen og 
-          dens verdi.
-          Flere samsvar på en fil vil resultere i flere 
-          egenskapsforandringer for denne fila; imidlertid er det ingen 
-          garanti at autoegenskaper vil bli lagt til i den rekkefølgen 
-          som de listes i konfigurasjonsfila.
-          Du kan derfor ikke la en regel <quote>overstyre</quote> en 
-          annen.
-          Du kan finne flere eksempler på bruk av autoegenskaper i 
-          <filename>config</filename>-fila.
-          Til sist, ikke glem å sette 
-          <literal>enable-auto-props</literal> til 
-          <literal>yes</literal> i 
-          <literal>miscellany</literal>-seksjonen hvis du vil at 
-          autoegenskaper skal brukes.</para>
 
       </sect3>
 
@@ -1314,12 +659,8 @@ collabnet = svn.collab.net
   <!-- ================================================================= -->
   <!-- ================================================================= -->
   <sect1 id="svn.advanced.props">
-    <!-- @ENGLISH {{{
     <title>Properties</title>
-    @ENGLISH }}} -->
-    <title>Egenskaper</title>
 
-    <!-- @ENGLISH {{{
     <para>We've already covered in detail how Subversion stores and
       retrieves various versions of files and directories in its
       repository.  Whole chapters have been devoted to this most
@@ -1327,16 +668,7 @@ collabnet = svn.collab.net
       if the versioning support stopped there, Subversion would still
       be complete from a version control perspective.  But it
       doesn't stop there.</para>
-    @ENGLISH }}} -->
-    <para>Vi har allerede dekket i detalj hvordan Subversion lagrer og 
-      henter diverse versjoner av filer og kataloger i depotet.
-      Hele kapitler er viet til disse mest fundamentale delene av 
-      funksjonalitet som verktøyet har.
-      Og hvis versjoneringsmulighetene stoppet der, ville Subversion 
-      fortsatt være komplett sett fra et versjonskontrollsynspunkt.
-      Men det stopper ikke der.</para>
 
-    <!-- @ENGLISH {{{
     <para>In addition to versioning your directories and files,
       Subversion provides interfaces for adding, modifying, and
       removing versioned metadata on each of your versioned
@@ -1352,33 +684,10 @@ collabnet = svn.collab.net
       changes as easily as committing textual changes.  And you
       receive other people's property changes as you update your
       working copy.</para>
-    @ENGLISH }}} -->
-    <para>I tillegg til å versjonere kataloger og filer, har Subversion 
-      grensesnitt for å legge til, forandre og fjerne versjonerte 
-      metadata på alle versjonerte kataloger og filer.
-      Vi refererer til disse metadataene som 
-      <firstterm>egenskaper</firstterm> (engelsk: 
-      <foreignphrase>properties</foreignphrase>), og du kan tenke på dem 
-      som en tabell med to kolonner som forbinder egenskapsnavn med 
-      vilkårlige verdier som ligger sammen med hvert element i 
-      arbeidskopien din.
-      Generelt sett kan navnene og verdiene til egenskapene være hva du 
-      vil at de skal være, med den begrensningen at navnene må være 
-      lesbar for mennesker.
-      Og det beste med disse egenskapene er at de også er versjonerte, 
-      akkurat som det tekstbaserte innholdet i filene dine.
-      Du kan forandre, legge inn og reversere egenskapsforandringer like 
-      lett som å legge inn tekstforandringer.
-      Du vil også motta forandringer i egenskaper gjort av andre brukere 
-      når du oppdaterer arbeidskopien.</para>
 
     <sidebar>
-      <!-- @ENGLISH {{{
       <title>Other Properties in Subversion</title>
-      @ENGLISH }}} -->
-      <title>Andre egenskaper i Subversion</title>
 
-      <!-- @ENGLISH {{{
       <para>Properties show up elsewhere in Subversion, too.  Just as
         files and directories may have arbitrary property names and
         values attached to them, each revision as a whole may have
@@ -1387,20 +696,8 @@ collabnet = svn.collab.net
         binary values&mdash;except that revision properties are not
         versioned.  See <xref linkend="svn.reposadmin.basics.revprops" /> for more
         information on these unversioned properties.</para>
-      @ENGLISH }}} -->
-      <para>Egenskaper finnes også andre steder i Subversion.
-        Akkurat som filer og kataloger kan ha vilkårlige egenskapsnavn 
-        og verdier vedlagt, kan hver revisjon som helhet ha vilkårlige 
-        egenskaper lagt ved.
-        De samme begrensningene gjelder også her – <!-- ¤ Kanskje den 
-        engelske setninga bør skrues litt på. Omskrives litt. -->navnene 
-        må være lesbare for mennesker – unntatt at revisjonsegenskaper 
-        ikke er versjonerte.
-        Se <xref linkend="svn.reposadmin.basics.revprops" /> for mer 
-        informasjon om disse uversjonerte egenskapene.</para>
     </sidebar>
 
-    <!-- @ENGLISH {{{
     <para>In this section, we will examine the utility&mdash;both to
       users of Subversion, and to Subversion itself&mdash;of property
       support.  You'll learn about the property-related
@@ -1408,26 +705,11 @@ collabnet = svn.collab.net
       modifications affect your normal Subversion workflow.
       Hopefully, you'll be convinced that Subversion properties can
       enhance your version control experience.</para>
-    @ENGLISH }}} -->
-    <para>I denne seksjonen vil vi studere <!-- ¤ -->nyttigheten – både 
-      for Subversionbrukere og Subversion selv – av støtte for 
-      egenskaper.
-      Du vil lære om de egenskapsrelaterte 
-      <command>svn</command>-delkommandoene og hvordan forandring av 
-      egenskaper påvirker den normale arbeidsflyten i Subversion.
-      Forhåpentligvis vil du bli overbevist om at Subversionegenskaper 
-      kan forbedre <!-- ¤ «Opplevelsen» høres litt pompøst ut, men 
-      kanskje det er det greieste å bruke. -->bruken din av 
-      versjonskontroll.</para>
 
     <!-- =============================================================== -->
     <sect2 id="svn.advanced.props.why">
-      <!-- @ENGLISH {{{
       <title>Why Properties?</title>
-      @ENGLISH }}} -->
-      <title>Hvorfor bruke egenskaper?</title>
 
-      <!-- @ENGLISH {{{
       <para>Properties can be very useful additions to your working
         copy.  In fact, Subversion itself uses properties to house
         special information, and as a way to denote that certain
@@ -1436,18 +718,7 @@ collabnet = svn.collab.net
         do with properties you could also do using regular versioned
         files, but consider the following example of Subversion
         property use.</para>
-      @ENGLISH }}} -->
-      <para>Egenskaper kan være meget nyttige tillegg til arbeidskopien 
-        din.
-        Faktisk bruker Subversion selv egenskaper til å lagre spesiell 
-        informasjon og finne ut når det er nødvendig med spesielle 
-        fremgangsmåter.
-        På samme måte kan du bruke egenskaper til ditt eget bruk.
-        Selvfølgelig, alt du kan gjøre med egenskaper kan du også gjøre 
-        med vanlige versjonerte filer, men se for deg det følgende 
-        eksempelet på bruk av Subversionegenskaper.</para>
 
-      <!-- @ENGLISH {{{
       <para>Say you wish to design a website that houses many digital
         photos, and displays them with captions and a datestamp.  Now,
         your set of photos is constantly changing, so you'd like to
@@ -1464,27 +735,7 @@ collabnet = svn.collab.net
         separated from the original image file.  Soon, your tree of
         files is a mess, and grows in multiples with each new photo
         added to the site.</para>
-      @ENGLISH }}} -->
-      <para>Tenk deg at du vil sette opp en hjemmeside som inneholder 
-        mange digitale bilder, og viser dem med tittel og tidspunkt.
-        Fotosamlingen forandrer seg i ett sett, så du vil helst 
-        automatisere så mye som mulig.
-        Disse bildene kan være ganske store, så du vil i likhet med 
-        andre hjemmesider av denne typen vise miniatyrbilder til de 
-        besøkende.
-        Du kan gjøre dette med tradisjonelle bilder, det vil si at du 
-        kan ha bildet <filename>bilde123.jpg</filename> og en 
-        <filename>bilde123-mini.jpg</filename> side ved side i en 
-        katalog.
-        Eller hvis du vil bruke det samme filnavnet, kan du ha 
-        miniatyrbildene i en annen katalog, for eksempel 
-        <filename>mini/bilde123.jpg</filename>.
-        Du kan også lagre titlene og tidspunktene på en lignende måte, 
-        separert fra den originale bildefila.
-        Snart blir katalogtreet med filene et salig rot, og for hver ny 
-        fil øker størrelsen <!-- ¤ multiples -->flere ganger.</para>
 
-      <!-- @ENGLISH {{{
       <para>Now consider the same setup using Subversion's file
         properties.  Imagine having a single image file,
         <filename>image123.jpg</filename>, and then properties set on
@@ -1499,133 +750,47 @@ collabnet = svn.collab.net
         linkend="svn.developer.usingapi.otherlangs" />) to dig out the extra
         information that your site needs to display without having to
         read an index file or play path manipulation games.</para>
-      @ENGLISH }}} -->
-      <para>Så kan du se for deg det samme oppsettet der filegenskapene 
-        til Subversion brukes.
-        Du kan ha en enkelt bildefil, <filename>bilde123.jpg</filename>, 
-        med egenskaper på denne fila som er kalt 
-        <literal>tittel</literal>, <literal>tidspunkt</literal> og 
-        <literal>miniatyr</literal>.
-        Nå ser arbeidskopien din mye mer oversiktlig ut – faktisk ser 
-        det ut som det bare er bildefiler i den.
-        Men de automatiserte skriptene dine vet bedre.
-        De vet at de kan bruke <command>svn</command> (eller enda bedre, 
-        de kan bruke <!-- ¤ -->språkbindingene i Subversion – se <xref 
-        linkend="svn.developer.usingapi.otherlangs" />) for å hente ut 
-        den ekstra informasjonen som hjemmesiden trenger å vise uten å 
-        måtte lese en indeksfil eller trikse med filstier.</para>
 
-      <!-- @ENGLISH {{{
       <para>How (and if) you use Subversion properties is up to you.
         As we mentioned, Subversion has it own uses for properties,
         which we'll discuss a little later in this chapter.  But
         first, let's discuss how to manipulate properties using the
         <command>svn</command> program.</para>
-      @ENGLISH }}} -->
-      <para>Hvordan (og om) du bruker Subversionegenskaper er opp til 
-        deg.
-        Som vi nevnte, har Subversion sine egne bruksområder for 
-        egenskaper, som vi vil diskutere litt senere i dette kapittelet.
-        Men først ser vi på hvordan vi kan manipulere egenskaper ved å 
-        bruke <command>svn</command>-programmet.</para>
 
     </sect2>
 
     <!-- =============================================================== -->
     <sect2 id="svn.advanced.props.manip">
-      <!-- @ENGLISH {{{
       <title>Manipulating Properties</title>
-      @ENGLISH }}} -->
-      <title>Manipulering av egenskaper</title>
 
-      <!-- @ENGLISH {{{
       <para>The <command>svn</command> command affords a few ways to
         add or modify file and directory properties.  For properties
         with short, human-readable values, perhaps the simplest way to
         add a new property is to specify the property name and value
         on the command-line of the <command>propset</command>
         subcommand.</para>
-      @ENGLISH }}} -->
-      <para><command>svn</command>-kommandoen har flere måter å legge 
-        til og modifisere fil- og katalogegenskaper.
-        For egenskaper med korte egenskaper som er leselig for folk 
-        flest, er kanskje den enkleste måten å legge til en ny egenskap 
-        å spesifisere navnet på egenskapen med verdien dens på 
-        kommandolinja med 
-        <command>propset</command>-delkommandoen.</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn propset copyright '(c) 2003 Red-Bean Software' calc/button.c
 property 'copyright' set on 'calc/button.c'
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn propset copyright '(c) 2003 Red-Bean Software' calc/button.c
-Egenskapen «copyright» satt på «calc/button.c»
-$
-</screen>
        
-      <!-- @ENGLISH {{{
       <para>But we've been touting the flexibility that Subversion
         offers for your property values.  And if you are planning to
         have a multi-line textual, or even binary, property value, you
         probably do not want to supply that value on the command-line.
         So the <command>propset</command> subcommand takes a
-        <option>-&#64738;-file</option> (<option>-F</option>) option for
+        <option>--file</option> (<option>-F</option>) option for
         specifying the name of
         a file which contains the new property value.</para>
-      @ENGLISH }}} -->
-      <para>Men vi har fremhevet fleksibiliteten som Subversion har for 
-        egenskapsverdier.
-        Og hvis du har en tekstbasert, eller til og med binær 
-        egenskapsverdi som går over flere linjer, vil du sannsynligvis 
-        ikke oppgi denne verdien på kommandolinja.
-        Derfor kan <command>propset</command>-delkommandoen bruke valget 
-        <option>--file</option> (<option>-F</option>) for å spesifisere 
-        navnet på en fil som inneholder den nye verdien til 
-        egenskapen.</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn propset license -F /path/to/LICENSE calc/button.c
 property 'license' set on 'calc/button.c'
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn propset license -F /sti/til/LISENS calc/button.c
-Egenskapen «license» satt på «calc/button.c»
-$
-</screen>
 
-      <!-- @ENGLISH {{{
-      <para>There are some restrictions on the names you can use for
-        properties.  A property name must start with a letter, a colon
-        (<literal>:</literal>), or an underscore
-        (<literal>_</literal>); after that, you can also use digits,
-        hyphens (<literal>-</literal>), and periods
-        (<literal>.</literal>).
-          <footnote>
-            <para>If you're familiar with XML, this is pretty much the
-            ASCII subset of the syntax for XML "Name".</para>
-          </footnote>
-      </para>
-      @ENGLISH }}} -->
-      <para>Det er noen restriksjoner på navnene du kan bruke på 
-        egenskaper.
-        Et egenskapsnavn må starte med en bokstav, kolon 
-        (<literal>:</literal>) eller understrek (<literal>_</literal>).
-        Etter dette kan du også bruke siffer, bindestrek 
-        (<literal>-</literal>) og punktum 
-        (<literal>.</literal>).<footnote>
-          <para>Hvis du kjenner til XML, er dette mye det samme som 
-            ASCII-delen av syntaksen for XML <!-- ¤ Oversette den? 
-            -->"Name".</para>
-        </footnote></para>
-
-      <!-- @ENGLISH {{{
       <para>In addition to the <command>propset</command> command, the
         <command>svn</command> program supplies the
         <command>propedit</command> command.  This command uses the
@@ -1642,57 +807,19 @@ $
         accept that as the new property value.  If you exit your
         editor without making any changes, no property modification
         will occur.</para>
-      @ENGLISH }}} -->
-      <para>I tillegg til <command>propset</command>-kommandoen, har 
-        <command>svn</command>-programmet kommandoen 
-        <command>propedit</command>.
-        Denne kommandoen bruker tekstbehandleren som er spesifisert i 
-        konfigurasjonen (se <xref 
-        linkend="svn.advanced.confarea.opts.config" />) for å legge til 
-        eller modifisere egenskaper.
-        Når du kjører kommandoen, kjører <command>svn</command> 
-        tekstbehandleren mot en midlertidig fil som inneholder den 
-        nåværende verdien til egenskapen (eller starter uten tekst hvis 
-        du legger til en ny egenskap).
-        Deretter forandrer du på verdien i tekstbehandleren til den er 
-        lik den nye verdien du vil lagre i egenskapen, lagrer den 
-        midlertidige fila og avslutter tekstbehandleren.
-        Hvis Subversion finner ut at du faktisk har forandret den 
-        nåværende egenskapsverdien, vil den godta det som den nye 
-        verdien til egenskapen.
-        Hvis du avslutter tekstbehandleren uten å gjøre noen 
-        forandringer, vil det ikke bli gjort noen forandringer i 
-        egenskapen.</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn propedit copyright calc/button.c  ### exit the editor without changes
 No changes to property 'copyright' on 'calc/button.c'
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn propedit copyright calc/button.c
-### tekstbehandleren avsluttes uten at noe er forandret
-Ingen endring for egenskap «copyright» på «calc/button.c»
-$
-</screen>
 
-      <!-- @ENGLISH {{{
       <para>We should note that, as with other <command>svn</command>
         subcommands, those related to properties can act on multiple
         paths at once.  This enables you to modify properties on whole
         sets of files with a single command.  For example, we could
         have done:</para>
-      @ENGLISH }}} -->
-      <para>Vi skal legge merke til at i likhet med andre 
-        <command>svn</command>-kommandoer kan de som har med egenskaper 
-        å gjøre utføre handlinger på flere stier på en gang.
-        Dette lar deg forandre egenskaper på hele sett av filer med en 
-        enkelt kommando.
-        For eksempel kunne vi ha gjort dette:</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn propset copyright '(c) 2002 Red-Bean Software' calc/*
 property 'copyright' set on 'calc/Makefile'
@@ -1701,17 +828,7 @@ property 'copyright' set on 'calc/integer.c'
 &hellip;
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn propset copyright '(c) 2002 Red-Bean Software' calc/*
-Egenskapen «copyright» satt på «calc/Makefile»
-Egenskapen «copyright» satt på «calc/button.c»
-Egenskapen «copyright» satt på «calc/integer.c»
-…
-$
-</screen>
 
-      <!-- @ENGLISH {{{
       <para>All of this property adding and editing isn't really very
         useful if you can't easily get the stored property value.  So
         the <command>svn</command> program supplies two subcommands
@@ -1723,22 +840,7 @@ $
         propget</command>.  This command will, given a path (or set of
         paths) and a property name, print the value of the property to
         the standard output stream.</para>
-      @ENGLISH }}} -->
-      <para>Alt dette med å legge til og redigere egenskaper hadde 
-        egentlig ikke vært særlig nyttig hvis du ikke hadde hatt en måte 
-        å få tak i den lagrede egenskapsverdien.
-        Til dette har <command>svn</command>-programmet to delkommandoer 
-        for å vise navnene og verdiene til egenskaper som er lagret i 
-        filer og kataloger.
-        Kommandoen <command>svn proplist</command> vil liste ut navnene 
-        på egenskapene som eksisterer i en sti.
-        Når du vet navnene til egenskapene på noden, kan du be om 
-        verdiene individuelt ved å bruke <command>svn propget</command>.
-        Denne kommandoen vil, når den får en sti (eller sett av stier) 
-        og et egenskapsnavn, skrive verdien av egenskapen til standard 
-        ut-strømmen.</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn proplist calc/button.c
 Properties on 'calc/button.c':
@@ -1747,31 +849,14 @@ Properties on 'calc/button.c':
 $ svn propget copyright calc/button.c
 (c) 2003 Red-Bean Software
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn proplist calc/button.c
-Egenskaper for «calc/button.c»:
-  copyright
-  license
-$ svn propget copyright calc/button.c
-(c) 2003 Red-Bean Software
-</screen>
 
-      <!-- @ENGLISH {{{
       <para>There's even a variation of the
         <command>proplist</command> command that will list both the
         name and value of all of the properties.  Simply supply the
-        <option>-&#64738;-verbose</option> (<option>-v</option>) option.</para>
-      @ENGLISH }}} -->
-      <para>Det er til og med en variant av 
-        <command>proplist</command>-kommandoen som vil liste både navnet 
-        og verdien til alle egenskapene.
-        Bare legg til valget <option>--verbose</option> 
-        (<option>-v</option>).</para>
+        <option>--verbose</option> (<option>-v</option>) option.</para>
 
-      <!-- @ENGLISH {{{
       <screen>
-$ svn proplist -&#64738;-verbose calc/button.c
+$ svn proplist --verbose calc/button.c
 Properties on 'calc/button.c':
   copyright : (c) 2003 Red-Bean Software
   license : ================================================================
@@ -1786,90 +871,37 @@ notice, this list of conditions, and the recipe for Fitz's famous
 red-beans-and-rice.
 &hellip;
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn proplist --verbose calc/button.c
-Egenskaper for «calc/button.c»:
-  copyright : (c) 2003 Red-Bean Software
-  license : ================================================================
-Copyright (c) 2003 Red-Bean Software.  All rights reserved.
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions 
-are met:
-
-1. Redistributions of source code must retain the above copyright
-notice, this list of conditions, and the recipe for Fitz's famous
-red-beans-and-rice.
-…
-</screen>
-
-      <!-- @ENGLISH {{{
       <para>The last property-related subcommand is
         <command>propdel</command>.  Since Subversion allows you to
         store properties with empty values, you can't remove a
         property altogether using <command>propedit</command> or
         <command>propset</command>.  For example, this command will
         <emphasis>not</emphasis> yield the desired effect:</para>
-      @ENGLISH }}} -->
-      <para>Den siste delkommandoen relatert til egenskaper er 
-        <command>propdel</command>.
-        Siden Subversion lar deg lagre egenskaper med tomme verdier, kan 
-        du ikke fjerne en egenskap helt ved å bruke 
-        <command>propedit</command> eller <command>propset</command>.
-        For eksempel, denne kommandoen vil <emphasis>ikke</emphasis> 
-        gjøre det du ønsker:</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn propset license '' calc/button.c
 property 'license' set on 'calc/button.c'
-$ svn proplist -&#64738;-verbose calc/button.c
+$ svn proplist --verbose calc/button.c
 Properties on 'calc/button.c':
   copyright : (c) 2003 Red-Bean Software
   license : 
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn propset license '' calc/button.c
-Egenskapen «license» satt på «calc/button.c»
-$ svn proplist --verbose calc/button.c
-Egenskaper for «calc/button.c»:
-  copyright : (c) 2003 Red-Bean Software
-  license : 
-$
-</screen>
 
-      <!-- @ENGLISH {{{
       <para>You need to use the <command>propdel</command> command to
         delete properties altogether.  The syntax is similar to the
         other property commands:</para>
-      @ENGLISH }}} -->
-      <para>Du må bruke <command>propdel</command>-kommandoen for å 
-        fjerne egenskaper helt.
-        Syntaksen er lik de andre egenskapskommandoene:</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn propdel license calc/button.c
-property 'license' deleted from 'calc/button.c'.
-$ svn proplist -&#64738;-verbose calc/button.c
+property 'license' deleted from ''.
+$ svn proplist --verbose calc/button.c
 Properties on 'calc/button.c':
   copyright : (c) 2003 Red-Bean Software
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn propdel license calc/button.c
-Egenskapen «license» slettet fra «calc/button.c».
-$ svn proplist --verbose calc/button.c
-Egenskaper for 'calc/button.c':
-  copyright : (c) 2003 Red-Bean Software
-$
-</screen>
 
-      <!-- @ENGLISH {{{
       <para>Now that you are familiar with all of the
         property-related <command>svn</command> subcommands, let's see
         how property modifications affect the usual Subversion
@@ -1878,27 +910,13 @@ $
         result, Subversion provides the same opportunities for
         merging&mdash;in cleanly or conflicting fashions&mdash;someone
         else's modifications into your own.</para>
-      @ENGLISH }}} -->
-      <para>Nå som du er kjent med alle 
-        <command>svn</command>-kommandoene som er relatert til 
-        egenskaper, la oss se hvordan forandringer i egenskaper påvirker 
-        den vanlige arbeidsflyten i Subversion.
-        Som vi nevnte tidligere, er fil- og katalogegenskaper 
-        versjonerte, akkurat som innholdet i filene dine.
-        Dette betyr at Subversion har de samme mulighetene for fletting 
-        – med dertil potensielle konflikter – av andres forandringer inn 
-        i dine egne.</para>
 
       <sidebar>
-        <!-- @ENGLISH {{{
         <title>Modifying Revision Properties</title>
-        @ENGLISH }}} -->
-        <title>Forandre revisjonsegenskaper</title>
 
-        <!-- @ENGLISH {{{
         <para>Remember those unversioned revision properties?  You can
           modify those, too, with the <command>svn</command> program.
-          Simply add the <option>-&#64738;-revprop</option> command-line
+          Simply add the <option>--revprop</option> command-line
           parameter, and specify the revision whose property you wish
           to modify.  Since revisions are global, you don't need to
           specify a path in this case as long as you are positioned in
@@ -1909,39 +927,15 @@ $
             <para>Fixing spelling errors, grammatical gotchas, and
               <quote>just-plain-wrongness</quote> in commit log
               messages is perhaps the most common use case for the
-              <option>-&#64738;-revprop</option> option.</para>
-          </footnote></para>
-        @ENGLISH }}} -->
-        <para>Husker du de uversjonerte revisjonsegenskapene?
-          Du kan modifisere disse også ved hjelp av 
-          <command>svn</command>-programmet.
-          Bare legg til <option>--revprop</option>-valget på 
-          kommandolinja og spesifiser revisjonen som har den egenskapen 
-          du vil forandre.
-          Siden revisjoner er globale, trenger du ikke å spesifisere en 
-          sti i dette tilfellet så lenge du står i arbeidskopien til 
-          depotet som har revisjonsegenskapen som du vil forandre.
-          Du vil for eksempel forandre loggmeldingen for en eksisterende 
-          revisjon.<footnote>
-            <para>Retting av skrivefeil, grammatiske flauser og ting som 
-              er direkte feil i loggmeldinger er kanskje det vanligste 
-              bruksområdet for <option>--revprop</option>-valget.</para>
+              <option>--revprop</option> option.</para>
           </footnote></para>
 
-        <!-- @ENGLISH {{{
         <screen>
-$ svn propset svn:log '* button.c: Fix a compiler warning.' -r11 -&#64738;-revprop
+$ svn propset svn:log '* button.c: Fix a compiler warning.' -r11 --revprop
 property 'svn:log' set on repository revision '11'
 $
 </screen>
-        @ENGLISH }}} -->
-        <screen>
-$ svn propset svn:log '* button.c: Fix a compiler warning.' -r11 --revprop
-Egenskapen «svn:log» satt på depotrevisjon «11»
-$
-</screen>
 
-        <!-- @ENGLISH {{{
         <para>Note that the ability to modify these unversioned
           properties must be explicitly added by the repository
           administrator (see <xref linkend="svn.reposadmin.create.hooks" />).
@@ -1950,20 +944,9 @@ $
           The repository administrator can setup methods to protect
           against this loss, and by default, modification of
           unversioned properties is disabled.</para>
-        @ENGLISH }}} -->
-        <para>Legg merke til at muligheten til å forandre disse 
-          uversjonerte egenskapene må bli eksplisitt satt av 
-          depotadministratoren (se <xref 
-          linkend="svn.reposadmin.create.hooks" />).
-          Siden egenskapene ikke er versjonerte, risikerer du å miste 
-          informasjon hvis du ikke er forsiktig når du redigerer.
-          Depotadministratoren kan sette opp metoder for å beskytte mot 
-          datatap som dette, og standardoppsettet forbyr forandringer i 
-          revisjonsegenskaper.</para>
 
       </sidebar>
 
-      <!-- @ENGLISH {{{
       <para>And as with file contents, your property changes are local
         modifications, only made permanent when you commit them to the
         repository with <command>svn commit</command>.  Your property
@@ -1974,20 +957,7 @@ $
         the state of your file and directory properties by using the
         <command>svn status</command> and <command>svn diff</command>
         commands.</para>
-      @ENGLISH }}} -->
-      <para>Og i likhet med filinnhold, er forandringene dine i 
-        egenskapene lokale modifiseringer som kun blir gjort permanente 
-        når du legger dem inn i depotet med <command>svn 
-        commit</command>.
-        Egenskapsforandringene kan lett omgjøres – kommandoen 
-        <command>svn revert</command> vil sette filene og katalogene 
-        dine tilbake til den uredigerte tilstanden – innhold, 
-        egenskaper, alt.
-        Du kan også få interessant informasjon om tilstanden til fil- og 
-        katalogegenskapene ved å bruke kommandoene <command>svn 
-        status</command> og <command>svn diff</command>.</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn status calc/button.c
  M     calc/button.c
@@ -1999,20 +969,7 @@ Name: copyright
 
 $
 </screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn status calc/button.c
- M     calc/button.c
-$ svn diff calc/button.c
-Egenskapsforandringer på: calc/button.c
-___________________________________________________________________
-Navn: copyright
-   + (c) 2003 Red-Bean Software
 
-$
-</screen>
-
-      <!-- @ENGLISH {{{
       <para>Notice how the <command>status</command> subcommand
         displays <literal>M</literal> in the second column instead of
         the first.  That is because we have modified the properties on
@@ -2020,40 +977,17 @@ $
         textual contents.  Had we changed both, we would have seen
         <literal>M</literal> in the first column, too (see <xref
         linkend="svn.tour.cycle.examine.status" />).</para>
-      @ENGLISH }}} -->
-      <para>Legg merke til hvordan 
-        <command>status</command>-delkommandoen viser 
-        <literal>M</literal> i den andre kolonnen istedenfor den første.
-        Det er fordi vi har forandret egenskapene på 
-        <filename>calc/button.c</filename>, men ikke forandret 
-        tekstinnholdet.
-        Hadde vi forandret begge to, ville det også vært en 
-        <literal>M</literal> i den første kolonnen (se <xref 
-        linkend="svn.tour.cycle.examine.status" />).</para>
 
       <sidebar>
-        <!-- @ENGLISH {{{
         <title>Property Conflicts</title>
-        @ENGLISH }}} -->
-        <title>Konflikter i egenskaper</title>
 
-        <!-- @ENGLISH {{{
         <para>As with file contents, local property modifications can
           conflict with changes committed by someone else.  If you
           update your working copy directory and receive property
           changes on a versioned resource that clash with your own,
           Subversion will report that the resource is in a conflicted
           state.</para>
-        @ENGLISH }}} -->
-        <para>I likhet med filinnhold, kan lokale egenskapsforandringene 
-          komme i konflikt med forandringer som er lagt inn av noen 
-          andre.
-          Hvis du oppdaterer arbeidskopikatalogen og mottar 
-          egenskapsforandringer på en versjonert ressurs som kolliderer 
-          med dine egne, vil Subversion rapportere at ressursen er i en 
-          konflikttilstand.</para>
  
-        <!-- @ENGLISH {{{
         <screen>
 % svn update calc
 M  calc/Makefile.in
@@ -2061,16 +995,7 @@ M  calc/Makefile.in
 Updated to revision 143.
 $ 
 </screen>
-        @ENGLISH }}} -->
-        <screen>
-% svn update calc
-M  calc/Makefile.in
- C calc/button.c
-Oppdatert til revisjon 143.
-$
-</screen>
          
-        <!-- @ENGLISH {{{
         <para>Subversion will also create, in the same directory as
           the conflicted resource, a file with a
           <filename>.prej</filename> extension which contains the
@@ -2080,19 +1005,7 @@ $
           <literal>C</literal> in the second column of <command>svn
           status</command> output for that resource, and attempts to
           commit your local modifications will fail.</para>
-        @ENGLISH }}} -->
-        <para>Subversion vil også lage, i den samme katalogen som 
-          ressursen som har en konflikt, en fil med etternavnet 
-          <filename>.prej</filename> som inneholder detaljene om 
-          konflikten.
-          Du kan studere innholdet av denne fila så du kan avgjøre 
-          hvordan konflikten skal løses.
-          Inntil konflikten er løst, vil du se en <literal>C</literal> i 
-          den andre kolonnen av <command>svn status</command>-utskriften 
-          for denne ressursen, og forsøk på å legge inn dine lokale 
-          forandringer vil feile.</para>
 
-        <!-- @ENGLISH {{{
         <screen>
 $ svn status calc
  C     calc/button.c
@@ -2101,32 +1014,15 @@ $ cat calc/button.c.prej
 prop 'linecount': user set to '1256', but update set to '1301'.
 $
 </screen>
-        @ENGLISH }}} -->
-        <!-- ¤ --><screen>
-$ svn status calc
- C     calc/button.c
-?      calc/button.c.prej
-$ cat calc/button.c.prej
-prop 'linecount': user set to '1256', but update set to '1301'.
-$
-</screen>
  
-        <!-- @ENGLISH {{{
         <para>To resolve property conflicts, simply ensure that the
           conflicting properties contain the values that they should,
           and then use the <command>svn resolved</command> command to
           alert Subversion that you have manually resolved the
           problem.</para>
-        @ENGLISH }}} -->
-        <para>For å løse egenskapskonflikter, er det bare å passe på at 
-          egenskapene som er i konflikt inneholder de verdiene som de 
-          skal, og deretter bruke <command>svn 
-          resolved</command>-kommandoen for å varsle Subversion om at du 
-          har løst problemet manuelt.</para>
 
       </sidebar>
 
-      <!-- @ENGLISH {{{
       <para>You might also have noticed the non-standard way that
         Subversion currently displays property differences.  You can
         still run <command>svn diff</command> and redirect the output
@@ -2136,19 +1032,7 @@ $
         unfortunately mean that to fully apply a patch generated by
         <command>svn diff</command>, any property modifications will
         need to be applied by hand.</para>
-      @ENGLISH }}} -->
-      <para>Du har kanskje lagt merke til den smårare måten Subversion 
-        viser forskjeller i egenskaper på.
-        Du kan fortsatt kjøre <command>svn diff</command> og omdirigere 
-        resultatet for å lage en gyldig patchfil.
-        <command>patch</command>-programmet vil imidlertid ignorere 
-        patcher for egenskaper – alle data som det ikke forstår vil bli 
-        ignorert.
-        Dette betyr dessverre at for å patche egenskaper med en fil 
-        laget av <command>svn diff</command>, må forandringer i 
-        egenskaper legges til for hånd.</para>
 
-      <!-- @ENGLISH {{{
       <para>As you can see, the presence of property modifications has
         no outstanding effect on the typical Subversion workflow.
         Your general patterns of updating your working copy, checking
@@ -2158,16 +1042,6 @@ $
         presence or absence of properties.  The <command>svn</command>
         program has some additional subcommands for actually making
         property changes, but that is the only noticeable asymmetry.</para>
-      @ENGLISH }}} -->
-      <para>Som du ser, påvirkes ikke arbeidsflyten i Subversion 
-        nevneverdig selv om egenskapene er forandret.
-        Rutinen med å oppdatere arbeidskopien, sjekke status på filer og 
-        kataloger, rapportering om forandringer som du har gjort og 
-        innlegging av disse forandringene til depotetet er fullstendig 
-        likegyldig til nærværet eller fraværet av egenskaper.
-        <command>svn</command>-programmet har noen tilleggskommandoer 
-        for å faktisk gjøre forandringer i egenskaper, men det er den 
-        eneste merkbare forskjellen.</para>
 
     </sect2>
 
@@ -2475,7 +1349,7 @@ I      calc/debug_log.3.gz
           order for the keyword to be expanded.  You should consider the
           value of the <literal>svn:keywords</literal> property to be
           case-sensitive too&mdash;certain keyword names will be recognized
-          regardless of case, but this behavior is deprecated.</para>
+          regardless of case, but this behaviour is deprecated.</para>
 
         <para>Subversion defines the list of keywords available for
           substitution.  That list contains the following five keywords, 
@@ -2641,101 +1515,6 @@ Cumulus clouds are appearing more frequently as summer approaches.
           file will be re-substituted with information that
           reflects the most recent known commit to that file.</para>
 
-        <para>Subversion 1.2 introduced a new variant of the keyword
-          syntax which brought additional, useful&mdash;though perhaps
-          atypical&mdash;functionality.  You can now tell Subversion
-          to maintain a fixed length (in terms of the number of bytes
-          consumed) for the substituted keyword.  By using a
-          double-colon (<literal>::</literal>) after the keyword name,
-          followed by a number of space characters, you define that
-          fixed width.  When Subversion goes to substitute your
-          keyword for the keyword and its value, it will essentially
-          replace only those space characters, leaving the overall
-          width of the keyword field unchanged.  If the substituted
-          value is shorter than the defined field width, there will be
-          extra padding characters (spaces) at the end of the
-          substituted field; if it is too long, it is truncated with a
-          special hash (<literal>#</literal>) character just before
-          the final dollar sign terminator.</para>
-
-        <para>For example, say you have a document in which you have
-          some section of tabular data reflecting the document's
-          Subversion keywords.  Using the original Subversion keyword
-          substitution syntax, your file might look something
-          like:</para>
-
-        <screen>
-$Rev$:     Revision of last commit
-$Author$:  Author of last commit
-$Date$:    Date of last commit
-</screen>
-
-        <para>Now, that looks nice and tabular at the start of things.
-          But when you then commit that file (with keyword substitution
-          enabled, of course), you see:</para>
-
-        <screen>
-$Rev: 12 $:     Revision of last commit
-$Author: harry $:  Author of last commit
-$Date: 2006-03-15 02:33:03 -0500 (Wed, 15 Mar 2006) $:    Date of last commit
-</screen>
-
-        <para>The result is not so beautiful.  And you might be
-          tempted to then adjust the file after the substitution so
-          that it again looks tabular.  But that only holds as long as
-          the keyword values are the same width.  If the last
-          committed revision rolls into a new place value (say, from
-          99 to 100), or if another person with a longer username
-          commits the file, stuff gets all crooked again.  However, if
-          you are using Subversion 1.2 or better, you can use the new
-          fixed-length keyword syntax, define some field widths that
-          seem sane, and now your file might look like this:</para>
-
-        <screen>
-$Rev::               $:  Revision of last commit
-$Author::            $:  Author of last commit
-$Date::              $:  Date of last commit
-</screen>
-
-        <para>You commit this change to your file.  This time,
-          Subversion notices the new fixed-length keyword syntax, and
-          maintains the width of the fields as defined by the padding
-          you placed between the double-colon and the trailing dollar
-          sign.  After substitution, the width of the fields is
-          completely unchanged&mdash;the short values for
-          <literal>Rev</literal> and <literal>Author</literal> are
-          padded with spaces, and the long <literal>Date</literal>
-          field is truncated by a hash character:</para>
-
-        <screen>
-$Rev:: 13            $:  Revision of last commit
-$Author:: harry      $:  Author of last commit
-$Date:: 2006-03-15 0#$:  Date of last commit
-</screen>
-       
-        <para>The use of fixed-length keywords is especially handy
-          when performing substitutions into complex file formats that
-          themselves use fixed-length fields for data, or for which
-          the stored size of a given data field is overbearingly
-          difficult to modify from outside the format's native
-          application (such as for Microsoft Office documents).</para>
-
-        <warning>
-          <para>Be aware that because the width of a keyword field is
-            measured in bytes, the potential for corruption of
-            multi-byte values exists.  For example, a username which
-            contains some multi-byte UTF-8 characters might suffer
-            truncation in the middle of the string of bytes which make
-            up one of those characters.  The result will be a mere
-            truncation when viewed at the byte level, but will likely
-            appear as a string with an incorrect or garbled final
-            character when viewed as UTF-8 text.  It is conceivable
-            that certain applications, when asked to load the file,
-            would notice the broken UTF-8 text and deem the entire
-            file corrupt, refusing to operate on the file
-            altogether.</para> 
-        </warning>
-
       </sect3>
 
       <sect3 id="svn.advanced.props.special.eol-style">
@@ -2751,7 +1530,7 @@ $Date:: 2006-03-15 0#$:  Date of last commit
         <para>This means that by default, Subversion doesn't pay any
           attention to the type of <firstterm>end-of-line (EOL)
           markers</firstterm> used in your files.  Unfortunately,
-          different operating systems use different tokens to represent
+          different operating system use different tokens to represent
           the end of a line of text in a file.  For example, the usual
           line ending token used by software on the Windows platform
           is a pair of ASCII control characters&mdash;carriage return
@@ -3020,46 +1799,6 @@ $Date:: 2006-03-15 0#$:  Date of last commit
       only&mdash;it's not yet possible to reserve access to a whole
       directory tree.</para>
 
-    <sidebar id="svn.advanced.locking.meanings">
-      <title>Three meanings of <quote>lock</quote></title>
-
-      <para>In this section, and almost everywhere in this book, the
-        words <quote>lock</quote> and <quote>locking</quote> describe
-        a mechanism for mutual exclusion between users to avoid
-        clashing commits. Unfortunately, there are two other sorts
-        of <quote>lock</quote> with which Subversion, and therefore
-        this book, sometimes needs to be concerned.</para>
-
-      <itemizedlist>
-
-        <listitem><para><firstterm>Working copy locks</firstterm>,
-          used internally by Subversion to prevent clashes between
-          multiple Subversion clients operating on the same working
-          copy. This is the sort of lock indicated by
-          an <computeroutput>L</computeroutput> in the third column
-          of <command>svn status</command> output, and removed by
-          the <command>svn cleanup</command> command, as described in
-          <xref linkend="svn.tour.other.cleanup"/>.</para>
-        </listitem>
-
-        <listitem><para><firstterm>Database locks</firstterm>, used
-          internally by the Berkeley DB backend to prevent clashes
-          between multiple programs trying to access the
-          database. This is the sort of lock whose unwanted
-          persistence after an error can cause a repository to
-          be <quote>wedged</quote>, as described in
-          <xref linkend="svn.reposadmin.maint.recovery"/>.</para>
-        </listitem>
-
-      </itemizedlist>
-
-      <para>You can generally forget about these other sorts of lock,
-        until something goes wrong that requires you to care about
-        them. In this book, <quote>lock</quote> means the first sort
-        unless the contrary is either clear from context or explicitly
-        stated.</para>
-    </sidebar>
-
     <!-- =============================================================== -->
     <sect2 id="svn.advanced.locking.creation">
       <title>Creating locks</title>
@@ -3247,7 +1986,7 @@ $
           This behavior is also semi-permanently tweakable, by setting
           <literal>no-unlock = yes</literal> in your run-time
           <filename>config</filename> file (see <xref
-          linkend="svn.advanced.confarea"/>).</para>
+          linkend="svn.advanced.confarea"/>.)</para>
 
       <para>Of course, locking a file doesn't oblige one to commit a
         change to it.  The lock can be released at any time with a
@@ -3324,7 +2063,7 @@ Need to make a quick tweak to this image.
         on the object.</para>
 
       <para>So in this particular example, Sally can see that Harry
-        locked the file on February 16th to <quote>make a quick
+        locked the file on Feburary 16th to <quote>make a quick
         tweak</quote>.  It being June, she suspects that he probably
         forgot all about the lock.  She might phone Harry to complain
         and ask him to release the lock.  If he's unavailable, she
@@ -3508,7 +2247,7 @@ $
 
       <para>We've seen how <command>svn lock</command>
         and <command>svn unlock</command> can be used to create,
-        release, break, and steal locks.  This satisfies the goal of
+        release, break, and steal locks.  This satisifies the goal of
         serializing commit access to a file.  But what about the
         larger problem of preventing wasted time?</para>
 
@@ -3595,19 +2334,18 @@ Making some tweaks.  Locking for the next two hours.
   <sect1 id="svn.advanced.pegrevs">
     <title>Peg and Operative Revisions</title>
 
-    <para>We make use of the ability to copy, move, rename, and
-      completely replace files and directories on our computers all
-      that time.  And your version control system shouldn't get in the
-      way of your doing these things with your version controlled
-      files and directories, either.  Subversion's file management
-      support is quite liberating, affording almost as much
+    <para>The ability to copy, move, and rename files and directories;
+      to be able to create an object, then delete it and then add a
+      new one at the same path&mdash;those are operations which we
+      perform on files and directories on our computers all the time,
+      and operations we tend to take for granted.  And Subversion
+      would like you to think they are granted.  Subversion's file
+      management support is quite liberating, affording almost as much
       flexibility for versioned files that you'd expect when
       manipulating your unversioned ones.  But that flexibility means
       that across the lifetime of your repository, a given versioned
       resource might have many paths, and a given path might represent
-      several entirely different versioned resources.  And this
-      introduces a certain level of complexity to your interactions
-      with those paths and resources.</para>
+      serveral entirely different versioned resources.</para>
 
     <para>Subversion is pretty smart about noticing when an object's
       version history includes such <quote>changes of address</quote>.
@@ -3722,7 +2460,7 @@ Making some tweaks.  Locking for the next two hours.
 $ svn <replaceable>command</replaceable> -r <replaceable>OPERATIVE-REV</replaceable> item@<replaceable>PEG-REV</replaceable>
 </screen>
       
-      <para>&hellip;it performs the following algorithm:</para>
+      <para>...it performs the following algorithm:</para>
 
       <itemizedlist>
         
@@ -3792,7 +2530,7 @@ subversion/libsvn_client/ra.c:775: (apr_err=20014)
 svn: Unable to find repository location for 'concept/IDEA' in revision 1
 </screen>
 
-    <para>And when executed, it has the expected results.  Peg revisions
+    <para>And when executed, has the expected results.  Peg revisions
       generally default to a value of <literal>BASE</literal> (the
       revision currently present in the working copy) when applied to
       working copy paths, and of <literal>HEAD</literal> when applied
@@ -4458,8 +3196,8 @@ LC_ALL="C"
       <screen>
 $ export LC_MESSAGES=de_DE
 $ svn help cat
-cat: Gibt den Inhalt der angegebenen Dateien oder URLs aus.
-Aufruf: cat ZIEL[@REV]...
+cat: Ausgabe des Inhaltes der angegebenen Dateien oder URLs
+Aufruf: cat ZIEL...
 &hellip;
 </screen>
 
@@ -4643,8 +3381,8 @@ svn: Can't convert string from 'UTF-8' to native encoding:
         in an asynchronous fashion (or <quote>backgrounded</quote>),
         you might have several instances of it all running
         simultaneously.  Finally, Subversion expects that your program
-        return an errorcode of 1 if your program detected differences,
-        or 0 if it did not&mdash;any other errorcode is considered a
+        return an errorcode of 0 if your program detected differences,
+        or 1 if it did not&mdash;any other errorcode is considered a
         fatal error.
         <footnote>
           <para>The GNU diff manual page puts it this way: <quote>An

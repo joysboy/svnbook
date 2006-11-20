@@ -168,20 +168,19 @@
 
       <!-- @ENGLISH {{{
       <para>Consider the scenario shown in <xref
-        linkend="svn.basic.vsn-models.problem-sharing.dia-1"/>.
-        Suppose we have two co-workers, Harry and Sally.  They each
-        decide to edit the same repository file at the same time.  If
-        Harry saves his changes to the repository first, then it's
-        possible that (a few moments later) Sally could accidentally
-        overwrite them with her own new version of the file.  While
-        Harry's version of the file won't be lost forever (because the
-        system remembers every change), any changes Harry made
-        <emphasis>won't</emphasis> be present in Sally's newer version
-        of the file, because she never saw Harry's changes to begin
-        with.  Harry's work is still effectively lost&mdash;or at
-        least missing from the latest version of the file&mdash;and
-        probably by accident.  This is definitely a situation we want
-        to avoid!</para>
+        linkend="svn.basic.vsn-models.problem-sharing.dia-1"/>.  Suppose we have two co-workers,
+        Harry and Sally.  They each decide to edit the same repository
+        file at the same time.  If Harry saves his changes to the
+        repository first, then it's possible that (a few moments
+        later) Sally could accidentally overwrite them with her own
+        new version of the file.  While Harry's version of the file
+        won't be lost forever (because the system remembers every
+        change), any changes Harry made <emphasis>won't</emphasis> be
+        present in Sally's newer version of the file, because she
+        never saw Harry's changes to begin with.  Harry's work is
+        still effectively lost&mdash;or at least missing from the
+        latest version of the file&mdash;and probably by accident.
+        This is definitely a situation we want to avoid!</para>
       @ENGLISH }}} -->
       <para>Рассматриваемую ситуацию иллюстрирует <xref
         linkend="svn.basic.vsn-models.problem-sharing.dia-1"/>.
@@ -216,34 +215,35 @@
 
       <!-- @ENGLISH {{{
       <para>Many version control systems use a
-        <firstterm>lock-modify-unlock</firstterm> model to address the
-        problem of many authors clobbering each other's work.  In this
-        model, the repository allows only one person to change a file
-        at a time.  This exclusivity policy is managed using locks.
-        Harry must <quote>lock</quote> a file before he can begin
-        making changes to it.  If Harry has locked a file, then Sally
-        cannot also lock it, and therefore cannot make any changes to
-        that file.  All she can do is read the file, and wait for
-        Harry to finish his changes and release his lock.  After Harry
-        unlocks the file, Sally can take her turn by locking and
-        editing the file.  <xref
-        linkend="svn.basic.vsn-models.lock-unlock.dia-1"/>
-        demonstrates this simple solution.</para>
+        <firstterm>lock-modify-unlock</firstterm> model to address
+        this problem.  In such a system, the repository allows only
+        one person to change a file at a time.  First Harry must
+        <quote>lock</quote> the file before he can begin making
+        changes to it.  Locking a file is a lot like borrowing a book
+        from the library; if Harry has locked a file, then Sally
+        cannot make any changes to it.  If she tries to lock the file,
+        the repository will deny the request.  All she can do is read
+        the file, and wait for Harry to finish his changes and release
+        his lock.  After Harry unlocks the file, his turn is over, and
+        now Sally can take her turn by locking and editing.  <xref
+        linkend="svn.basic.vsn-models.lock-unlock.dia-1"/> demonstrates this simple
+        solution.</para>
       @ENGLISH }}} -->
-      <para>Для того, что бы несколько авторов не мешало друг другу
-        многие системы управления версиями применяют модель
+      <para>Многие системы управления версиями применяют в отношении
+        этой проблемы модель
         <firstterm>блокирование-изменение-разблокирование</firstterm>.
-        Эта модель запрещает одновременное редактирование файла несколькими
-        пользователями. Эксклюзивность доступа гарантируется блокировками.
-        Перед началом редактирования Гарри должен <quote>заблокировать</quote>
-        файл. Если файл заблокировал Гарри, Салли уже не сможет
-        его заблокировать и не сможет внести в него изменения.
-        Ей остается только читать файл и ждать пока Гарри закончит свои
-        изменения и снимет свою блокировку. После того как Гарри разблокирует
-        файл, файл сможет получить Салли, заблокировать его и начать
-        редактирование. <xref
+        В такой системе хранилище разрешает изменение файла только одному
+        человеку в каждый из моментов времени. До того как Гарри сможет
+        внести изменения он должен <quote>заблокировать</quote> файл.
+        Блокирование файла это как взятие книги в библиотеке; если
+        Гарри заблокировал файл то Салли ни как не сможет его изменить.
+        Хранилище отклонит запрос, если она попытается заблокировать файл.
+        Все что ей остается &mdash; это читать файл и ждать когда Гарри закончит
+        свои изменения и снимет блокировку. После того как Гарри разблокирует
+        файл, он возвращает его обратно и теперь Салли может получить его,
+        заблокировать и редактировать. <xref
         linkend="svn.basic.vsn-models.lock-unlock.dia-1"/>
-        демонстрирует это простое решение.</para>
+        демонстрирует эту простую модель.</para>
 
       <figure id="svn.basic.vsn-models.lock-unlock.dia-1">
         <!-- @ENGLISH {{{
@@ -319,7 +319,7 @@
             Sally simultaneously locks and edits file B.  But suppose
             that A and B depend on one another, and the changes made
             to each are semantically incompatible.  Suddenly A and B
-            don't work together anymore.  The locking system was
+            don't work together anymore. The locking system was
             powerless to prevent the problem&mdash;yet it somehow
             provided a false sense of security.  It's easy for Harry and
             Sally to imagine that by locking files, each is beginning a
@@ -697,10 +697,10 @@
 
       <screen>
 $ svn checkout http://svn.example.com/repos/calc
-A    calc/Makefile
-A    calc/integer.c
-A    calc/button.c
-Checked out revision 56.
+A  calc
+A  calc/Makefile
+A  calc/integer.c
+A  calc/button.c
 
 $ ls -A calc
 Makefile  integer.c  button.c  .svn/
@@ -896,8 +896,7 @@ $ ls -A
 .svn/ Makefile integer.c button.c
 
 $ svn update
-U    button.c
-Updated to revision 57.
+U button.c
 </screen>
 
       <!-- @ENGLISH {{{
@@ -1014,7 +1013,7 @@ Updated to revision 57.
           <quote><filename>foo.c</filename> as it appears in revision
           5.</quote> Notice that in general, revisions N and M of a
           file do <emphasis>not</emphasis> necessarily differ!  Because
-          CVS uses per-file revision numbers, CVS users might want to
+          CVS uses per-file revisions numbers, CVS users might want to
           see <xref linkend="svn.forcvs"/> for more details.</para>
         @ENGLISH }}} -->
         <para>В отличие от многих других систем управления версиями, номера правок
@@ -1466,25 +1465,24 @@ calc/Makefile:6
           <para>If your project is sufficiently complex, you'll
             discover that it's sometimes nice to forcibly
             <quote>backdate</quote> portions of your working copy to
-            an earlier revision; you'll learn how to do that in <xref
-            linkend="svn.tour"/>.  Perhaps you'd like to test an
-            earlier version of a sub-module contained in a
-            subdirectory, or perhaps you'd like to figure out when a
-            bug first came into existence in a specific file.  This is
-            the <quote>time machine</quote> aspect of a version
-            control system &mdash; the feature which allows you to
-            move any portion of your working copy forward and backward
-            in history.</para>
+            an earlier revision; you'll learn how to do that in
+            Chapter 3.  Perhaps you'd like to test an earlier version
+            of a sub-module contained in a subdirectory, or perhaps
+            you'd like to figure out when a bug first came into
+            existence in a specific file.  This is the <quote>time
+            machine</quote> aspect of a version control system &mdash;
+            the feature which allows you to move any portion of your
+            working copy forward and backward in history.</para>
           @ENGLISH }}} -->
           <title>Смешивание правок &mdash; это полезно</title>
 
           <para>Если у вас очень большой проект, вы можете найти
             полезным, время от времени принудительно
             <quote>возвращать</quote> части рабочей копии к более
-            ранним правкам; как это делается, вы узнаете в <xref
-            linkend="svn.tour"/>. Возможно вы захотите протестировать
-            более раннюю версию модуля, находящегося в подкаталоге
-            или точно узнать, когда в конкретном файле появилась
+            ранним правкам; как это делается, вы узнаете в Главе 3.
+            Возможно вы захотите протестировать более раннюю версию
+            модуля, находящегося в подкаталоге или точно
+            узнать, когда в конкретном файле появилась
             ошибка. Это &mdash; <quote>машина времени</quote> &mdash;
             тот аспект системы управления версиями, который
             позволяет перемещать в истории любую часть рабочей копии
@@ -1526,21 +1524,19 @@ calc/Makefile:6
           <para>Second, you cannot commit a metadata change to a
             directory unless it's fully up-to-date.  You'll learn
             about attaching
-            <quote>properties</quote> to items in <xref
-            linkend="svn.serverconfig"/>.  A directory's working
-            revision defines a specific set of entries and properties,
-            and thus committing a property change to an out-of-date
-            directory may destroy properties you've not yet
-            seen.</para>
+            <quote>properties</quote> to items in Chapter 6.  A
+            directory's working revision defines a specific set of
+            entries and properties, and thus committing a property
+            change to an out-of-date directory may destroy properties
+            you've not yet seen.</para>
           @ENGLISH }}} -->
           <para>Во-вторых, нельзя зафиксировать изменение метаданных
             для не обновленного каталога. О присвоении
-            <quote>свойств</quote> к элементам вы узнаете в <xref
-            linkend="svn.serverconfig"/>. Рабочая правка каталога
-            определяет конкретный набор входящих в нее элементов и
-            свойств, поэтому фиксация изменений свойств для устаревшего
-            каталога может привести к уничтожению свойств о которых
-            вы не знаете.</para>
+            <quote>свойств</quote> к элементам вы узнаете в Главе 6.
+            Рабочая правка каталога определяет конкретный набор входящих
+            в нее элементов и свойств, поэтому фиксация изменений свойств
+            для устаревшего каталога может привести к уничтожению
+            свойств о которых вы не знаете.</para>
 
         </sect3>
 

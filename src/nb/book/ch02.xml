@@ -72,7 +72,7 @@
       <!-- @ENGLISH {{{
       <title>A typical client/server system</title>
       @ENGLISH }}} -->
-      <title>Et typisk klient/&server;-system</title>
+      <title>Et typisk klient/tjener-system</title>
       <graphic fileref="images/ch02dia1.png"/>
     </figure>
     
@@ -87,9 +87,9 @@
       rearrangement of files and directories.</para>
     @ENGLISH }}} -->
     <para>Så hvorfor er dette interessant?
-      Så langt høres dette ut som definisjonen av en typisk fil&server;.
+      Så langt høres dette ut som definisjonen av en typisk filtjener.
       Og det stemmer, depotet <emphasis>er</emphasis> en slags 
-      fil&server;, men ikke den typen du vanligvis kommer ut for.
+      filtjener, men ikke den typen du vanligvis kommer ut for.
       Det som gjør Subversiondepotet spesielt er at <emphasis>det husker 
       hver eneste forandring</emphasis> noensinne skrevet til det: Hver 
       forandring til hver eneste fil, og til og med forandringer i selve 
@@ -116,7 +116,7 @@
       <emphasis>tidligere</emphasis> tilstander av filsystemet.
       For eksempel, en klient kan spørre historiske spørsmål som:
       <quote>Hva inneholdt denne katalogen forrige onsdag?</quote> eller 
-      <quote>Hvem var den siste personen som forandret denne fila, og 
+      <quote>Hvem var den siste personen som forandret denne filen, og 
       hvilke forandringer gjorde vedkommende?</quote>
       Dette er typen spørsmål som er hjertet av ethvert 
       <firstterm>versjonskontrollsystem</firstterm>:
@@ -167,36 +167,35 @@
 
       <!-- @ENGLISH {{{
       <para>Consider the scenario shown in <xref
-        linkend="svn.basic.vsn-models.problem-sharing.dia-1"/>.
-        Suppose we have two co-workers, Harry and Sally.  They each
-        decide to edit the same repository file at the same time.  If
-        Harry saves his changes to the repository first, then it's
-        possible that (a few moments later) Sally could accidentally
-        overwrite them with her own new version of the file.  While
-        Harry's version of the file won't be lost forever (because the
-        system remembers every change), any changes Harry made
-        <emphasis>won't</emphasis> be present in Sally's newer version
-        of the file, because she never saw Harry's changes to begin
-        with.  Harry's work is still effectively lost&mdash;or at
-        least missing from the latest version of the file&mdash;and
-        probably by accident.  This is definitely a situation we want
-        to avoid!</para>
+        linkend="svn.basic.vsn-models.problem-sharing.dia-1"/>.  Suppose we have two co-workers,
+        Harry and Sally.  They each decide to edit the same repository
+        file at the same time.  If Harry saves his changes to the
+        repository first, then it's possible that (a few moments
+        later) Sally could accidentally overwrite them with her own
+        new version of the file.  While Harry's version of the file
+        won't be lost forever (because the system remembers every
+        change), any changes Harry made <emphasis>won't</emphasis> be
+        present in Sally's newer version of the file, because she
+        never saw Harry's changes to begin with.  Harry's work is
+        still effectively lost&mdash;or at least missing from the
+        latest version of the file&mdash;and probably by accident.
+        This is definitely a situation we want to avoid!</para>
       @ENGLISH }}} -->
       <para>Tenk over scenariet vist i <xref 
         linkend="svn.basic.vsn-models.problem-sharing.dia-1"/>.
         Sett at vi har to arbeidskolleger, Harry og Sally.
-        De bestemmer seg begge for å redigere den samme fila i depotet 
+        De bestemmer seg begge for å redigere den samme filen i depotet 
         samtidig.
         Hvis Harry lagrer sine forandringer til depotet først, er det 
         (noen øyeblikk senere) mulig at Sally feilaktig overskriver dem 
-        med hennes egen nye versjon av fila.
-        Selv om Harrys versjon av fila ikke vil være tapt for alltid 
+        med hennes egen nye versjon av filen.
+        Selv om Harrys versjon av filen ikke vil være tapt for alltid 
         (fordi systemet husker hver eneste forandring), vil alle 
         forandringene Harry gjorde <emphasis>ikke</emphasis> være med i 
-        Sallys nyere versjon av fila, fordi hun så aldri Harrys 
+        Sallys nyere versjon av filen, fordi hun så aldri Harrys 
         forandringer til å begynne med.
         Harrys arbeid er fortsatt borte – eller i det minste borte fra 
-        den siste versjonen av fila – og sannsynligvis ved en ulykke.
+        den siste versjonen av filen – og sannsynligvis ved en ulykke.
         Dette er definitivt en situasjon vi vil unngå!</para>
 
       <figure id="svn.basic.vsn-models.problem-sharing.dia-1">
@@ -218,35 +217,36 @@
       
       <!-- @ENGLISH {{{
       <para>Many version control systems use a
-        <firstterm>lock-modify-unlock</firstterm> model to address the
-        problem of many authors clobbering each other's work.  In this
-        model, the repository allows only one person to change a file
-        at a time.  This exclusivity policy is managed using locks.
-        Harry must <quote>lock</quote> a file before he can begin
-        making changes to it.  If Harry has locked a file, then Sally
-        cannot also lock it, and therefore cannot make any changes to
-        that file.  All she can do is read the file, and wait for
-        Harry to finish his changes and release his lock.  After Harry
-        unlocks the file, Sally can take her turn by locking and
-        editing the file.  <xref
-        linkend="svn.basic.vsn-models.lock-unlock.dia-1"/>
-        demonstrates this simple solution.</para>
+        <firstterm>lock-modify-unlock</firstterm> model to address
+        this problem.  In such a system, the repository allows only
+        one person to change a file at a time.  First Harry must
+        <quote>lock</quote> the file before he can begin making
+        changes to it.  Locking a file is a lot like borrowing a book
+        from the library; if Harry has locked a file, then Sally
+        cannot make any changes to it.  If she tries to lock the file,
+        the repository will deny the request.  All she can do is read
+        the file, and wait for Harry to finish his changes and release
+        his lock.  After Harry unlocks the file, his turn is over, and
+        now Sally can take her turn by locking and editing.  <xref
+        linkend="svn.basic.vsn-models.lock-unlock.dia-1"/> demonstrates this simple
+        solution.</para>
       @ENGLISH }}} -->
       <para>Mange versjonskontrollsystemer bruker en modell av typen
         <firstterm>lås-rediger-lås opp</firstterm> når de tar for seg 
-        problemet med at mange forfattere roter til hverandres arbeid.
-        I denne modellen tillater depotet bare en person å forandre en 
+        dette problemet.
+        I et sånt system tillater depotet bare en person å forandre en 
         fil om gangen.
-        Denne eksklusive arbeidsmåten styres ved bruk av låser.
-        Harry må <quote>låse</quote> ei fil før han kan begynne å gjøre 
-        forandringer i den.
-        Hvis Harry har låst ei fil, kan ikke Sally også låse den, og kan 
-        derfor ikke gjøre noen forandringer i denne fila.
-        Alt hun kan gjøre er å lese fila og vente på at Harry gjør seg 
+        Først må Harry <quote>låse</quote> filen før han kan begynne med 
+        å gjøre forandringer i den.
+        Låsing av en fil er mye likt det å låne en bok på biblioteket;
+        hvis Harry har låst en fil kan ikke Sally gjøre forandringer i 
+        den.
+        Hvis hun prøver å låse filen, vil ikke depotet tillate dette.
+        Alt hun kan gjøre er å lese filen, og vente på at Harry gjør seg 
         ferdig med sine forandringer og så slipper låsen han har satt 
         opp.
-        Etter at Harry låser opp fila kan Sally ta sin runde med å låse 
-        og redigere fila.
+        Etter at Harry låser opp filen, er hans tur over, og nå kan 
+        Sally ta sin runde med låsing og redigering.
         <xref linkend="svn.basic.vsn-models.lock-unlock.dia-1"/> 
         demonstrerer denne enkle løsningen.</para>
       
@@ -285,9 +285,9 @@
           <para><emphasis>Låsing kan medføre administrative 
             problemer.</emphasis>
 
-            Noen ganger hender det at Harry låser ei fil og glemmer den.
+            Noen ganger hender det at Harry låser en fil og glemmer den.
             I mellomtiden, fordi Sally fortsatt venter på å få redigere 
-            fila, har hun hendene bundet.
+            filen, har hun hendene bundet.
             Og så drar Harry på ferie.
             Nå må Sally få en administrator til å fjerne Harrys lås.
             Situasjonen ender opp med mange forsinkelser og mye 
@@ -314,9 +314,9 @@
 
             Hva hvis Harry redigerer begynnelsen av en tekstfil, og 
             Sally rett og slett bare vil redigere slutten av den samme 
-            fila?
+            filen?
             Disse forandringene overlapper ikke i det hele tatt.
-            De kan enkelt redigere fila samtidig, og ingen stor skade 
+            De kan enkelt redigere filen samtidig, og ingen stor skade 
             vil skje, såfremt forandringene ble flettet fint sammen.
             Det er ingen vits i at de må vente på tur i denne 
             situasjonen.</para>
@@ -331,7 +331,7 @@
             Sally simultaneously locks and edits file B.  But suppose
             that A and B depend on one another, and the changes made
             to each are semantically incompatible.  Suddenly A and B
-            don't work together anymore.  The locking system was
+            don't work together anymore. The locking system was
             powerless to prevent the problem&mdash;yet it somehow
             provided a false sense of security.  It's easy for Harry and
             Sally to imagine that by locking files, each is beginning a
@@ -415,18 +415,18 @@
       <para>Her er et eksempel.
         La oss si at Harry og Sally hver for seg lager arbeidskopier av 
         det samme prosjektet, kopiert fra depotet.
-        De arbeider samtidig, og gjør forandringer i den samme fila A 
+        De arbeider samtidig, og gjør forandringer i den samme filen A 
         innenfor sine kopier.
         Sally lagrer sine forandringer til depotet først.
         Når Harry prøver å lagre sine forandringer senere, informerer 
         depotet ham om at hans fil A er <firstterm>utdatert</firstterm>.
-        Med andre ord, fil A i depotet har på en eller annen måte 
+        Med andre ord, filen A i depotet har på en eller annen måte 
         forandret seg siden han kopierte den sist.
         Så Harry ber klienten sin om å <firstterm>flette</firstterm> 
         alle nye forandringer fra depotet inn i hans arbeidskopi av fil 
         A.
         Sjansene for at Sallys forandringer ikke overlapper med hans 
-        egne er store; så når begges forandringer er lagt inn i fila, 
+        egne er store; så når begges forandringer er lagt inn i filen, 
         lagrer han sin egen arbeidskopi til depotet. <xref 
         linkend="svn.basic.vsn-models.copy-merge.dia-1"/> og <xref 
         linkend="svn.basic.vsn-models.copy-merge.dia-2"/> viser denne 
@@ -479,7 +479,7 @@
         nødvendige intelligente valgene.
         Når Harry har løst de overlappende forandringene manuelt – 
         kanskje etter en diskusjon med Sally – kan han trygt lagre den 
-        flettede fila tilbake til depotet.</para>
+        flettede filen tilbake til depotet.</para>
 
       <!-- @ENGLISH {{{
       <para>The copy-modify-merge model may sound a bit chaotic, but
@@ -555,7 +555,7 @@
           eller lyd, er det det ofte umulig å flette inn forandringer 
           som lager konflikt.
           I disse situasjonene er det faktisk nødvendig at brukerne 
-          forandrer fila etter tur.
+          forandrer filen etter tur.
           Uten en køordning i disse tilfellene vil noen ende opp med å 
           kaste bort tid på forandringer som noen andre har 
           forkastet.</para>
@@ -568,7 +568,7 @@
         @ENGLISH }}} -->
         <para>Selv om CVS og Subversion fortsatt hovedsaklig er 
           <quote>kopier-rediger-flett</quote>-systemer, ser begge 
-          systemene nødvendigheten av å låse ei fil nå og da og har 
+          systemene nødvendigheten av å låse en fil nå og da og har 
           mekanismer for dette.
           Se <xref linkend="svn.advanced.locking"/>.</para>
 
@@ -732,10 +732,10 @@
 
       <screen>
 $ svn checkout http://svn.example.com/repos/calc
-A    calc/Makefile
-A    calc/integer.c
-A    calc/button.c
-Checked out revision 56.
+A  calc
+A  calc/Makefile
+A  calc/integer.c
+A  calc/button.c
 
 $ ls -A calc
 Makefile  integer.c  button.c  .svn/
@@ -827,7 +827,7 @@ Makefile  integer.c  button.c  .svn/
                   <literal>svnserve</literal> server</entry>
                 @ENGLISH }}} -->
                 <entry>tilgang gjennom en tilpasset protokoll til en 
-                  <literal>svnserve</literal>-&server;</entry>
+                  <literal>svnserve</literal>-tjener</entry>
               </row>
               <row>
                 <entry><literal>svn+ssh://</literal></entry>
@@ -865,7 +865,7 @@ Makefile  integer.c  button.c  .svn/
         <filename>button.c</filename>.
         Siden <filename>.svn</filename>-katalogen husker filens 
         modifiseringsdato og originale innhold, kan Subversion se at du 
-        har forandret fila.
+        har forandret filen.
         Men Subversion offentliggjør ikke dine forandringer før du 
         eksplisitt ber programmet om å gjøre det.
         Prosessen når du publiserer dine forandringer blir vanligvis 
@@ -905,7 +905,7 @@ La inn revisjon 57.
         lagt inn i depotet;
         hvis en annen bruker henter ut en arbeidskopi av 
         <filename>/calc</filename>, vil de se dine forandringer i den 
-        seneste versjonen av fila.</para>
+        seneste versjonen av filen.</para>
 
       <!-- @ENGLISH {{{
       <para>Suppose you have a collaborator, Sally, who checked out a
@@ -946,8 +946,7 @@ $ ls -A
 .svn/ Makefile integer.c button.c
 
 $ svn update
-U    button.c
-Updated to revision 57.
+U button.c
 </screen>
 
       <!-- @ENGLISH {{{
@@ -1070,7 +1069,7 @@ Updated to revision 57.
           <quote><filename>foo.c</filename> as it appears in revision
           5.</quote> Notice that in general, revisions N and M of a
           file do <emphasis>not</emphasis> necessarily differ!  Because
-          CVS uses per-file revision numbers, CVS users might want to
+          CVS uses per-file revisions numbers, CVS users might want to
           see <xref linkend="svn.forcvs"/> for more details.</para>
         @ENGLISH }}} -->
         <para>Ulikt mange av de andre versjonskontrollsystemene, gjelder 
@@ -1084,7 +1083,7 @@ Updated to revision 57.
           <filename>foo.c</filename></quote>, mener de egentlig 
           <quote><filename>foo.c</filename> som den fremstår i revisjon 
           5</quote>.
-          Legg merke til at vanligvis vil innholdet av ei fil for 
+          Legg merke til at vanligvis vil innholdet av en fil for 
           revisjonene N og M <emphasis>ikke</emphasis> være forskjellig!
           Fordi CVS bruker egne revisjonsnumre for hver fil, vil kanskje 
           CVS-brukere ta en kikk på <xref linkend="svn.forcvs"/> for 
@@ -1201,8 +1200,8 @@ calc/Makefile:6
         </listitem>
         @ENGLISH }}} -->
         <listitem>
-          <para>Hvilken revisjon arbeidsfila di er basert på (dette 
-            kalles filas <firstterm>arbeidsrevisjon</firstterm>), 
+          <para>Hvilken revisjon arbeidsfilen din er basert på (dette 
+            kalles filens <firstterm>arbeidsrevisjon</firstterm>), 
             og</para>
         </listitem>
         
@@ -1244,12 +1243,12 @@ calc/Makefile:6
           <term>Uforandret og oppdatert</term>
 
           <listitem>
-            <para>Fila er uforandret i arbeidskopien, og ingen 
-              forandringer til denne fila er blitt lagt inn i depotet 
+            <para>Filen er uforandret i arbeidskopien, og ingen 
+              forandringer til denne filen er blitt lagt inn i depotet 
               siden arbeidskopien ble lagt inn.
-              En <command>svn commit</command> på fila vil ikke gjøre 
-              noe som helst, og en <command>svn update</command> på fila 
-              vil heller ikke gjøre noe.</para>
+              En <command>svn commit</command> på filen vil ikke gjøre 
+              noe som helst, og en <command>svn update</command> på 
+              filen vil heller ikke gjøre noe.</para>
           </listitem>
         </varlistentry>
         
@@ -1270,13 +1269,13 @@ calc/Makefile:6
           <term>Forandret lokalt og samtidig gjeldende</term>
 
           <listitem>
-            <para>Fila er blitt forandret i arbeidskopien, og ingen 
-              forandringer i denne fila er blitt lagt inn i depotet 
+            <para>Filen er blitt forandret i arbeidskopien, og ingen 
+              forandringer i denne filen er blitt lagt inn i depotet 
               siden stamrevisjonen.
               Det er lokale forandringer som ikke er blitt lagt inn i 
-              depotet, så en <command>svn commit</command> av fila vil 
+              depotet, så en <command>svn commit</command> av filen vil 
               lykkes i å publisere forandringene dine, og en 
-              <command>svn update</command> på fila vil ikke gjøre noen 
+              <command>svn update</command> på filen vil ikke gjøre noen 
               ting.</para>
           </listitem>
         </varlistentry>
@@ -1298,13 +1297,14 @@ calc/Makefile:6
           <term>Uforandret og utdatert</term>
 
           <listitem>
-            <para>Fila er ikke blitt forandret i arbeidskopien, men har 
+            <para>Filen er ikke blitt forandret i arbeidskopien, men har 
               forandret seg i depotet.
-              Fila må etterhvert bli oppdatert, for å få den til å 
+              Filen må etterhvert bli oppdatert, for å få den til å 
               samsvare med den offentlige revisjonen.
-              En <command>svn commit</command> på fila vil ikke gjøre 
-              noe, og en <command>svn update</command> på fila vil legge 
-              de seneste forandringene inn i arbeidskopien din.</para>
+              En <command>svn commit</command> på filen vil ikke gjøre 
+              noe, og en <command>svn update</command> på filen vil 
+              legge de seneste forandringene inn i arbeidskopien 
+              din.</para>
           </listitem>
         </varlistentry>
         
@@ -1327,11 +1327,11 @@ calc/Makefile:6
           <term>Forandret lokalt og samtidig utdatert</term>
 
           <listitem>
-            <para>Fila er blitt forandret både i arbeidskopien og 
+            <para>Filen er blitt forandret både i arbeidskopien og 
               depotet.
-              En <command>svn commit</command> av fila vil feile med en 
+              En <command>svn commit</command> av filen vil feile med en 
               <quote>out-of-date</quote>-feilmelding.
-              Fila må oppdateres først; en <command>svn 
+              Filen må oppdateres først; en <command>svn 
               update</command>-kommando vil prøve å flette inn de 
               offentlige forandringene med de lokale forandringene.
               Hvis Subversion ikke kan fullføre flettingen automatisk på 
@@ -1454,7 +1454,7 @@ calc/Makefile:6
         @ENGLISH }}} -->
         <para>For eksempel, tenk deg at du har en arbeidskopi der alle 
           elementene er på revisjon 10.
-          Du redigerer fila <filename>foo.html</filename> og utfører 
+          Du redigerer filen <filename>foo.html</filename> og utfører 
           deretter en <command>svn commit</command> som lager revisjon 
           15 i depotet.
           Etter at innleggingen er fullført, vil mange brukere forvente 
@@ -1538,7 +1538,7 @@ calc/Makefile:6
             sensitiv ovenfor arbeidsrevisjonen til elementet som de 
             utforsker.
             For eksempel, <command>svn log</command>-kommandoen blir 
-            brukt til å vise historien til ei fil eller en katalog (se 
+            brukt til å vise historien til en fil eller katalog (se 
             <xref linkend="svn.tour.history.log"/>).
             Når brukeren kjører denne kommandoen på et objekt i 
             arbeidskopien, forventer de å se hele historien til 
@@ -1560,21 +1560,20 @@ calc/Makefile:6
           <para>If your project is sufficiently complex, you'll
             discover that it's sometimes nice to forcibly
             <quote>backdate</quote> portions of your working copy to
-            an earlier revision; you'll learn how to do that in <xref
-            linkend="svn.tour"/>.  Perhaps you'd like to test an
-            earlier version of a sub-module contained in a
-            subdirectory, or perhaps you'd like to figure out when a
-            bug first came into existence in a specific file.  This is
-            the <quote>time machine</quote> aspect of a version
-            control system &mdash; the feature which allows you to
-            move any portion of your working copy forward and backward
-            in history.</para>
+            an earlier revision; you'll learn how to do that in
+            Chapter 3.  Perhaps you'd like to test an earlier version
+            of a sub-module contained in a subdirectory, or perhaps
+            you'd like to figure out when a bug first came into
+            existence in a specific file.  This is the <quote>time
+            machine</quote> aspect of a version control system &mdash;
+            the feature which allows you to move any portion of your
+            working copy forward and backward in history.</para>
           @ENGLISH }}} -->
           <para>Forutsatt at prosjektet ditt er komplekst nok, vil du 
             oppdage at det noen ganger er fint å kunne 
             <quote>tilbakedatere</quote> deler av arbeidskopien til en 
             tidligere revisjon; du vil lære hvordan du gjør dette i 
-            <xref linkend="svn.tour"/>.
+            kapittel 3.
             Kanskje vil du prøve en tidligere versjon av en delmodul som 
             ligger i en underkatalog lagret i en underkatalog, eller 
             kanskje du vil finne ut når en feil først oppsto i en 
@@ -1609,8 +1608,8 @@ calc/Makefile:6
             accidentally destroying changes you've not yet
             seen.</para>
           @ENGLISH }}} -->
-          <para>For det første kan du ikke legge inn sletting av ei fil 
-            eller en katalog som ikke er fullstendig oppdatert.
+          <para>For det første kan du ikke legge inn sletting av en fil 
+            eller katalog som ikke er fullstendig oppdatert.
             Hvis en nyere versjon av elementet eksisterer i depotet, vil 
             forsøket ditt på å slette bli avslått, for å forhindre deg å 
             feilaktig ødelegge forandringer som du enda ikke har 
@@ -1620,18 +1619,17 @@ calc/Makefile:6
           <para>Second, you cannot commit a metadata change to a
             directory unless it's fully up-to-date.  You'll learn
             about attaching
-            <quote>properties</quote> to items in <xref
-            linkend="svn.serverconfig"/>.  A directory's working
-            revision defines a specific set of entries and properties,
-            and thus committing a property change to an out-of-date
-            directory may destroy properties you've not yet
-            seen.</para>
+            <quote>properties</quote> to items in Chapter 6.  A
+            directory's working revision defines a specific set of
+            entries and properties, and thus committing a property
+            change to an out-of-date directory may destroy properties
+            you've not yet seen.</para>
           @ENGLISH }}} -->
           <para>For det andre kan du ikke legge inn en 
             metadata-forandring til en katalog hvis den ikke er 
             fullstendig oppdatert.
             Du vil få lære om å legge til <quote>egenskaper</quote> til 
-            elementer i <xref linkend="svn.serverconfig"/>.
+            elementer i kapittel 6.
             En katalogs arbeidsrevisjon definerer et spesifikt sett med 
             poster og egenskaper, og en innlegging av forandringer i en 
             egenskap for en utdatert katalog kan ødelegge egenskaper som 

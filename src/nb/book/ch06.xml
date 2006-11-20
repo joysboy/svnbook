@@ -2,7 +2,7 @@
   <!-- @ENGLISH {{{
   <title>Server Configuration</title>
   @ENGLISH }}} -->
-  <title>&Server;konfigurasjon</title>
+  <title>Tjenerkonfigurasjon</title>
   
   <simplesect>
     
@@ -18,8 +18,8 @@
       kjører på den samme maskinen der depotet ligger ved å bruke 
       <literal>file:///</literal>-metoden.
       Men det typiske Subversionoppsettet involverer en enkelt 
-      &server;maskin som blir aksessert fra klienter på maskiner over 
-      hele kontoret – eller kanskje over hele verden.</para>
+      tjenermaskin som blir aksessert fra klienter på maskiner over hele 
+      kontoret – eller kanskje over hele verden.</para>
 
     
     <!-- @ENGLISH {{{
@@ -31,14 +31,14 @@
       setup is right for your needs, and understand how to enable such
       a setup on your host computer.</para>
     @ENGLISH }}} -->
-    <para>Denne seksjonen beskriver hvordan du kan gjøre 
-      Subversiondepotet ditt tilgjengelig utenfra &server;maskinen så 
+    <para>Denne seksjonen beskriver hvordan du kan <!-- ¤ 
+      -->offentliggjøre Subversiondepotet ditt utenfor tjenermaskinen så 
       fjerntliggende klienter kan bruke det.
-      Vi vil dekke &server;mekanismene som Subversion har tilgjengelig 
-      og diskutere konfigurasjonen og bruken av hver av disse.
+      Vi vil dekke tjenermekanismene som Subversion har tilgjengelig og 
+      diskutere konfigurasjonen og bruken av hver av disse.
       Etter å ha lest denne seksjonen vil du være i stand til å avgjøre 
       hvilket nettverksoppsett som er det riktige for dine behov, og 
-      forstå hvordan du skal sette dette opp på &server;maskinen.</para>
+      forstå hvordan du skal sette dette opp på tjenermaskinen.</para>
     
   </simplesect>
   
@@ -63,33 +63,31 @@
     @ENGLISH }}} -->
     <para>Subversion ble designet med et abstrakt nettverkslag.
       Dette betyr at et depot kan bli <!-- ¤ programmatically --> 
-      aksessert av alle typer &server;prosesser, og klientens API for 
+      aksessert av enhver form for tjenerprosess, og klientens API for 
       depottilgangen gir programmerere anledning til å lage 
       programtillegg som forstår relevante nettverksprotokoller.
       I teorien kan Subversion bruke et uendelig antall 
       nettverksimplementasjoner.
-      I praksis er det for tiden bare to &server;modeller 
+      I praksis er det for tiden bare to tjenermodeller 
       tilgjengelig.</para>
     
     <!-- @ENGLISH {{{
     <para>Apache is an extremely popular webserver; using the
       <command>mod_dav_svn</command> module, Apache can access a
-      repository and make it available to clients via the
-      WebDAV/DeltaV protocol, which is an extension of HTTP.  In the
-      other corner is <command>svnserve</command>: a small, standalone
-      server program that speaks a custom protocol with clients.
-      <xref linkend="svn.serverconfig.overview.tbl-1"/> presents a
-      comparison of the two servers.</para>
+      repository and make it available to clients via the WebDAV/DeltaV
+      protocol, which is an extension of HTTP.  In the other corner is
+      <command>svnserve</command>: a small, standalone server
+      program that speaks a custom protocol with clients.  Table 6-1
+      presents a comparison of the two servers.</para>
     @ENGLISH }}} -->
-    <para>Apache er en ekstremt populær web&server;. Ved å bruke 
+    <para>Apache er en ekstremt populær webtjener. Ved å bruke 
       <command>mod_dav_svn</command>-modulen kan Apache aksessere et 
       depot og gjøre det tilgjengelig for klienter via 
       WebDAV/DeltaV-protokollen, som er en utvidelse av HTTP.
       I det andre hjørnet er <command>svnserve</command>:
-      Et lite, enkeltstående &server;program som kommuniserer med 
+      Et lite, enkeltstående tjenerprogram som kommuniserer med 
       klientene ved hjelp av en egendefinert protokoll.
-      <xref linkend="svn.serverconfig.overview.tbl-1"/> viser en 
-      sammenligning av de to &server;modellene.</para>
+      Tabell 6-1 viser en sammenligning av de to tjenermodellene.</para>
 
     <!-- @ENGLISH {{{
     <para>Note that Subversion, as an open-source project, does not
@@ -99,33 +97,29 @@
       and disadvantages.  In fact, it's possible for different servers
       to run in parallel, each accessing your repositories in its own
       way, and each without hindering the other (see <xref
-      linkend="svn.serverconfig.multimethod"/>).  <xref
-      linkend="svn.serverconfig.overview.tbl-1"/> gives a brief overview and
+      linkend="svn.serverconfig.multimethod"/>).  Here's a brief overview and
       comparison of the two available Subversion servers&mdash;as an
       administrator, it's up to you to choose whatever works best for
       you and your users.</para>
     @ENGLISH }}} -->
     <para>Legg merke til at Subversion, som et opensourceprosjekt, ikke 
-      erklærer noen &server;modeller som <quote>primær</quote> eller 
+      erklærer noen tjenermodeller som <quote>primær</quote> eller 
       <quote>offisiell</quote>.
       Ingen nettverksimplementasjoner blir sett på som andreklasses 
-      borgere; hver &server;modell har fordeler og ulemeper.
-      Faktisk er det mulig for forskjellige &servers; å kjøre parallelt 
-      og aksessere depotet på hver sin måte uten å legge hindringer i 
-      veien for den andre (se <xref 
-      linkend="svn.serverconfig.multimethod"/>).
-      <xref
-      linkend="svn.serverconfig.overview.tbl-1"/> inneholder en kort 
-      oversikt og sammenligning av de to tilgjengelige 
-      Subversion&the_servers; – som en administrator er det opp til deg 
-      å velge hva som fungerer best for deg og dine brukere.</para>
+      borgere; hver tjenermodell har fordeler og ulemeper.
+      Faktisk er det mulig for forskjellige tjenere å kjøre parallelt og 
+      aksessere depotet på hver sin måte uten å legge hindringer i veien 
+      for den andre (se <xref linkend="svn.serverconfig.multimethod"/>).
+      Her er en kort oversikt og sammenligning av de to tilgjengelige 
+      Subversiontjenerne – som en administrator er det opp til deg å 
+      velge hva som fungerer best for deg og dine brukere.</para>
       
 
     <table id="svn.serverconfig.overview.tbl-1">
       <!-- @ENGLISH {{{
       <title>Network Server Comparison</title>
       @ENGLISH }}} -->
-      <title>Sammenligning av nettverks&servers;</title>
+      <title>Sammenligning av nettverkstjenere</title>
       <tgroup cols="3">
         <thead>
           <row>
@@ -216,11 +210,13 @@
 
             <entry>not interoperable</entry>
             @ENGLISH }}} -->
-            <entry>Samspillsevne</entry>
+            <entry><!-- ¤ Det lukter dress og slips av det ordet der. Og 
+              det er vel et ganske oppkonstruert ord. Men hvilket norskt 
+              dataord er vel ikke det? :) -->Interoperabilitet</entry>
 
             <entry>delvis brukbar for andre WebDAV-klienter</entry>
 
-            <entry>fungerer ikke sammen</entry>
+            <entry><!-- ¤ -->Ikke tilgjengelig</entry>
           </row>
 
           <row>
@@ -228,17 +224,17 @@
             <entry>Web viewing</entry>
             
             <entry>limited built-in support, or via 3rd-party tools
-              such as ViewVC</entry>
+              such as ViewCVS</entry>
 
-            <entry>via 3rd-party tools such as ViewVC</entry>
+            <entry>via 3rd-party tools such as ViewCVS</entry>
             @ENGLISH }}} -->
             <entry>Visning på web</entry>
 
             <entry>begrenset innebygget støtte, eller via tredjeparts 
-              verktøy som for eksempel ViewVC</entry>
+              verktøy som for eksempel ViewCVS</entry>
 
             <entry>via tredjeparts verktøy som for eksempel 
-              ViewVC</entry>
+              ViewCVS</entry>
           </row>
 
           <row>
@@ -296,10 +292,10 @@
       respond.</para>
     @ENGLISH }}} -->
     <para>Denne seksjonen er en generell diskusjon om hvordan en 
-      Subversionklient og -&server; kommuniserer med hverandre, 
-      uavhengig av hvilken nettverksimplementasjon du bruker.
+      Subversionklient og -tjener kommuniserer med hverandre, uavhengig 
+      av hvilken nettverksimplementasjon du bruker.
       Etter å ha lest dette vil du ha en god forståelse av hvordan en 
-      &server; kan oppføre seg og de forskjellige måtene en klient kan 
+      tjener kan oppføre seg og de forskjellige måtene en klient kan 
       settes opp til å svare.</para>
 
     <!-- =============================================================== -->
@@ -321,15 +317,14 @@
         -&#64738;-version</command> to see which URL schemas and protocols the
         client knows how to use.</para>
       @ENGLISH }}} -->
-      <para>Subversionklienten bruker mesteparten av tida til å behandle 
-        arbeidskopier.
+      <para>Subversionklienten bruker mesteparten av tiden til å 
+        behandle arbeidskopier.
         Men når den trenger informasjon fra et depot foretar den en 
-        nettverksforespørsel og &the_server; kommer med et passende 
-        svar.
+        nettverksforespørsel og tjeneren kommer med et passende svar.
         Detaljene i nettverksprotokollen er skjult for brukeren; 
         klienten prøver å aksessere en URL, og alt etter hvilket 
         URL-skjema som brukes blir en passende protokoll brukt for å 
-        aksessere &the_server; (se <xref 
+        aksessere tjeneren (se <xref 
         linkend="svn.basic.in-action.wc.sb-1"/>).
         Brukere kan kjøre <command>svn --version</command> for å se 
         hvilke URL-skjema og protokoller klienten kan bruke.</para>
@@ -353,25 +348,24 @@
         when a client attempts to <command>svn
         checkout</command>.</para>
       @ENGLISH }}} -->
-      <para>Når &the_server; mottar en klientforespørsel, forlanger den 
+      <para>Når tjeneren mottar en klientforespørsel, forlanger den 
         vanligvis at klienten identifiserer seg.
         Den utsteder en autentiseringsforespørsel til klienten, og 
         klienten svarer ved å <firstterm>legitimere</firstterm> seg 
-        ovenfor &the_server;.
-        Når autentiseringen er komplett, svarer &the_server; med den 
+        ovenfor tjeneren.
+        Når autentiseringen er komplett, svarer tjeneren med den 
         originale informasjonen klienten spurte etter.
         Legg merke til at dette systemet er forskjellig fra systemer som 
         CVS, hvor klienten på forhånd oppgir legitimasjon (<quote>logger 
-        inn</quote>) til &the_server; før noen forespørsel etter 
-        informasjon blir gjort.
-        I Subversion <quote>henter</quote> &the_server; legitimasjonen 
-        ved å kontrollere klienten på det nødvendige tidspunktet i 
-        stedet for at klienten uoppfordret <quote>leverer</quote> den.
+        inn</quote>) til tjeneren før noen forespørsel etter informasjon 
+        blir gjort.
+        I Subversion <quote>henter</quote> tjeneren legitimasjonen ved å 
+        kontrollere klienten på det nødvendige tidspunktet i stedet for 
+        at klienten uoppfordret <quote>leverer</quote> den.
         Dette gjør visse operasjoner mer elegant.
-        For eksempel, hvis en &server; er konfigurert til å la alle i 
-        hele verden få lese depotet, vil &the_server; aldri be om 
-        autentisering når klienten prøver en <command>svn 
-        checkout</command>.</para>
+        For eksempel, hvis en tjener er konfigurert til å la alle i hele 
+        verden få lese depotet, vil tjeneren aldri be om autentisering 
+        når klienten prøver en <command>svn checkout</command>.</para>
 
       <!-- @ENGLISH {{{
       <para>If the client's network request writes new data to the
@@ -393,11 +387,11 @@
         den autentiserte brukeren lagret i 
         <literal>svn:author</literal>-egenskapen i den nye revisjonen 
         (se <xref linkend="svn.reposadmin.basics.revprops"/>).
-        Hvis klienten ikke ble autentisert (med andre ord, &the_server; 
+        Hvis klienten ikke ble autentisert (med andre ord, tjeneren 
         spurte ikke etter legitimasjon), er revisjonens 
         <literal>svn:author</literal>-egenskap tom.<footnote>
           <para>Dette er egentlig et spørsmål som ofte dukker opp som et 
-            resultat av feil i konfigurasjonen på &the_server;.</para>
+            resultat av feil i konfigurasjonen på tjeneren.</para>
         </footnote></para>
 
     </sect2>
@@ -414,18 +408,17 @@
         every request.  This can become a big annoyance to users, who
         are forced to type their passwords over and over again.</para>
       @ENGLISH }}} -->
-      <para>Mange &servers; er satt opp til å forlange autentisering for 
+      <para>Mange tjenere er satt opp til å forlange autentisering for 
         hver eneste forespørsel.
-        Dette kan bli et stort irritasjonsmoment for brukerne, som blir 
+        Dette kan bli et stort irrtasjonsmoment for brukerne, som blir 
         tvunget til å skrive passordet om og om igjen.</para>
 
       <!-- @ENGLISH {{{
       <para>Happily, the Subversion client has a remedy for this: a
         built-in system for caching authentication credentials on
         disk.  By default, whenever the command-line client
-        successfully responds to a server's authentication challenge,
-        it saves the credentials in the user's private runtime
-        configuration
+        successfully authenticates itself to a server, it saves the
+        credentials in the user's private runtime configuration
         area&mdash;in <filename>~/.subversion/auth/</filename> on
         Unix-like systems or
         <filename>%APPDATA%/Subversion/auth/</filename> on Windows.
@@ -436,10 +429,9 @@
       @ENGLISH }}} -->
       <para>Heldigvis har Subversion en løsning på dette:
         Et innebygget system for å lagre legitimasjonen på disk.
-        Normalt sett, når kommandolinjeklienten klarer å svare riktig på 
-        en autentiseringsforespørsel fra en &server;, lagres denne 
-        legitimasjonsinformasjonen i brukerens private <!-- ¤ runtime 
-        -->konfigurasjonsområde – i 
+        Normalt sett, når kommandolinjeklienten klarer å legitimere seg 
+        ovenfor en tjener, lagres denne legitimasjonsinformasjonen i 
+        brukerens private <!-- ¤ runtime -->konfigurasjonsområde – i 
         <filename>~/.subversion/auth/</filename> på Unix-lignende 
         systemer eller <filename>%APPDATA%/Subversion/auth/</filename> i 
         Windows.
@@ -448,19 +440,18 @@
         vel bedre å ikke ha det med. -->Konfigurasjonsområdet er dekket 
         mer inngående i <xref linkend="svn.advanced.confarea"/>.)
         Data fra vellykkede autentiseringer lagres på disken, der 
-        nøkkelen er en kombinasjon av &server;navn, port og området der 
+        nøkkelen er en kombinasjon av tjenernavn, port og området der 
         autentiseringen gjelder.</para>
 
       <!-- @ENGLISH {{{
       <para>When the client receives an authentication challenge, it
-        first looks for the appropriate credentials in the user's disk
-        cache; if not present, or if the cached credentials fail to
+        first looks for the appropriate credentials in the disk cache;
+        if not present, or if the cached credentials fail to
         authenticate, then the client simply prompts the user for the
         information.</para>
       @ENGLISH }}} -->
       <para>Når klienten må gjennom en autentiseringsprosess, ser den 
-        først etter passende legitimasjonsdata i brukerens lager på 
-        disken.
+        først etter passende legitimasjonsdata i lageret på disken.
         Hvis dette ikke finnes, eller de lagrede legitimasjonsdataene 
         ikke er tilstrekkelig for å fullføre autentiseringen, spør 
         klienten ganske enkelt brukeren etter informasjonen.</para>
@@ -502,10 +493,10 @@
             password on disk.  Because the encryption key is managed
             by Windows and is tied to the user's own login
             credentials, only the user can decrypt the cached
-            password.  (Note: if the user's Windows account password
-            is reset by an administrator, all of the cached passwords
-            become undecipherable.  The Subversion client will behave
-            as if they don't exist, prompting for passwords when
+            password.  (Note: if the the user's Windows account
+            password is changed, all of the cached passwords become
+            undecipherable.  The Subversion client will behave as if
+            they don't exist, prompting for passwords when
             required.)</para>
           @ENGLISH }}} -->
           <para>På Windows 2000 og senere bruker Subversionklienten 
@@ -516,8 +507,8 @@
             -->innloggingsbrukerdata, kan bare brukeren dekryptere det 
             lagrede passordet.
             (Merk:
-            Hvis brukerens passord i Windows blir resatt av en 
-            administrator, kan ikke de lagrede passordene dekrypteres.
+            Hvis brukerens passord i Windows blir forandret, kan ikke de 
+            lagrede passordene dekrypteres.
             Subversionklienten vil oppføre seg som om de ikke eksisterer 
             og spørre etter passord når det er nødvendig.)</para>
         </listitem>
@@ -592,7 +583,7 @@ Username:  joe
         disk, ever.</para>
       @ENGLISH }}} -->
       <para>Eller, hvis du vil slå av lagring av legitimasjonen 
-        permanent, kan du redigere <filename>config</filename>-fila 
+        permanent, kan du redigere <filename>config</filename>-filen 
         (plassert ved siden av <filename>auth/</filename>-katalogen).
         Ved å sette <literal>store-auth-creds</literal> til 
         <literal>no</literal> vil ingen legitimasjon bli lagret på 
@@ -617,11 +608,11 @@ store-auth-creds = no
         legitimasjonsdata fra disklageret.
         For å gjøre dette, må du gå inn i 
         <filename>auth/</filename>-området og manuelt slette den 
-        aktuelle fila.
+        aktuelle filen.
         Legitimasjonen er lagret i individuelle filer, og hvis du ser på 
         hver fil, vil du se nøkler og verdier.
         <literal>svn:realmstring</literal>-nøkkelen viser hvilket 
-        &server;område fila er assosiert med:</para>
+        tjenerområde filen er assosiert med:</para>
 
       <screen>
 $ ls ~/.subversion/auth/svn.simple/
@@ -650,7 +641,7 @@ END
       <para>Once you have located the proper cache file, just delete
         it.</para>
       @ENGLISH }}} -->
-      <para>Når du har funnet den riktige fila, er det bare å slette 
+      <para>Når du har funnet den riktige filen, er det bare å slette 
         den.</para>
 
       <!-- @ENGLISH {{{
@@ -682,15 +673,15 @@ END
         <option>--password</option> er på sin plass.
         Mange delkommandoer for klienten godtar disse valgene, men det 
         er viktig å forstå at bruken av disse valgene sender 
-        <emphasis>ikke</emphasis> brukerdata til &the_server;.
-        Som tidligere nevnt, <quote>henter</quote> &the_server; 
-        brukerdata fra klienten når det er nødvendig; klienten kan ikke 
+        <emphasis>ikke</emphasis> brukerdata til tjeneren.
+        Som tidligere nevnt, <quote>henter</quote> tjeneren brukerdata 
+        fra klienten når det er nødvendig; klienten kan ikke 
         <quote>levere</quote> dataene når den vil.
         Hvis et brukernavn og/eller passord blir spesifisert som valg, 
-        vil de <emphasis>bare</emphasis> bli gitt til &the_server; hvis 
-        &the_server; spør etter dem.<footnote>
-          <para>Som sagt, en vanlig feil er å feilkonfigurere 
-            &the_server; så den aldri spør etter autentiseringsinfo.
+        vil de <emphasis>bare</emphasis> bli gitt til tjeneren hvis 
+        tjeneren spør etter dem.<footnote>
+          <para>Som sagt, en vanlig feil er å feilkonfigurere tjeneren 
+            så den aldri spør etter autentiseringsinfo.
             Når brukere angir <option>--username</option> og 
             <option>--password</option> til klienten, blir de overrasket 
             over å se at dataene aldri blir brukt og at nye revisjoner 
@@ -725,7 +716,7 @@ END
       @ENGLISH }}} -->
       <para>Her er en avsluttende oversikt som beskriver hvordan en 
         Subversionklient oppfører seg når den mottar en 
-        autentiseringsforespørsel:</para>
+        autentiseringsutfordring:</para>
 
       <orderedlist>
         <listitem>
@@ -749,7 +740,7 @@ END
             has the appropriate credentials cached.  If not, or if the
             cached credentials fail to authenticate, then</para>
           @ENGLISH }}} -->
-          <para>Let opp &the_server;s område i 
+          <para>Let opp tjenerens område i 
             <filename>auth/</filename>-området for å se om brukeren 
             allerede har lagret de nødvendige identifikasjonsdataene.
             Hvis ikke, eller hvis de lagrede brukerdataene ikke er 
@@ -778,7 +769,6 @@ END
     </sect2>
 
   </sect1>
-  <!-- @PROOFREAD -->
 
 
   <!-- ================================================================= -->
@@ -789,7 +779,7 @@ END
     <!-- @ENGLISH {{{
     <title>svnserve, a custom server</title>
     @ENGLISH }}} -->
-    <title>svnserve, en tilpasset &server;</title>
+    <title>svnserve, en tilpasset tjener</title>
 
     <!-- @ENGLISH {{{
     <para>The <command>svnserve</command> program is a lightweight
@@ -802,16 +792,16 @@ END
       to the server, and how to configure appropriate access control
       to your repositories.</para>
     @ENGLISH }}} -->
-    <para>Programmet <command>svnserve</command> er en lettvekts&server; 
-    som er i stand til å snakke med klienter over TCP/IP ved å bruke en 
-    tilpasset, <!-- ¤ --><foreignphrase>stateful</foreignphrase> 
-    protokoll.
-      Klienter kontakter en <command>svnserve</command>-&server; ved å 
+    <para>Programmet <command>svnserve</command> er en lettvektstjener 
+      som er i stand til å snakke med klienter over TCP/IP ved å bruke 
+      en tilpasset, <!-- ¤ --><foreignphrase>stateful</foreignphrase> 
+      protokoll.
+      Klienter kontakter en <command>svnserve</command>-tjener ved å 
       bruke URL-er som begynner med <literal>svn://</literal>- eller 
       <literal>svn+ssh://</literal>-skjemaet.
       Denne seksjonen vil forklare de forskjellige måtene å kjøre 
       <command>svnserve</command> på, hvordan klienter autentiserer seg 
-      selv ovenfor &the_server;, og hvordan du setter opp en passende 
+      selv ovenfor tjeneren, og hvordan du setter opp en passende 
       adgangskontroll til depotene dine.</para>
 
     <!-- =============================================================== -->
@@ -819,7 +809,7 @@ END
       <!-- @ENGLISH {{{
       <title>Invoking the Server</title>
       @ENGLISH }}} -->
-      <title>Starte &the_server;</title>
+      <title>Starte tjeneren</title>
 
       <!-- @ENGLISH {{{
       <para>There are a few different ways to invoke the
@@ -896,7 +886,7 @@ svn stream tcp nowait svnbruker /usr/bin/svnserve svnserve -i
       @ENGLISH }}} -->
       <para>Pass på at <quote>svnbruker</quote> er en bruker som har 
         tilstrekkelige rettigheter til å få tilgang til depotene dine.
-        Når nå en klientforbindelse kommer inn til &the_server; på port 
+        Når nå en klientforbindelse kommer inn til tjeneren på port 
         3690, vil <command>inetd</command> starte en egen 
         <command>svnserve</command>-prosess for å ta seg av den.</para>
 
@@ -989,7 +979,7 @@ $               # nå kjører svnserve og lytter på port 3690
         <!-- @ENGLISH {{{
         <title>Servers and Permissions:  A Word of Warning</title>        
         @ENGLISH }}} -->
-        <title>&Servers; og rettigheter: En liten advarsel</title>
+        <title>Tjenere og rettigheter: En liten advarsel</title>
 
         <!-- @ENGLISH {{{
         <para>First, remember that a Subversion repository is a
@@ -1026,7 +1016,7 @@ $               # nå kjører svnserve og lytter på port 3690
         @ENGLISH }}} -->
         <para>For det andre, når du setter opp 
           <command>svnserve</command>, Apache <command>httpd</command> 
-          eller en annen &server;prosess, husk på at du ikke vil starte 
+          eller en annen tjenerprosess, husk på at du ikke vil starte 
           tjenesten som <literal>root</literal>-brukeren (eller en annen 
           bruker med ubegrensede rettigheter).
           Avhengig av eierskapet og rettighetene på depotene du 
@@ -1035,7 +1025,7 @@ $               # nå kjører svnserve og lytter på port 3690
           For eksempel lager mange administratorer en ny bruker kalt 
           <literal>svn</literal>, gir denne eksklusivt eierskap og 
           rettigheter til de eksporterte Subversiondepotene og kjører 
-          &server;prosessene kun som denne brukeren.</para>
+          tjenerprosessene kun som denne brukeren.</para>
       </sidebar>
 
 
@@ -1060,7 +1050,7 @@ $               # nå kjører svnserve og lytter på port 3690
         Hvis for eksempel et depot ligger i 
         <filename>/usr/local/depoter/prosjekt1</filename>, kan en klient 
         nå det via <systemitem 
-        class="url">svn://&server;.example.com/usr/local/depoter/prosjekt1</systemitem>.
+        class="url">svn://tjener.example.com/usr/local/depoter/prosjekt1</systemitem>.
         For å øke sikkerheten kan du angi <option>-r</option>-valget til 
         <command>svnserve</command> som begrenser den til å kun 
         ekportere depoter som ligger under denne stien:</para>
@@ -1097,7 +1087,7 @@ $ svn checkout svn://host.example.com/project1
 </screen>
       @ENGLISH }}} -->
       <screen>
-$ svn checkout svn://&server;.example.com/prosjekt1
+$ svn checkout svn://tjener.example.com/prosjekt1
 …
 </screen>
  
@@ -1134,7 +1124,7 @@ $ svn checkout svn://&server;.example.com/prosjekt1
         therein.</para></listitem>
         @ENGLISH }}} -->
         <listitem>
-          <para>&The_server; går gjennom depotets 
+          <para>Tjeneren går gjennom depotets 
             <filename>conf/svnserve.conf</filename>-fil og begynner å 
             gjennomføre alle autentiserings- og autorisasjonsregler som 
             er definert i den.</para>
@@ -1156,7 +1146,7 @@ $ svn checkout svn://&server;.example.com/prosjekt1
             <listitem>
               <para>kan klienten få lov til å foreta forespørsler 
                 anonymt, uten noen gang å motta en 
-                autentiseringsforespørsel, ELLER</para>
+                autentiseringsutfordring, ELLER</para>
             </listitem>
 
             <!-- @ENGLISH {{{
@@ -1193,16 +1183,16 @@ $ svn checkout svn://&server;.example.com/prosjekt1
         the result is identical.  <emphasis>At no point does the
         actual password travel over the network.</emphasis></para>
       @ENGLISH }}} -->
-      <para>Når dette skrives, vet &the_server; bare hvordan den skal 
-        sende en CRAM-MD5<footnote>
+      <para>Når dette skrives, vet tjeneren bare hvordan den skal sende 
+        en CRAM-MD5<footnote>
           <para>Se RFC 2195.</para>
-        </footnote>-autentiseringsforespørsel.
-        I hovedsak sender &the_server; litt data til klienten.
+        </footnote>-autentiseringsutfordring.
+        I hovedsak sender tjeneren litt data til klienten.
         Klienten bruker MD5-algoritmen for å lage et fingeravtrykk av de 
         kombinerte dataene og passordet og sender fingeravtrykket som 
         svar.
-        &The_server; foretar den samme utregningen med det lagrede 
-        passordet for å sjekke at resultatet er identisk.
+        Tjeneren foretar den samme utregningen med det lagrede passordet 
+        for å sjekke at resultatet er identisk.
         <emphasis>Passordet blir ikke på noe tidspunkt sendt over 
         nettverket.</emphasis></para>
 
@@ -1217,9 +1207,8 @@ $ svn checkout svn://&server;.example.com/prosjekt1
       <para>Det er også selvfølgelig mulig for klienten å bli eksternt 
         autentisert via en tunnelagent, som for eksempel 
         <command>SSH</command>.
-        I dette tilfellet sjekker &the_server; rett og slett bare 
-        brukeren den kjører som, og bruker den som det autentiserte 
-        brukernavnet.
+        I dette tilfellet sjekker tjeneren rett og slett bare brukeren 
+        den kjører som, og bruker den som det autentiserte brukernavnet.
         For mer om dette, se <xref 
         linkend="svn.serverconfig.svnserve.sshauth"/>.</para>
 
@@ -1237,17 +1226,17 @@ $ svn checkout svn://&server;.example.com/prosjekt1
         to use them.</para>
       @ENGLISH }}} -->
       <para>Som du allerede har gjettet, er 
-        <filename>svnserve.conf</filename>-fila i et depot den sentrale 
+        <filename>svnserve.conf</filename>-filen i et depot den sentrale 
         mekanismen for å kontrollere autentiserings- og 
         autorisasjonsregler.
-        Fila har det samme formatet som andre konfigurasjonsfiler (se 
+        Filen har det samme formatet som andre konfigurasjonsfiler (se 
         <xref linkend="svn.advanced.confarea"/>):
         Seksjonsnavn er markert med klammeparenteser 
         (<literal>[</literal> og <literal>]</literal>), kommentarer 
         begynner med <!-- ¤ -->hashtegn (<literal>#</literal>), og hver 
         seksjon inneholder spesifikke variabler som kan settes 
         (<literal>variabel = verdi</literal>).
-        La oss gå gjennom denne fila og lære hvordan vi bruker 
+        La oss gå gjennom denne filen og lære hvordan vi bruker 
         dem.</para>
 
       <sect3 id="svn.serverconfig.svnserve.auth.users">
@@ -1298,8 +1287,8 @@ realm = eksempelområde
           <quote>autentiseringsnavnerom</quote> de kobler seg til; 
           Subversionklienten viser det når den spør etter 
           autentiseringsinfo, og bruker det som en nøkkel (sammen med 
-          &the_server;s vertsnavn og port) for å lagre legitimasjonsinfo 
-          på disken (se <xref 
+          tjenerens vertsnavn og port) for å lagre legitimasjonsinfo på 
+          disken (se <xref 
           linkend="svn.serverconfig.netmodel.credcache"/>).
           Variabelen <literal>password-db</literal> peker til en separat 
           fil som inneholder en liste med brukernavn og passord, som 
@@ -1476,7 +1465,7 @@ auth-access = write
           lesetilgang eller ingen tilgang.
           Det er ingen detaljert kontroll over tilgang til spesifikke 
           stier i depotet.
-          For mange prosjekter og <!-- ¤ sites -->&servers; er dette 
+          For mange prosjekter og <!-- ¤ sites -->tjenere er dette 
           nivået på tilgangskontroll mer enn nok.
           Hvis du imidlertid trenger tilgangskontroll på katalognivå, må 
           du enten bruke Apache med <command>mod_auth_svn</command> (se 
@@ -1515,7 +1504,7 @@ auth-access = write
         veletablert rammeverk for SSH-autentisering på plass.
         I disse situasjonene har alle brukerne på prosjektet allerede 
         systemkontoer og muligheten til å koble seg til via SSH på 
-        &server;maskinen.</para>
+        tjenermaskinen.</para>
 
       <!-- @ENGLISH {{{
       <para>It's easy to use SSH in conjunction with
@@ -1545,8 +1534,8 @@ baz
 $ whoami
 harry
 
-$ svn list svn+ssh://&server;.example.com/repos/prosjekt
-harry@&server;.example.com's password:  *****
+$ svn list svn+ssh://tjener.example.com/repos/prosjekt
+harry@tjener.example.com's password:  *****
 
 foo
 bar
@@ -1572,7 +1561,7 @@ baz
       @ENGLISH }}} -->
       <para>I dette eksempelet starter Subversionklienten en lokal 
         <command>ssh</command>-prosess, kobler seg opp mot 
-        <literal>&server;.example.com</literal>, autentiserer seg som 
+        <literal>tjener.example.com</literal>, autentiserer seg som 
         brukeren <literal>harry</literal>, starter en privat 
         <command>svnserve</command>-prosess på den fjerntliggende 
         maskinen som kjører som brukeren <literal>harry</literal>.
@@ -1680,10 +1669,10 @@ baz
       <para>Man skulle tro at historien om SSH ender her, men det gjør 
         den ikke.
         Subversion lar deg opprette tilpasset tunneloppførsel i <!-- ¤ 
-        run-time -->kjøringsfila <filename>config</filename> (se <xref 
+        run-time -->kjøringsfilen <filename>config</filename> (se <xref 
         linkend="svn.advanced.confarea"/>).
         I <literal>[tunnels]</literal>-seksjonen i 
-        <filename>config</filename>-fila kan du enkelt definere det på 
+        <filename>config</filename>-filen kan du enkelt definere det på 
         denne måten:</para>
 
       <screen>
@@ -1705,14 +1694,14 @@ rsh = rsh
       @ENGLISH }}} -->
       <para>Og nå kan du bruke denne nye tunneldefinsjonen ved å bruke 
         et URL-skjema som samsvarer med navnet på den nye variabelen:
-        <literal>svn+rsh://&server;/sti</literal>.
+        <literal>svn+rsh://tjener/sti</literal>.
         Ved bruk av det nye URL-skjemaet vil Subversionklienten faktisk 
-        kjøre kommandoen <command>rsh &server; svnserve -t</command> 
-        <!-- ¤ -->i bakgrunnen.
+        kjøre kommandoen <command>rsh tjener svnserve -t</command> <!-- 
+        ¤ -->i bakgrunnen.
         Hvis du inkluderer et brukernavn i URLen (for eksempel 
-        <literal>svn+rsh://brukernavn@&server;/sti</literal>), vil 
+        <literal>svn+rsh://brukernavn@tjener/sti</literal>), vil 
         klienten også ta dette med i kommandoen (<command>rsh 
-        brukernavn@&server; svnserve -t</command>).
+        brukernavn@tjener svnserve -t</command>).
         Men du kan definere nye tunnelskjema til å være mye mer 
         avanserte enn som så:</para>
 
@@ -1737,7 +1726,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
         en spesifikk binærfil som oppretter tunnelen (den som ligger som 
         <filename>/opt/alternate/ssh</filename> med spesifikke valg.
         I dette tilfellet vil det å aksessere en 
-        <literal>svn+joessh://</literal>-URL starte denne SSH-binærfila 
+        <literal>svn+joessh://</literal>-URL starte denne SSH-binærfilen 
         med <option>-p 29934</option> som parameter – nyttig hvis du vil 
         at tunnelprogrammet skal koble seg til en ustandard port.</para>
 
@@ -1761,7 +1750,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
         Det å sette miljøvariabelen <literal>SVN_SSH</literal> er en 
         behagelig måte å overstyre den vanlige SSH-tunnelagenten.
         Men hvis du må ha flere forskjellige overstyringer for 
-        forskjellige &servers;, der hver av dem kanskje kontakter en 
+        forskjellige tjenere, der hver av dem kanskje kontakter en 
         forskjellig port eller sender et annet sett med parametere til 
         SSH, kan du bruke mekanismen som er demonstrert i dette 
         eksempelet.
@@ -1791,7 +1780,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       @ENGLISH }}} -->
       <para>Det er ikke bare mulig å kontrollere måten klienten starter 
         <command>ssh</command> på, men også å kontrollere oppførselen 
-        til <command>sshd</command> på &server;maskinen.
+        til <command>sshd</command> på tjenermaskinen.
         I denne seksjonen vil vi vise hvordan du kontrollerer den 
         eksakte <command>svnserve</command>-kommandoen som blir kjørt av 
         <command>sshd</command>, og også hvordan du får flere brukere 
@@ -1820,7 +1809,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           offentlig nøkkel.
           Autentisering via passord vil ikke fungere, siden alle de 
           følgende SSH-triksene baserer seg på bruk av 
-          <filename>authorized_keys</filename>-fila som brukes av 
+          <filename>authorized_keys</filename>-filen som brukes av 
           SSH.</para>
 
         <!-- @ENGLISH {{{
@@ -1831,20 +1820,20 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           allowed to connect.  The lines are typically of the
           form:</para>
         @ENGLISH }}} -->
-        <para>Hvis den ikke allerede finnes, opprett fila 
+        <para>Hvis den ikke allerede finnes, opprett filen 
           <filename>authorized_keys</filename> (i Unix er den vanligvis 
           kalt <filename>~/.ssh/authorized_keys</filename>).
-          Hver linje i denne fila beskriver en offentlig nøkkel som får 
+          Hver linje i denne filen beskriver en offentlig nøkkel som får 
           lov til å koble seg til.
           Linjene har vanligvis dette formatet:</para>
 
         <!-- @ENGLISH {{{
         <screen>
-  ssh-dsa AAAABtce9euch&hellip; user@example.com
+  ssh-dsa AAAABtce9euch.... user@example.com
 </screen>
         @ENGLISH }}} -->
         <screen>
-  ssh-dsa AAAABtce9euch&hellip; bruker@example.com
+  ssh-dsa AAAABtce9euch.... bruker@example.com
 </screen>
           
         <!-- @ENGLISH {{{
@@ -1862,11 +1851,11 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
 
         <!-- @ENGLISH {{{
         <screen>
-  command="program" ssh-dsa AAAABtce9euch&hellip; user@example.com
+  command="program" ssh-dsa AAAABtce9euch.... user@example.com
 </screen>
         @ENGLISH }}} -->
         <screen>
-  command="program" ssh-dsa AAAABtce9euch&hellip; bruker@example.com
+  command="program" ssh-dsa AAAABtce9euch.... bruker@example.com
 </screen>
 
         <!-- @ENGLISH {{{
@@ -1881,8 +1870,8 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           SSH-daemonen kjøre det navngitte programmet istedenfor den 
           typiske <command>svnserve -t</command>-prosessen som 
           Subversionklienten spør etter.
-          Dette åpner døra til en rekke triks på &server;siden.
-          I de følgende eksemplene forkorter vi linjene i fila 
+          Dette åpner døra til en rekke triks på tjenersiden.
+          I de følgende eksemplene forkorter vi linjene i filen 
           som:</para>
 
         <!-- @ENGLISH {{{
@@ -1908,7 +1897,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           binary to run and to pass it extra arguments:</para>
         @ENGLISH }}} -->
         <para>Fordi vi kan spesifisere kommandoen som kjøres på 
-          &server;siden, er det lett å navngi en spesifikk 
+          tjenersiden, er det lett å navngi en spesifikk 
           <command>svnserve</command>-binærfil som skal kjøres og levere 
           et ekstra parameter til den:</para>
         
@@ -1960,7 +1949,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           Istedenfor å lage en egen systemkonto for hver bruker, lag et 
           offentlig/privat nøkkelpar for hver person.
           Legg deretter hver offentlig nøkkel inn i 
-          <filename>authorized_users</filename>-fila, en per linje, og 
+          <filename>authorized_users</filename>-filen, en per linje, og 
           bruk valget <option>--tunnel-user</option>:</para>
 
         <!-- @ENGLISH {{{
@@ -1997,7 +1986,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
         <!-- @ENGLISH {{{
         <para>A final word of caution: giving a user access to the
           server via public-key in a shared account might still allow
-          other forms of SSH access, even if you've set
+          other forms of SSH access, even if you've set the
           the <literal>command</literal> value
           in <filename>authorized_keys</filename>.  For example, the
           user may still get shell access through SSH, or be able to
@@ -2007,14 +1996,14 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           after the <literal>command</literal>:</para>
         @ENGLISH }}} -->
         <para>En siste advarsel:
-          Det å gi en bruker tilgang til &the_server; via en offentlig 
+          Det å gi en bruker tilgang til tjeneren via en offentlig 
           nøkkel på en delt konto kan fortsatt gi andre former for 
           SSH-tilgang, selv om du har definert 
           <literal>command</literal>-verdien i 
           <filename>authorized_keys</filename>.
           Brukeren kan for eksempel fortsatt få kommandolinjetilgang via 
           SSH, eller være i stand til å utføre X11- eller generell 
-          port-<!-- ¤ -->forwarding gjennom &the_server;.
+          port-<!-- ¤ -->forwarding gjennom tjeneren.
           For å gi brukeren så lite rettigheter som mulig, vil du 
           kanskje spesifisere et antall begrensningsvalg like etter 
           <literal>command</literal>:</para>
@@ -2047,15 +2036,16 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
     <!-- @ENGLISH {{{
     <title>httpd, the Apache HTTP server</title>
     @ENGLISH }}} -->
-    <title>HTTP-&the_server; Apache (httpd)</title>
+    <title>HTTP-tjeneren Apache (httpd)</title>
 
     <!-- @ENGLISH {{{
     <para>The Apache HTTP Server is a <quote>heavy duty</quote>
       network server that Subversion can leverage.  Via a custom
       module, <command>httpd</command> makes Subversion repositories
       available to clients via the WebDAV/DeltaV protocol, which is an
-      extension to HTTP 1.1 (see <ulink url="http://www.webdav.org/"/>
-      for more information).  This protocol takes the ubiquitous HTTP
+      extension to HTTP 1.1
+      (see <systemitem class="url">http://www.webdav.org/</systemitem>
+      for more information). This protocol takes the ubiquitous HTTP
       protocol that is the core of the World Wide Web, and adds
       writing&mdash;specifically, versioned
       writing&mdash;capabilities.  The result is a standardized,
@@ -2070,12 +2060,13 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       <command>svnserve</command>, it's also a bit more difficult
       to set up.  With flexibility often comes more complexity.</para>
     @ENGLISH }}} -->
-    <para>HTTP-&the_server; Apache er en nettverks&server; i 
-      tungvektsklassen som Subversion kan bruke.
+    <para>HTTP-tjeneren Apache er en nettverkstjener i tungvektsklassen 
+      som Subversion kan bruke.
       Ved hjelp av en spesiallaget modul gjør <command>httpd</command> 
       Subversiondepoter tilgjengelig for klienter via 
       WebDAV/DeltaV-protokollen, som er en utvidelse av HTTP 1.1 (se 
-      <ulink url="http://www.webdav.org/"/> for mer informasjon).
+      <systemitem class="url">http://www.webdav.org</systemitem> for mer 
+      informasjon).
       Denne protokollen tar HTTP-protokollen som vi finner over alt, 
       kjernen av <!-- ¤ -->World Wide Web, og legger til muligheter for 
       skriving – mer spesifikt, versjonert skriving.
@@ -2086,7 +2077,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       systemet.<footnote>
         <para>Det er noe som de virkelig hater.</para>
       </footnote>
-      En Apache/Subversion-&server; har større funksjonalitet enn 
+      En Apache/Subversion-tjener har større funksjonalitet enn 
       <command>svnserve</command>, men er også vanskeligere å sette opp.
       Med fleksibilitet kommer det ofte mer kompleksitet med på 
       kjøpet.</para>
@@ -2097,9 +2088,10 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       of the use of these directives, describing them in full is
       outside the scope of this chapter.  The Apache team maintains
       excellent documentation, publicly available on their website at
-      <ulink url="http://httpd.apache.org"/>.  For example, a general
-      reference for the configuration directives is located at <ulink url="
-      http://httpd.apache.org/docs-2.0/mod/directives.html"/>.</para>
+      <systemitem class="url">http://httpd.apache.org</systemitem>.
+      For example, a general reference for the configuration
+      directives is located at <systemitem class="url">
+      http://httpd.apache.org/docs-2.0/mod/directives.html</systemitem>.</para>
     @ENGLISH }}} -->
     <para>Mye av den følgende diskusjonen inneholder referanser til 
       konfigurasjonsdirektiver for Apache.
@@ -2107,11 +2099,11 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       det å beskrive dem i full detalj utenfor det som dette kapittelet 
       dekker.
       Utviklerne bak Apache vedlikeholder fortreffelig dokumentasjon, 
-      offentlig tilgjengelig på hjemmesiden <ulink 
-      url="http://httpd.apache.org"/>.
+      offentlig tilgjengelig på hjemmesiden <systemitem 
+      class="url">http://httpd.apache.org</systemitem>.
       En generell oversikt over konfigurasjonsdirektivene er for 
-      eksempel tilgjengelig på <ulink 
-      url="http://httpd.apache.org/docs-2.0/mod/directives.html"/>.</para>
+      eksempel tilgjengelig på <systemitem 
+      class="url">http://httpd.apache.org/docs-2.0/mod/directives.html</systemitem>.</para>
     
     <!-- @ENGLISH {{{
     <para>Also, as you make changes to your Apache setup, it is likely
@@ -2131,7 +2123,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       Apacheoppsettet, kan det skje at en feil blir gjort på veien.
       Hvis du ikke allerede kjenner til Apaches loggesystem, bør du bli 
       kjent med det.
-      I <filename>httpd.conf</filename>-fila di er det direktiver som 
+      I <filename>httpd.conf</filename>-filen din er det direktiver som 
       spesifiserer plasseringer på disken av aksess- og 
       feilmeldingsloggene som genereres av Apache (henholdsvis 
       direktivene <literal>CustomLog</literal> og 
@@ -2162,14 +2154,14 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
         Apache module is written specifically for the Apache 2 API.</para>
       @ENGLISH }}} -->
       <para>Hvis du er en systemadministrator, er det ganske sannsynlig 
-        at du allerede kjører web&the_server; Apache og har noe 
-        tidligere erfaring med den.
+        at du allerede kjører webtjeneren Apache og har noe tidligere 
+        erfaring med den.
         Når dette skrives, er Apache 1.3 med god margin den mest 
         populære versjonen av Apache.
         Verden har vært ganske sen med å oppgradere til Apache 
         2.X-serien av diverse grunner:
         Noen folk frykter forandringer, spesielt det å forandre noe så 
-        kritisk som en web&server;.
+        kritisk som en webtjener.
         Andre folk er avhenging av <!-- ¤ -->innpluggingsmoduler som 
         bare virker mot Apache 1.3-<!-- ¤ API -->grensesnittet, og 
         venter på en versjon for 2.X.
@@ -2189,8 +2181,8 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
         Ikke noe å bekymre seg for.
         Det er lett å kjøre Apache 1.3 og Apache 2 side ved side; bare 
         installer dem på forskjellige plasser på disken, og bruk Apache 
-        2 som en dedisert Subversion&server; som bruker en annen port 
-        enn 80.
+        2 som en dedisert Subversiontjener som bruker en annen port enn 
+        80.
         Klienter kan aksessere depotet ved å plassere portnummeret i 
         URLen:</para>
 
@@ -2201,7 +2193,7 @@ $ svn checkout http://host.example.com:7382/repos/project
 </screen>
       @ENGLISH }}} -->
       <screen>
-$ svn checkout http://&server;.example.com:7382/repos/prosjekt
+$ svn checkout http://tjener.example.com:7382/repos/prosjekt
 …
 </screen>
     </sidebar>
@@ -2256,8 +2248,8 @@ $ svn checkout http://&server;.example.com:7382/repos/prosjekt
           <para>configuring your <filename>httpd.conf</filename>
             file to export (or expose) the repository.</para>
           @ENGLISH }}} -->
-          <para>konfigurere <filename>httpd.conf</filename>-fila di til 
-            å eksportere (eller vise) depotet.</para>
+          <para>konfigurere <filename>httpd.conf</filename>-filen din 
+            til å eksportere (eller vise) depotet.</para>
         </listitem>
       </itemizedlist>
       
@@ -2275,9 +2267,9 @@ $ svn checkout http://&server;.example.com:7382/repos/prosjekt
         kompilere <command>httpd</command> og Subversion fra kildekode 
         eller ved å installere ferdigbygde pakker med dem på systemet.
         For den mest oppdaterte informasjonen om hvordan du kompilerer 
-        Subversion for bruk sammen med Apache HTTP-&the_server; og 
-        hvordan kompilere og sette opp selve Apache for dette, se 
-        <filename>INSTALL</filename>-fila på toppnivået av 
+        Subversion for bruk sammen med Apache HTTP-tjeneren og hvordan 
+        kompilere og sette opp selve Apache for dette, se 
+        <filename>INSTALL</filename>-filen på toppnivået av 
         kildekodetreet til Subversion.</para>
       
     </sect2>
@@ -2307,7 +2299,7 @@ $ svn checkout http://&server;.example.com:7382/repos/prosjekt
       @ENGLISH }}} -->
       <para>Når du har alle de nødvendige komponentene installert på 
         systemet ditt, er alt som gjenstår å konfigurere Apache ved 
-        hjelp av <filename>httpd.conf</filename>-fila.
+        hjelp av <filename>httpd.conf</filename>-filen.
         Få Apache til å laste mod_dav_svn-modulen ved å bruke 
         <literal>LoadModule</literal>-direktivet.
         Dette direktivet må komme foran alle andre Subversion-relaterte 
@@ -2333,7 +2325,7 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
       @ENGLISH }}} -->
       <para>Legg merke til at hvis <command>mod_dav</command> ble 
         kompilert som et delt objekt (istedenfor å bli statisk linket 
-        direkte til binærfila <command>httpd</command>) vil du også 
+        direkte til binærfilen <command>httpd</command>) vil du også 
         trenge en tilsvarende <literal>LoadModule</literal>-linje for 
         dette.
         Pass på at den kommer før 
@@ -2367,7 +2359,7 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
       @ENGLISH }}} -->
       <!-- ¤ Dette avsnittet kan med fordel finleses litt sånn 
       etterhvert. -->
-      <para>På en senere plassering i konfigurasjonsfila må du fortelle 
+      <para>På en senere plassering i konfigurasjonsfilen må du fortelle 
         Apache hvor du har lagt Subversiondepotet (eller depotene).
         <literal>Location</literal>-direktivet har en XML-lignende 
         notasjon som starter med et åpningselement og slutter med et 
@@ -2380,7 +2372,7 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
         som peker til en versjonert ressurs i DAV-laget.
         Du kan instruere Apache til å delegere håndteringen av alle 
         URLer der en del av stien (den delen av URLen som kommer etter 
-        &server;navnet og det valgfrie portnummeret) som begynner med 
+        tjenernavnet og det valgfrie portnummeret) som begynner med 
         <filename>/repos/</filename> til en DAV-tjeneste som har depotet 
         plassert som <filename>/absolutt/sti/til/depotet</filename> ved 
         å bruke den følgende 
@@ -2425,10 +2417,10 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
         Subversiondepoter i katalogen 
         <filename>/usr/local/svn</filename> som vil bli aksessert vie 
         URLer som <systemitem 
-        class="url">http://min.&server;.com/svn/depot1</systemitem>, 
+        class="url">http://min.tjener.com/svn/depot1</systemitem>, 
         <systemitem 
-        class="url">http://min.&server;.com/svn/depot2</systemitem> og 
-        så videre, kan du bruke 
+        class="url">http://min.tjener.com/svn/depot2</systemitem> og så 
+        videre, kan du bruke 
         <filename>httpd.conf</filename>-konfigurasjonssyntaksen i det 
         følgende eksempelet:</para>
               
@@ -2496,7 +2488,7 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
         /www/repos&gt;</literal>.
         Hvis en forespørsel kommer for URIen 
         <filename>/www/repos/foo.c</filename>, vet ikke Apache om den 
-        skal se etter fila <filename>repos/foo.c</filename> i 
+        skal se etter filen <filename>repos/foo.c</filename> i 
         <literal>DocumentRoot</literal> eller om den skal delegere 
         jobben til <command>mod_dav_svn</command> for å returnere 
         <filename>foo.c</filename> fra Subversiondepotet.</para>
@@ -2505,7 +2497,7 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
         <!-- @ENGLISH {{{
         <title>Server Names and the COPY Request</title>
         @ENGLISH }}} -->
-        <title>&Server;navn og COPY-forespørselen</title>
+        <title>Tjenernavn og COPY-forespørselen</title>
         
         <!-- @ENGLISH {{{
         <para>Subversion makes use of the <literal>COPY</literal>
@@ -2520,13 +2512,13 @@ LoadModule dav_svn_module     modules/mod_dav_svn.so
         @ENGLISH }}} -->
         <para>Subversion gjør bruk av 
           <literal>COPY</literal>-forespørselstypen for å utføre 
-          kopiering av filer og kataloger på &server;siden.
+          kopiering av filer og kataloger på tjenersiden.
           Som en del av de <!-- ¤ sanity checking -->interne kontrollene 
           gjort av Apachemoduler, blir det forventet at kilden til 
           kopien ligger på den samme maskinen som målet til kopien.
           For å tilfredsstille dette kravet, kan det hende at du må 
-          fortelle mod_dav navnet som du bruker som &server;navn på 
-          &the_server;.
+          fortelle mod_dav navnet som du bruker som tjenernavn på 
+          tjeneren.
           Vanligvis kan du bruke 
           <literal>ServerName</literal>-direktivet i 
           <filename>httpd.conf</filename> for å få dette til.</para>
@@ -2543,10 +2535,10 @@ ServerName svn.example.com
           Again, refer to the Apache documentation for full
           details.</para>
         @ENGLISH }}} -->
-        <para>Hvis du bruker Apaches virtuelle &server;støtte med 
+        <para>Hvis du bruker Apaches virtuelle tjenerstøtte med 
           <literal>NameVirtualHost</literal>-direktivet, kan det hende 
           at du må bruke <literal>ServerAlias</literal>-direktivet for å 
-          spesifisere flere navn som &the_server; din er kjent som.
+          spesifisere flere navn som tjeneren din er kjent som.
           Les i dokumentasjonen for Apache for fullstendige detaljer om 
           dette.</para>
       </sidebar>
@@ -2565,15 +2557,14 @@ ServerName svn.example.com
       @ENGLISH }}} -->
       <para>På dette steget bør du sterkt vurdere spørsmålet angående 
         rettigheter.
-        Hvis du har kjørt Apache en stund som din vanlige web&server;, 
-        har du sannsynligvis en samling med innhold – hjemmesider, 
-        skript og lignende.
+        Hvis du har kjørt Apache en stund som din vanlige webtjener, har 
+        du sannsynligvis en samling med innhold – hjemmesider, skript og 
+        lignende.
         Disse elementene er allerede blitt satt opp med et sett 
         rettigheter som gjør at de fungerer med Apache, eller rettere 
         sagt, som gjør at Apache virker med disse filene.
-        Når Apache brukes som en Subversion&server; vil den også trenge 
-        de riktige rettighetene for å lese og skrive til 
-        Subversiondepotet.
+        Når Apache brukes som en Subversiontjener vil den også trenge de 
+        riktige rettighetene for å lese og skrive til Subversiondepotet.
         (Se <xref 
         linkend="svn.serverconfig.svnserve.invoking.sb-1"/>.)</para>
     
@@ -2634,7 +2625,7 @@ ServerName svn.example.com
 </screen>
 
       <!-- @ENGLISH {{{
-      <para>&hellip;then your repository is <quote>anonymously</quote>
+      <para>...then your repository is <quote>anonymously</quote>
         accessible to the world.  Until you configure some
         authentication and authorization policies, the Subversion
         repositories you make available via the
@@ -2704,7 +2695,7 @@ ServerName svn.example.com
           de som du vil gi spesialtilgang til Subversiondepotet ditt.
           La oss gi Sally og Harry tilgang til å legge inn forandringer 
           i depotet.
-          Først må vi legge dem til passordfila.</para>
+          Først må vi legge dem til passordfilen.</para>
     
         <!-- @ENGLISH {{{
         <screen>
@@ -2722,7 +2713,7 @@ $
 </screen>
         @ENGLISH }}} -->
         <screen>
-$ ### Første gang: Bruk -c for å opprette fila
+$ ### Første gang: Bruk -c for å opprette filen
 $ ### Bruk -m for å bruke MD5-kryptering av passordet, noe som er sikrere
 $ htpasswd -cm /etc/svn-passord-fil harry
 New password: ***** 
@@ -2754,7 +2745,7 @@ $
         <para>Det neste som du må gjøre er å legge til noen flere 
           <filename>httpd.conf</filename>-direktiver inne i 
           <literal>Location</literal>-blokken for å fortelle Apache hva 
-          den skal gjøre med den nye passordfila.
+          den skal gjøre med den nye passordfilen.
           <literal>AuthType</literal>-direktivet spesifiserer hvilken 
           type autentiseringssystem som skal brukes.
           I dette tilfellet vil vi spesifisere 
@@ -2765,7 +2756,7 @@ $
           oppsprettsvindu når nettleseren spør brukeren etter navn og 
           passord.
           Til sist, bruk <literal>AuthUserFile</literal>-direktivet for 
-          å angi plasseringen til passordfila som du opprettet ved å 
+          å angi plasseringen til passordfilen som du opprettet ved å 
           bruke <command>htpasswd</command>.</para>
     
         <!-- @ENGLISH {{{
@@ -2803,7 +2794,7 @@ $
           yet complete, and will not do anything useful.  It's merely
           telling Apache that whenever authorization is required,
           Apache should harvest a username and password from the
-          Subversion client.  What's missing here, however, are
+          Subversion client. What's missing here, however, are
           directives that tell Apache <emphasis>which</emphasis> sorts
           of client requests require authorization.  Wherever
           authorization is required, Apache will demand
@@ -2890,7 +2881,7 @@ $
           <literal>http://</literal>; som et <!-- ¤ -->minimum kan du 
           sette opp Apache til å bruke et selvsignert 
           sertifikat.<footnote>
-            <para>Selv om selvsignerte &server;sertifikater også er 
+            <para>Selv om selvsignerte tjenersertifikater også er 
               sårbare for <quote>mann-i-midten</quote>-angrep, vil et 
               slikt angrep for en vanlig observatør være mye 
               vanskeligere å få til, sammenlignet med å sniffe 
@@ -2934,14 +2925,14 @@ $
           further communication is encrypted via a session key.</para>
         @ENGLISH }}} -->
         <para>Hvis en Subversionklient er kompilert for å kunne bruke 
-          OpenSSL, gir det muligheten til å snakke til en Apache&server; 
+          OpenSSL, gir det muligheten til å snakke til en Apachetjener 
           via <literal>http://</literal>-URLer.
           Neon-biblioteket som brukes av Subversionklienten er ikke bare 
-          i stand til å kontrollere &server;sertifikater, men kan også 
+          i stand til å kontrollere tjenersertifikater, men kan også 
           oppgi klientsertifikater når den blir spurt om det.
-          Når klienten og &the_server; har vekslet SSL-sertifikater og 
-          klart å autentisere hverandre, vil all videre kommunikasjon 
-          bli kryptert med en sesjonsnøkkel.</para>
+          Når klienten og tjeneren har vekslet SSL-sertifikater og klart 
+          å autentisere hverandre, vil all videre kommunikasjon bli 
+          kryptert med en sesjonsnøkkel.</para>
 
         <!-- @ENGLISH {{{
         <para>It's beyond the scope of this book to describe how to
@@ -2952,14 +2943,14 @@ $
           server and client certificates from an ordinary Subversion
           client.</para>
         @ENGLISH }}} -->
-        <para>Det er utenfor temaet for denne boka å beskrive hvordan 
-          man lager klient- og &server;sertifikater, og hvordan Apache 
+        <para>Det er utenfor temaet for denne boken å beskrive hvordan 
+          man lager klient- og tjenersertifikater, og hvordan Apache 
           settes opp for å bruke dem.
           Mange andre bøker, inkludert Apaches egen dokumentasjon, 
           beskriver denne oppgaven.
           Men det som <emphasis>kan</emphasis> bli dekket her er hvordan 
-          man vedlikeholder &server;- og klientsertifikater <!-- ¤ 
-          Kanskje det blir bedre med «for» her? -->fra en vanlig 
+          man vedlikeholder tjener- og klientsertifikater <!-- ¤ Kanskje 
+          det blir bedre med «for» her? -->fra en vanlig 
           Subversionklient.</para>
 
         <!-- @ENGLISH {{{
@@ -2977,7 +2968,7 @@ $
           <listitem><para>a demand for a client certificate</para></listitem>
           @ENGLISH }}} -->
           <listitem>
-            <para>et &server;sertifikat</para>
+            <para>et tjenersertifikat</para>
           </listitem>
           <listitem>
             <para>krav om et klientsertifikat</para>
@@ -2996,20 +2987,20 @@ $
           ask you whether you want to trust the server certificate
           anyway:</para>
         @ENGLISH }}} -->
-        <para>Hvis klienten mottar et &server;sertifikat, må den sjekke 
-          at den stoler på sertifikatet – er &the_server; virkelig den 
-          som den påstår at den er?
+        <para>Hvis klienten mottar et tjenersertifikat, må den sjekke at 
+          den stoler på sertifikatet – er tjeneren virkelig den som den 
+          påstår at den er?
           OpenSSL-biblioteket gjør dette ved å undersøke <!-- ¤ Ah, fint 
           ord. Eller har man ikke lov å si det? -->signatøren av 
-          &server;sertifikatet eller 
+          tjenersertifikatet eller 
           <firstterm>godkjenningsinstansen</firstterm> – 
           <foreignphrase>certifying authority</foreignphrase> (CA).
           Hvis OpenSSL ikke er i stand til å automatisk stole på <!-- ¤ 
           Eller er det bedre å bruke CA her? -->godkjenningsinstansen, 
           eller hvis et annet problem oppstår (som et utgått sertifikat 
-          eller at &server;navnet ikke stemmer), vil <!-- ¤ Dæsken for 
-          et ord. Bør det deles opp? -->Subversionkommandolinjeklienten 
-          vil spørre deg om du vil stole på &server;sertifikatet 
+          eller at tjenernavnet ikke stemmer), vil <!-- ¤ Dæsken for et 
+          ord. Bør det deles opp? -->Subversionkommandolinjeklienten vil 
+          spørre deg om du vil stole på tjenersertifikatet 
           uansett:</para>
 
         <!-- @ENGLISH {{{
@@ -3029,13 +3020,13 @@ Certificate information:
 </screen>
         @ENGLISH }}} -->
         <!-- ¤ --><screen>
-$ svn list https://&server;.example.com/repos/prosjekt
+$ svn list https://tjener.example.com/repos/prosjekt
 
-Error validating server certificate for 'https://&server;.example.com:443':
+Error validating server certificate for 'https://tjener.example.com:443':
  - The certificate is not issued by a trusted authority. Use the
    fingerprint to validate the certificate manually!
 Certificate information:
- - Hostname: &server;.example.com
+ - Hostname: tjener.example.com
  - Valid: from Jan 30 19:23:56 2004 GMT until Jan 30 19:23:56 2006 GMT
  - Issuer: CA, example.com, Sometown, California, US
  - Fingerprint: 7d:e1:a9:34:33:39:ba:6a:e9:a5:c4:22:98:7b:76:5c:92:a0:9c:7b
@@ -3058,11 +3049,10 @@ Certificate information:
         <para>Denne dialogen skulle se kjent ut, det er hovedsaklig det 
           samme spørsmålet som du har sett i nettleseren din (som jo 
           bare er en annen HTTP-klient lik Subversion!).
-          Hvis du velger det (p)ermanente valget, vil 
-          &server;sertifikatet bli lagret i ditt private 
-          <filename>auth/</filename>-område som brukes under kjøring på 
-          omtrent den samme måten som brukernavnet og passordet ditt 
-          blir lagret (se <xref 
+          Hvis du velger det (p)ermanente valget, vil tjenersertifikatet 
+          bli lagret i ditt private <filename>auth/</filename>-område 
+          som brukes under kjøring på omtrent den samme måten som 
+          brukernavnet og passordet ditt blir lagret (se <xref 
           linkend="svn.serverconfig.netmodel.credcache"/>).
           Hvis det blir lagret, vil Subversion automatisk huske dette 
           sertifikatet i framtidige <!-- ¤ -->forhandlinger.</para>
@@ -3075,11 +3065,11 @@ Certificate information:
           variable to a semicolon-separated list of PEM-encoded CA
           certificates:</para>
         @ENGLISH }}} -->
-        <para><filename>servers</filename>-fila som brukes under kjøring 
-          gir deg også muligheten til å la Subversionklienten automatisk 
-          stole på spesifikke <!-- ¤ Eller bruke CA? 
+        <para><filename>servers</filename>-filen som brukes under 
+          kjøring gir deg også muligheten til å la Subversionklienten 
+          automatisk stole på spesifikke <!-- ¤ Eller bruke CA? 
           -->godkjenningsinstanser, enten globalt eller på en <!-- ¤ 
-          --><quote>per &server;</quote>-basis.
+          --><quote>per tjener</quote>-basis.
           Sett ganske enkelt variabelen 
           <literal>ssl-authority-files</literal> til en 
           semikolonseparert liste med PEM-kodede sertifikater:</para>
@@ -3132,7 +3122,7 @@ ssl-authority-files = /sti/til/CAcert1.pem;/sti/til/CAcert2.pem
           Apache stoler på.
           Et klientsertifikat blir vanligvis lagret på disken i et 
           kryptert format, beskyttet av et lokalt passord.
-          Når Subversion mottar denne forespørselen, vil den spørre deg 
+          Når Subversion mottar denne utfordringen, vil den spørre deg 
           etter både en sti til sertifikatet og passordet som beskytter 
           det:</para>
 
@@ -3147,9 +3137,9 @@ Passphrase for '/path/to/my/cert.p12':  ********
 </screen>
         @ENGLISH }}} -->
         <screen>
-$ svn list https://&server;.example.com/repos/prosjekt
+$ svn list https://tjener.example.com/repos/prosjekt
 
-Authentication realm: https://&server;.example.com:443
+Authentication realm: https://tjener.example.com:443
 Client certificate filename: /sti/til/mitt/cert.p12
 Passphrase for '/sti/til/mitt/cert.p12':  ********
 …
@@ -3179,9 +3169,9 @@ Passphrase for '/sti/til/mitt/cert.p12':  ********
           Either or both pieces of information can be described in
           runtime variables:</para>
         @ENGLISH }}} -->
-        <para><filename>servers</filename>-fila som brukes under kjøring 
-          lar deg automatisere denne forespørselen på en 
-          per-&server;-basis.
+        <para><filename>servers</filename>-filen som brukes under 
+          kjøring lar deg automatisere denne <!-- ¤ -->utfordringen på 
+          en per-tjener-basis.
           <!-- ¤ Either -->En av eller begge delene informasjon kan bli  
           beskrevet med kjørevariabler:</para>
 
@@ -3197,7 +3187,7 @@ ssl-client-cert-password = somepassword
         @ENGLISH }}} -->
         <screen>
 [groups]
-examplehost = &server;.example.com
+examplehost = tjener.example.com
 
 [examplehost]
 ssl-client-cert-file = /sti/til/mitt/cert.p12
@@ -3221,9 +3211,9 @@ ssl-client-cert-password = etellerannetpassord
           <literal>ssl-client-cert-file</literal> og 
           <literal>ssl-client-cert-password</literal>, kan 
           Subversionklienten automatisk svare på en 
-          klientsertifikatforespørsel uten å spørre deg.<footnote>
+          klientsertifikatutfordring uten å spørre deg.<footnote>
             <para>Mer sikkerhetsbevisste folk vil kanskje ikke lagre 
-              klientsertifikatpassordet i kjørefila 
+              klientsertifikatpassordet i kjørefilen 
               <filename>servers</filename>.</para>
           </footnote></para>
 
@@ -3248,10 +3238,10 @@ ssl-client-cert-password = etellerannetpassord
       @ENGLISH }}} -->
       <para>På dette punktet har du konfigurert autentisering, men ikke 
         autorisasjon.
-        Apache er i stand til å foreta spørring mot klienter og 
-        godkjenne identiteter, men er ikke blitt fortalt hvordan 
-        adgangen skal begrenses eller hva disse klientene som har disse 
-        identitetene skal få lov til.
+        Apache er i stand til å utfordre klienter og godkjenne 
+        identiteter, men er ikke blitt fortalt hvordan adgangen skal 
+        begrenses eller hva disse klientene som har disse identitetene 
+        skal få lov til.
         Denne seksjonen beskriver to strategier for å kontrollere 
         tilgangen til depotene dine.</para>
 
@@ -3326,25 +3316,27 @@ ssl-client-cert-password = etellerannetpassord
         <!-- @ENGLISH {{{
         <para>Sometimes you don't need to run such a tight ship.  For
           example, Subversion's own source code repository at
-          <ulink url="http://svn.collab.net/repos/svn"/> allows anyone
-          in the world to perform read-only repository tasks (like
-          checking out working copies and browsing the repository with
-          a web browser), but restricts all write operations to
-          authenticated users.  To do this type of selective
-          restriction, you can use the <literal>Limit</literal> and
-          <literal>LimitExcept</literal> configuration directives.
-          Like the <literal>Location</literal> directive, these blocks
-          have starting and ending tags, and you would nest them
-          inside your <literal>&lt;Location&gt;</literal>
-          block.</para>
+          <systemitem
+          class="url">http://svn.collab.net/repos/svn</systemitem>
+          allows anyone in the world to perform read-only repository
+          tasks (like checking out working copies and browsing the
+          repository with a web browser), but restricts all write
+          operations to authenticated users.  To do this type of
+          selective restriction, you can use the
+          <literal>Limit</literal> and <literal>LimitExcept</literal>
+          configuration directives.  Like the
+          <literal>Location</literal> directive, these blocks have
+          starting and ending tags, and you would nest them inside
+          your <literal>&lt;Location&gt;</literal> block.</para>
         @ENGLISH }}} -->
         <para>Noen ganger trenger du ikke å <!-- ¤ -->ha en like streng 
           adgangskontroll.
-          Depotet til Subversions kildekodedepot på <ulink 
-          url="http://svn.collab.net/repos/svn"/> tillater alle i verden 
-          å utføre leseoperasjoner i depotet (som å hente ut 
-          arbeidskopier og bla gjennom depotet med en nettleser), men 
-          begrenser alle skriveoperasjoner til autentiserte brukere.
+          Depotet til Subversions kildekodedepot på <systemitem 
+          class="url">http://svn.collab.net/repos/svn</systemitem> 
+          tillater alle i verden å utføre leseoperasjoner i depotet (som 
+          å hente ut arbeidskopier og bla gjennom depotet med en 
+          nettleser), men begrenser alle skriveoperasjoner til 
+          autentiserte brukere.
           For å få til denne typen selektiv begrensning kan du bruke 
           konfigurasjonsdirektivene <literal>Limit</literal> og 
           <literal>LimitExcept</literal>.
@@ -3421,15 +3413,15 @@ ssl-client-cert-password = etellerannetpassord
           information about Apache access control and the
           <literal>Require</literal> directive, take a look at the
           <literal>Security</literal> section of the Apache
-          documentation's tutorials collection at <ulink
-           url="http://httpd.apache.org/docs-2.0/misc/tutorials.html"/>.</para>
+          documentation's tutorials collection at <systemitem
+          class="url">http://httpd.apache.org/docs-2.0/misc/tutorials.html</systemitem>.</para>
         @ENGLISH }}} -->
         <para>Dette er bare noen få enkle eksempler.
           For informasjon som går mer i dybden om Apaches 
           adgangskontroll og <literal>Require</literal>-direktivet, ta 
           en kikk på <literal>Security</literal>-seksjonen i 
-          dokmentasjonssamlingen for Apache på <ulink
-          url="http://httpd.apache.org/docs-2.0/misc/tutorials.html"/>.</para>
+          dokmentasjonssamlingen for Apache på <systemitem 
+          class="url">http://httpd.apache.org/docs-2.0/misc/tutorials.html</systemitem>.</para>
               
 
       </sect3>
@@ -3455,7 +3447,7 @@ ssl-client-cert-password = etellerannetpassord
           Denne modulen <!-- ¤ grabs – «tar tak i», «grabber» (er det 
           dialekt?) eller noe annet. -->tar for seg de forskjellige <!-- 
           ¤ opaque --><quote>uklare</quote>
-          URLene som blir sendt fra klienten til &the_server;, spør 
+          URLene som blir sendt fra klienten til tjeneren, spør 
           <command>mod_dav_svn</command> om å dekode dem og avgjør etter 
           dette om forespørsler skal nektes, basert på tilgangsregler 
           som er definert i en konfigurasjonsfil.</para>
@@ -3498,7 +3490,7 @@ LoadModule authz_svn_module   modules/mod_authz_svn.so
           <literal>AuthSVNAccessFile</literal>-direktivet, som 
           spesifiserer en fil som inneholder regler for rettigheter til 
           stier i depotene dine.
-          (Vil vil diskutere formatet på denne fila om et 
+          (Vil vil diskutere formatet på denne filen om et 
           øyeblikk.)</para>
 
         <!-- @ENGLISH {{{
@@ -3525,7 +3517,7 @@ LoadModule authz_svn_module   modules/mod_authz_svn.so
         @ENGLISH }}} -->
         <para>Den enkleste blokken gir tilgang til alle.
           I dette scenariet sender Apache aldri 
-          autentiseringsforespørsler, så alle brukerne blir behandlet 
+          autentiseringsutfordringer, så alle brukerne blir behandlet 
           som anonyme.</para>
 
         <example id="svn.serverconfig.httpd.authz.perdir.ex-1">
@@ -3874,7 +3866,7 @@ harry =
           <command>mod_authz_svn</command>-modulen prøver selv å få 
           stien til å stemme, deretter forelderen til stien, så 
           forelderen til den, og så videre.
-          Netteffekten er at det å nevne en spesifikk sti i aksessfila 
+          Netteffekten er at det å nevne en spesifikk sti i aksessfilen 
           alltid vil overstyre alle rettigheter som er arvet fra 
           foreldrekataloger.</para>
 
@@ -3948,8 +3940,8 @@ harry =
           of users, much like the Unix <filename>/etc/group</filename>
           file:</para>
         @ENGLISH }}} -->
-        <para>Aksessfila lar deg også definere hele grupper med brukere, 
-          ganske likt <filename>/etc/group</filename> på 
+        <para>Aksessfilen lar deg også definere hele grupper med 
+          brukere, ganske likt <filename>/etc/group</filename> på 
           Unix-systemer:</para>
 
         <!-- @ENGLISH {{{
@@ -4018,7 +4010,7 @@ alle = @calc-utviklere, @paint-utviklere
 </screen>
 
         <!-- @ENGLISH {{{
-        <para>&hellip;and that's pretty much all there is to it.</para>
+        <para>...and that's pretty much all there is to it.</para>
         @ENGLISH }}} -->
         <para>…og det er omtrent det som er å si om den saken.</para>
 
@@ -4086,8 +4078,8 @@ alle = @calc-utviklere, @paint-utviklere
         <para>Alle disse kontrollene av stier kan noen ganger være 
           ganske dyrekjøpte, spesielt i tilfellet med <command>svn 
           log</command>.
-          Når det hentes en liste med revisjoner, ser &the_server; på 
-          alle stier som har forandret seg i hver revisjon og sjekker om 
+          Når det hentes en liste med revisjoner, ser tjeneren på alle 
+          stier som har forandret seg i hver revisjon og sjekker om 
           stien er leselig.
           Hvis en uleselig sti blir funnet, utelates den fra listen med 
           forandrede stier i revisjonen (som man vanligvis ser med 
@@ -4124,7 +4116,7 @@ alle = @calc-utviklere, @paint-utviklere
           eller en lignende modul ikke brukes) kan du slå av alt av 
           stikontroller.
           Bruk <literal>SVNPathAuthz</literal>-direktivet i 
-          <filename>httpd.conf</filename>-fila:</para>
+          <filename>httpd.conf</filename>-filen:</para>
 
         <example id="svn.serverconfig.httpd.authz.pathauthzoff.ex-1">
           <!-- @ENGLISH {{{
@@ -4334,7 +4326,7 @@ alle = @calc-utviklere, @paint-utviklere
             --><literal>GET</literal> offentlige URLer, som 
             representerer den seneste versjonen av filer og kataloger.
             I henhold til WebDAV/DeltaV-sepsifikasjonen definerer hver 
-            &server; en privat URL-syntaks for eldre versjoner av 
+            tjener en privat URL-syntaks for eldre versjoner av 
             ressurser, og denne syntaksen er <!-- ¤ -->skjult for 
             klienter.
             For å finne en eldre versjon av en fil, må klienten følge en 
@@ -4352,13 +4344,10 @@ alle = @calc-utviklere, @paint-utviklere
             list</command> and <command>svn cat</command> commands.
             To browse old revisions with your web browser, however,
             you can use third-party software.  A good example of this
-            is ViewVC (<ulink url="http://viewvc.tigris.org/"/>).
-            ViewVC was originally written to display CVS repositories
-            through the web,
-            <footnote>
-              <para>Back then, it was called <quote>ViewCVS</quote>.</para>
-            </footnote>
-            and the latest bleeding-edge versions (at
+            is ViewCVS (<systemitem
+            class="url">http://viewcvs.sourceforge.net/</systemitem>).
+            ViewCVS was originally written to display CVS repositories
+            through the web, and the latest bleeding-edge versions (at
             the time of writing) are able to understand Subversion
             repositories as well.</para>
           @ENGLISH }}} -->
@@ -4368,15 +4357,12 @@ alle = @calc-utviklere, @paint-utviklere
             <command>svn list</command> og <command>svn cat</command>.
             Men for å bla gjennom gamle revisjoner med nettleseren må du 
             bruke tredjeparts programvare.
-            Et godt eksempel på dette er ViewVC (<ulink 
-            url="http://viewvc.tigris.org/"/>).
-            ViewVC ble egentlig skrevet for å vise CVS-depoter på <!-- ¤ 
-            Merkes fordi den er kontroversiell. -->web,<footnote>
-              <para>På den tiden ble den kalt 
-                <quote>ViewCVS</quote>.</para>
-            </footnote> og de aller siste <!-- ¤ bleeding-edge --> 
-            versjonene (når dette skrives) forstår seg også på 
-            Subversiondepoter.</para>
+            Et godt eksempel på dette er ViewCVS (<systemitem 
+            class="url">http://viewcvs.sourceforge.net</systemitem>).
+            ViewCVS ble egentlig skrevet for å vise CVS-depoter på <!-- 
+            ¤ Merkes fordi den er kontroversiell. -->web, og de aller 
+            siste <!-- ¤ bleeding-edge --> versjonene (når dette 
+            skrives) forstår seg også på Subversiondepoter.</para>
         </sidebar>
 
       </sect3>
@@ -4402,7 +4388,7 @@ alle = @calc-utviklere, @paint-utviklere
           configure the programs to use those features.</para>
         @ENGLISH }}} -->
         <para>Mye av funksjonliteten som Apache tilbyr i sin rolle som 
-          en robust web&server; kan i tillegg bli <!-- ¤ Resten av 
+          en robust webtjener kan i tillegg bli <!-- ¤ Resten av 
           setninga. --> satt opp for økt funksjonalitet eller sikkerhet 
           i Subversion.
           Subversion kommuniserer med Apache ved bruk av Neon, som er et 
@@ -4428,12 +4414,11 @@ alle = @calc-utviklere, @paint-utviklere
           successfully.</para>
         @ENGLISH }}} -->
         <para><quote>Deflate</quote>-pakking øker belastningen litt på 
-          klienten og &the_server; for å pakke og pakke opp overføringer 
-          på nettverket som en måte å minske størrelsen på den faktiske 
+          klienten og tjeneren for å pakke og pakke opp overføringer på 
+          nettverket som en måte å minske størrelsen på den faktiske 
           overføringen.
           I tilfeller med liten båndbredde kan dette virkelig øke 
-          hastigheten på kommunikasjonen mellom &the_server; og 
-          klienten.
+          hastigheten på kommunikasjonen mellom tjeneren og klienten.
           I ekstreme tilfeller kan denne minskede nettverksoverføringen 
           utgjøre forskjellen på enten å få et tidsavbrudd eller å 
           fullføre operasjonen.</para>
@@ -4453,7 +4438,7 @@ alle = @calc-utviklere, @paint-utviklere
           spesifisere en spesiell port (istedenfor den vanlige 
           HTTP-porten 80) eller virtuelle domenenavn som 
           Subversiondepoter skal aksesseres via, eller muligheten til å 
-          aksessere depotet gjennom en mellom&server;.
+          aksessere depotet gjennom en mellomtjener.
           Alle disse tingene støttes av Neon, så denne støtten får 
           Subversion helt gratis.</para>
 
@@ -4471,7 +4456,7 @@ alle = @calc-utviklere, @paint-utviklere
           halvkomplett dialekt av WebDAV/DeltaV, er det mulig å 
           aksessere depotet vie tredjeparts DAV-klienter.
           De fleste moderne operativsystemer (Win32, OS X og Linux) har 
-          muligheten til å montere en DAV-&server; som en standard 
+          muligheten til å montere en DAV-tjener som en standard 
           <quote>share</quote> (delt ressurs eller disk).
           Dette er et kompliser tema; for detaljer, les <xref 
           linkend="svn.webdav"/>.</para>
@@ -4670,20 +4655,19 @@ umask 002
       Brukere som ønsker tilgang til depoter som er på den samme 
       maskinen er ikke begrenset til å bruke URLer av 
       <literal>file://</literal>-typen, de kan vanligvis kontakte Apache 
-      HTTP-&the_server; eller <command>svnserve</command> ved å bruke 
-      <literal>localhost</literal> som &server;navnet i 
+      HTTP-tjeneren eller <command>svnserve</command> ved å bruke 
+      <literal>localhost</literal> som tjenernavnet i 
       <literal>http://</literal>- og <literal>svn://</literal>-URLene.
-      Og det å vedlikeholde flere &server;prosesser for 
-      Subversiondepotene har en tendens til å skaffe mer hodebry enn 
-      nødvendig.
-      Vi anbefaler at du velger den &the_server; som passer best til 
-      dine behov og holder deg til den!</para>
+      Og det å vedlikeholde flere tjenerprosesser for Subversiondepotene 
+      har en tendens til å skaffe mer hodebry enn nødvendig.
+      Vi anbefaler at du velger den tjeneren som passer best til dine 
+      behov og holder deg til den!</para>
 
     <sidebar>
       <!-- @ENGLISH {{{
       <title>The svn+ssh:// server checklist</title>
       @ENGLISH }}} -->
-      <title>Sjekklisten for svn+ssh://-&servers;</title>
+      <title>Sjekklisten for svn+ssh://-tjenere</title>
 
       <!-- @ENGLISH {{{
       <para>It can be quite tricky to get a bunch of users with
@@ -4735,7 +4719,7 @@ umask 002
             (<filename>/usr/bin/svnserve</filename> eller hvor den nå 
             ligger i <literal>$PATH</literal>) egentlig er et 
             innkapslingsskript som setter <command>umask 002</command> 
-            og kjører den ekte <command>svnserve</command>-binærfila.
+            og kjører den ekte <command>svnserve</command>-binærfilen.
             Gjør det samme med <command>svnlook</command> og 
             <command>svnadmin</command>.
             Programmet må enten kjøres med en anstendig umask eller 

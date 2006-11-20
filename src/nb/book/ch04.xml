@@ -55,7 +55,7 @@
     @ENGLISH }}} -->
     <para>Tenk deg at det er din jobb å vedlikeholde et dokument for en 
       avdeling i firmaet ditt, en håndbok av et eller annet slag.
-      En dag spør en annen avdeling deg etter den samme håndboka, men 
+      En dag spør en annen avdeling deg etter den samme håndboken, men 
       med noen deler <quote>spesialtilpasset</quote> for dem, siden de 
       gjør ting litt forskjellig.</para>
 
@@ -159,17 +159,16 @@
 
     <!-- @ENGLISH {{{
     <para>For this chapter, we'll go back to the same example from
-      <xref linkend="svn.basic"/>.  Remember that you and your
-      collaborator, Sally, are sharing a repository that contains two
-      projects, <filename>paint</filename> and
-      <filename>calc</filename>.  Notice that in <xref
-      linkend="svn.branchmerge.using.dia-1"/>, however, each project
-      directory now contains subdirectories named
+      Chapter 2.  Remember that you and your collaborator, Sally, are
+      sharing a repository that contains two projects,
+      <filename>paint</filename> and <filename>calc</filename>.
+      Notice that in <xref linkend="svn.branchmerge.using.dia-1"/>, however, each
+      project directory now contains subdirectories named
       <filename>trunk</filename> and <filename>branches</filename>.
       The reason for this will soon become clear.</para>
     @ENGLISH }}} -->
     <para>I dette kapittelet skal vi gå tilbake til det samme eksempelet 
-      fra <xref linkend="svn.basic"/>.
+      fra kapittel 2.
       Du husker at du og din kollega Sally deler et depot som inneholder 
       to prosjekter – <filename>paint</filename> og 
       <filename>calc</filename>.
@@ -347,7 +346,6 @@
         Til å begynne med, hent ut en arbeidskopi av prosjektets 
         rotkatalog, <filename>/calc</filename>:</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn checkout http://svn.example.com/repos/calc bigwc
 A  bigwc/trunk/
@@ -356,16 +354,6 @@ A  bigwc/trunk/integer.c
 A  bigwc/trunk/button.c
 A  bigwc/branches/
 Checked out revision 340.
-</screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn checkout http://svn.example.com/repos/calc bigwc
-A  bigwc/trunk/
-A  bigwc/trunk/Makefile
-A  bigwc/trunk/integer.c
-A  bigwc/trunk/button.c
-A  bigwc/branches/
-Sjekket ut revisjon 340.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -413,17 +401,11 @@ A  +   branches/my-calc-branch
         å kopiere <filename>/calc/trunk</filename> istedenfor å sende 
         hele arbeidskopien over nettverket en gang til:</para>
 
-      <!-- @ENGLISH {{{
+      <!-- ¤ -->
       <screen>
 $ svn commit -m "Creating a private branch of /calc/trunk."
 Adding         branches/my-calc-branch
 Committed revision 341.
-</screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn commit -m "Lager en privat gren av /calc/trunk."
-Legger til         branches/my-calc-branch
-La inn revisjon 341.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -450,7 +432,7 @@ $ svn copy http://svn.example.com/repos/calc/trunk \
            http://svn.example.com/repos/calc/branches/my-calc-branch \
       -m "Lager en privat gren av /calc/trunk."
 
-La inn revisjon 341.
+Committed revision 341.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -526,10 +508,10 @@ La inn revisjon 341.
           Hvis du er en Unixbruker, er dette det samme konseptet som en 
           hard lenke.
           <!-- ¤ -->Denne kopien kalles <quote>lat</quote>.
-          Det vil si at hvis du legger inn en forandring til ei fil i 
-          den kopierte katalogen, forandrer bare denne fila seg – resten 
-          av filene fortsetter å eksistere som lenker til de originale 
-          filene i den originale katalogen.</para>
+          Det vil si at hvis du legger inn en forandring til en fil i 
+          den kopierte katalogen, forandrer bare denne filen seg – 
+          resten av filene fortsetter å eksistere som lenker til de 
+          originale filene i den originale katalogen.</para>
       
         <!-- @ENGLISH {{{
         <para>This is why you'll often hear Subversion users talk
@@ -586,21 +568,13 @@ La inn revisjon 341.
       <para>Nå som du har laget en gren av prosjektet, kan du hente ut 
         en ny arbeidskopi for å starte bruken av den:</para>
 
-      <!-- @ENGLISH {{{
+      <!-- ¤ -->
       <screen>
 $ svn checkout http://svn.example.com/repos/calc/branches/my-calc-branch
 A  my-calc-branch/Makefile
 A  my-calc-branch/integer.c
 A  my-calc-branch/button.c
 Checked out revision 341.
-</screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn checkout http://svn.example.com/repos/calc/branches/my-calc-branch
-A  my-calc-branch/Makefile
-A  my-calc-branch/integer.c
-A  my-calc-branch/button.c
-Sjekket ut revisjon 341.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -684,7 +658,7 @@ Sjekket ut revisjon 341.
         <!-- @ENGLISH {{{
         <title>The branching of one file's history</title>
         @ENGLISH }}} -->
-        <title>Forgreningen av ei fils historie</title>
+        <title>Forgreningen av en fils historie</title>
         <graphic fileref="images/ch04dia4.png"/>
       </figure>
 
@@ -697,75 +671,39 @@ Sjekket ut revisjon 341.
         forandringene gjort i din kopi av 
         <filename>integer.c</filename>:</para>
 
-      <!-- @ENGLISH {{{
-      <screen>
-$ pwd
-/home/user/my-calc-branch
-
-$ svn log -&#64738;-verbose integer.c
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r343 | user | 2002-11-07 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
-Changed paths:
-   M /calc/branches/my-calc-branch/integer.c
-
-* integer.c:  frozzled the wazjub.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r341 | user | 2002-11-03 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
-Changed paths:
-   A /calc/branches/my-calc-branch (from /calc/trunk:340)
-
-Creating a private branch of /calc/trunk.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r303 | sally | 2002-10-29 21:14:35 -0600 (Tue, 29 Oct 2002) | 2 lines
-Changed paths:
-   M /calc/trunk/integer.c
-
-* integer.c:  changed a docstring.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r98 | sally | 2002-02-22 15:35:29 -0600 (Fri, 22 Feb 2002) | 2 lines
-Changed paths:
-   M /calc/trunk/integer.c
-
-* integer.c:  adding this file to the project.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-</screen>
-      @ENGLISH }}} -->
+      <!-- ¤ Eksemplene tas seinere -->
       <screen>
 $ pwd
 /home/user/my-calc-branch
 
 $ svn log --verbose integer.c
 ------------------------------------------------------------------------
-r343 | bruker | 2002-11-07 15:27:56 -0600 (tor, 07 nov 2002) | 2 lines
-Endrede filstier:
+r343 | user | 2002-11-07 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
+Changed paths:
    M /calc/branches/my-calc-branch/integer.c
 
-* integer.c:  <!-- ¤ Ja, den blir ikke grei. -->frozzled the wazjub.
+* integer.c:  frozzled the wazjub.
 
 ------------------------------------------------------------------------
-r341 | bruker | 2002-11-03 15:27:56 -0600 (tor, 07 nov 2002) | 2 lines
-Endrede filstier:
-   A /calc/branches/my-calc-branch (fra /calc/trunk:340)
+r341 | user | 2002-11-03 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
+Changed paths:
+   A /calc/branches/my-calc-branch (from /calc/trunk:340)
 
-Lager en privat gren av /calc/trunk.
+Creating a private branch of /calc/trunk.
 
 ------------------------------------------------------------------------
-r303 | sally | 2002-10-29 21:14:35 -0600 (tir, 29 okt 2002) | 2 lines
-Endrede filstier:
+r303 | sally | 2002-10-29 21:14:35 -0600 (Tue, 29 Oct 2002) | 2 lines
+Changed paths:
    M /calc/trunk/integer.c
 
-* integer.c:  Forandret en docstring.
+* integer.c:  changed a docstring.
 
 ------------------------------------------------------------------------
-r98 | sally | 2002-02-22 15:35:29 -0600 (fre, 22 feb 2002) | 2 lines
-Endrede filstier:
+r98 | sally | 2002-02-22 15:35:29 -0600 (Fri, 22 Feb 2002) | 2 lines
+Changed paths:
    M /calc/trunk/integer.c
 
-* integer.c:  Legger til denne fila i prosjektet.
+* integer.c:  adding this file to the project.
 
 ------------------------------------------------------------------------
 </screen>
@@ -787,63 +725,34 @@ Endrede filstier:
         fordi <filename>integer.c</filename> også ble kopiert når alt 
         under <filename>/calc/trunk/</filename> ble kopiert.
         Se nå hva som skjer når Sally kjører den samme kommandoen på 
-        hennes kopi av fila:</para>
+        hennes kopi av filen:</para>
 
-      <!-- @ENGLISH {{{
-      <screen>
-$ pwd
-/home/sally/calc
-
-$ svn log -&#64738;-verbose integer.c
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r344 | sally | 2002-11-07 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
-Changed paths:
-   M /calc/trunk/integer.c
-
-* integer.c:  fix a bunch of spelling errors.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r303 | sally | 2002-10-29 21:14:35 -0600 (Tue, 29 Oct 2002) | 2 lines
-Changed paths:
-   M /calc/trunk/integer.c
-
-* integer.c:  changed a docstring.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-r98 | sally | 2002-02-22 15:35:29 -0600 (Fri, 22 Feb 2002) | 2 lines
-Changed paths:
-   M /calc/trunk/integer.c
-
-* integer.c:  adding this file to the project.
-
--&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-&#64738;-
-</screen>
-      @ENGLISH }}} -->
+      <!-- ¤ -->
       <screen>
 $ pwd
 /home/sally/calc
 
 $ svn log --verbose integer.c
 ------------------------------------------------------------------------
-r344 | sally | 2002-11-07 15:27:56 -0600 (tor, 07 nov 2002) | 2 lines
-Endrede filstier:
+r344 | sally | 2002-11-07 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
+Changed paths:
    M /calc/trunk/integer.c
 
-* integer.c:  Ordnet en dunge med skrivefeil.
+* integer.c:  fix a bunch of spelling errors.
 
 ------------------------------------------------------------------------
-r303 | sally | 2002-10-29 21:14:35 -0600 (tir, 29 okt 2002) | 2 lines
-Endrede filstier:
+r303 | sally | 2002-10-29 21:14:35 -0600 (Tue, 29 Oct 2002) | 2 lines
+Changed paths:
    M /calc/trunk/integer.c
 
-* integer.c:  Forandret en docstring.
+* integer.c:  changed a docstring.
 
 ------------------------------------------------------------------------
-r98 | sally | 2002-02-22 15:35:29 -0600 (fre, 22 feb 2002) | 2 lines
-Endrede filstier:
+r98 | sally | 2002-02-22 15:35:29 -0600 (Fri, 22 Feb 2002) | 2 lines
+Changed paths:
    M /calc/trunk/integer.c
 
-* integer.c:  Legger til denne fila i prosjektet.
+* integer.c:  adding this file to the project.
 
 ------------------------------------------------------------------------
 </screen>
@@ -865,7 +774,7 @@ Endrede filstier:
         Subversion viser imidlertid at de to filene deler en felles 
         historie.
         Før grenkopieringen ble gjort i revisjon 341 var de den samme 
-        fila.
+        filen.
         Det er derfor både du og Sally ser forandringene gjort i 
         revisjonene 303 og 98.</para>
 
@@ -1026,8 +935,9 @@ Endrede filstier:
         forgreninger.
         Hvis du ser på Sallys loggmelding for revisjon 344, kan du se at 
         hun forandret noen stavefeil.
-        Din kopi av den samme fila har uten tvil de samme skrivefeilene.
-        Det er sannsynlig at dine fremtidige forandringer i denne fila 
+        Din kopi av den samme filen har uten tvil de samme 
+        skrivefeilene.
+        Det er sannsynlig at dine fremtidige forandringer i denne filen 
         vil påvirke de samme områdene som skrivefeilene ligger i, så du 
         ligger an til å få potensielle konflikter når du en vakker dag 
         fletter inn grenen din.
@@ -1039,76 +949,29 @@ Endrede filstier:
       <para>It's time to use the <command>svn merge</command> command.
         This command, it turns out, is a very close cousin to the
         <command>svn diff</command> command (which you read about in
-        <xref linkend="svn.tour"/>).  Both commands are able to
-        compare any two objects in the repository and describe the
-        differences.  For example, you can ask <command>svn
-        diff</command> to show you the exact change made by Sally in
-        revision 344:</para>
+        Chapter 3).  Both commands are able to compare any two objects
+        in the repository and describe the differences.  For example,
+        you can ask <command>svn diff</command> to show you the exact
+        change made by Sally in revision 344:</para>
       @ENGLISH }}} -->
       <para>Det er på tide å bruke kommandoen <command>svn 
         merge</command>.
         Det skal vise seg at denne kommandoen er en veldig nær slektning 
         av <command>svn diff</command>-kommandoen (som du leste om i 
-        <xref linkend="svn.tour"/>).
+        kapittel 3).
         Begge kommandoene er i stand til å sammenligne to vilkårlige 
         objekter i depotet og beskrive forskjellene.
         For eksempel kan du spørre <command>svn diff</command> om å vise 
         deg den eksakte forandringen gjort av Sally i revisjon 
         344:</para>
 
-      <!-- @ENGLISH {{{
       <screen>
 $ svn diff -r 343:344 http://svn.example.com/repos/calc/trunk
 
 Index: integer.c
 ===================================================================
--&#64738;-&#64738;- integer.c	(revision 343)
+--- integer.c	(revision 343)
 +++ integer.c	(revision 344)
-@@ -147,7 +147,7 @@
-     case 6:  sprintf(info-&gt;operating_system, "HPFS (OS/2 or NT)"); break;
-     case 7:  sprintf(info-&gt;operating_system, "Macintosh"); break;
-     case 8:  sprintf(info-&gt;operating_system, "Z-System"); break;
--    case 9:  sprintf(info-&gt;operating_system, "CPM"); break;
-+    case 9:  sprintf(info-&gt;operating_system, "CP/M"); break;
-     case 10:  sprintf(info-&gt;operating_system, "TOPS-20"); break;
-     case 11:  sprintf(info-&gt;operating_system, "NTFS (Windows NT)"); break;
-     case 12:  sprintf(info-&gt;operating_system, "QDOS"); break;
-@@ -164,7 +164,7 @@
-     low = (unsigned short) read_byte(gzfile);  /* read LSB */
-     high = (unsigned short) read_byte(gzfile); /* read MSB */
-     high = high &lt;&lt; 8;  /* interpret MSB correctly */
--    total = low + high; /* add them togethe for correct total */
-+    total = low + high; /* add them together for correct total */
- 
-     info-&gt;extra_header = (unsigned char *) my_malloc(total);
-     fread(info-&gt;extra_header, total, 1, gzfile);
-@@ -241,7 +241,7 @@
-      Store the offset with ftell() ! */
- 
-   if ((info-&gt;data_offset = ftell(gzfile))== -1) {
--    printf("error: ftell() retturned -1.\n");
-+    printf("error: ftell() returned -1.\n");
-     exit(1);
-   }
- 
-@@ -249,7 +249,7 @@
-   printf("I believe start of compressed data is %u\n", info-&gt;data_offset);
-   #endif
-   
--  /* Set postion eight bytes from the end of the file. */
-+  /* Set position eight bytes from the end of the file. */
- 
-   if (fseek(gzfile, -8, SEEK_END)) {
-     printf("error: fseek() returned non-zero\n");
-</screen>
-      @ENGLISH }}} -->
-      <screen>
-$ svn diff -r 343:344 http://svn.example.com/repos/calc/trunk
-
-Index: integer.c
-===================================================================
---- integer.c	(revisjon 343)
-+++ integer.c	(revisjon 344)
 @@ -147,7 +147,7 @@
      case 6:  sprintf(info-&gt;operating_system, "HPFS (OS/2 or NT)"); break;
      case 7:  sprintf(info-&gt;operating_system, "Macintosh"); break;
@@ -1190,19 +1053,17 @@ M  integer.c
       <para>In another scenario, it's possible that things may not have
         gone so well, and that <filename>integer.c</filename> may have
         entered a conflicted state.  You might need to resolve the
-        conflict using standard procedures (see <xref
-        linkend="svn.tour"/>), or if you decide that the merge was a
-        bad idea altogether, simply give up and <command>svn
-        revert</command> the local change.</para>
+        conflict using standard procedures (see Chapter 3), or if you
+        decide that the merge was a bad idea altogether, simply give up
+        and <command>svn revert</command> the local change.</para>
       @ENGLISH }}} -->
       <para>I et annet scenario er det mulig at ting ikke gikk så bra og 
         at <filename>integer.c</filename> gikk inn i en 
         konflikttilstand.
         Du må kanskje løse konflikten ved hjelp av standard prosedyrer 
-        (se <xref linkend="svn.tour"/>), eller hvis du finner ut at 
-        flettingen egentlig var en dårlig idé, kan du rett og slett gi 
-        opp og kjøre <command>svn revert</command> på den lokale 
-        forandringen.</para>
+        (se kapittel 3), eller hvis du finner ut at flettingen egentlig 
+        var en dårlig idé, kan du rett og slett gi opp og kjøre 
+        <command>svn revert</command> på den lokale forandringen.</para>
 
       <!-- @ENGLISH {{{
       <para>But assuming that you've reviewed the merged change, you can
@@ -1224,7 +1085,7 @@ M  integer.c
         <foreignphrase>porting</foreignphrase>.
         <!-- ¤ Og så legger vi til litt. -->Det finnes ikke en 
         standardisert betegnelse for dette på norsk, så vi bruker i 
-        denne boka uttrykket <quote>flette</quote>.</para>
+        denne boken uttrykket <quote>flette</quote>.</para>
 
       <!-- @ENGLISH {{{
       <para>When you commit the local modification, make sure your log
@@ -1244,11 +1105,11 @@ Transmitting file data .
 Committed revision 360.
 </screen>
       @ENGLISH }}} -->
-      <screen>
+      <!-- ¤ --><screen>
 $ svn commit -m "integer.c: Flettet r344 (retting av skrivefeil) fra trunk."
 Sending        integer.c
-Sender fildata .
-La inn revisjon 360.
+Transmitting file data .
+Committed revision 360.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -1355,19 +1216,19 @@ done
       <para>A word of warning: while <command>svn diff</command> and
         <command>svn merge</command> are very similar in concept, they
         do have different syntax in many cases.  Be sure to read about
-        them in <xref linkend="svn.ref"/> for details, or ask
-        <command>svn help</command>.  For example, <command>svn
-        merge</command> requires a working-copy path as a target, i.e.
-        a place where it should apply the tree-changes.  If the target
-        isn't specified, it assumes you are trying to perform one of
-        the following common operations:</para>
+        them in Chapter 9 for details, or ask <command>svn
+        help</command>.  For example, <command>svn merge</command>
+        requires a working-copy path as a target, i.e. a place where
+        it should apply the tree-changes.  If the target isn't
+        specified, it assumes you are trying to perform one of the
+        following common operations:</para>
       @ENGLISH }}} -->
       <para>En liten advarsel:
         Selv om <command>svn diff</command> og <command>svn 
         merge</command> er veldig like i konsept, har de i mange 
         tilfeller forskjellig syntaks.
-        Vær sikker på at du får lest om dem i <xref linkend="svn.ref"/> 
-        for detaljer, eller spør <command>svn help</command>.
+        Vær sikker på at du får lest om dem i kapittel 9 for detaljer, 
+        eller spør <command>svn help</command>.
         For eksempel krever <command>svn merge</command> en arbeidskopi 
         som et mål, det vil si en plass hvor den skal legge inn 
         treforandringene.
@@ -1408,7 +1269,7 @@ done
         målsti, går <command>svn merge</command> ut i fra det første 
         tilfellet og prøver å legge inn forandringene til den gjeldende 
         katalogen.
-        Hvis du fletter ei fil, og denne fila (eller ei fil med det 
+        Hvis du fletter en fil, og denne filen (eller en fil med det 
         samme navnet) eksisterer i den gjeldende katalogen, går 
         <command>svn merge</command> ut i fra det andre tilfellet og 
         forsøker å legge inn forandringene til en lokal fil med det 
@@ -1426,6 +1287,7 @@ done
         arbeidskopien din, må du spesifisere målkatalogen som skal motta 
         forandringene:</para>
       
+      <!-- ¤ -->
       <screen>
 $ svn merge -r 343:344 http://svn.example.com/repos/calc/trunk my-calc-branch
 U   my-calc-branch/integer.c
@@ -1506,7 +1368,7 @@ U   my-calc-branch/integer.c
         </listitem>
 
         <!-- @ENGLISH {{{
-        <listitem><para>A final repository tree (often called the
+        <listitem><para>An final repository tree (often called the
         <firstterm>right side</firstterm> of the
         comparison),</para></listitem>
         @ENGLISH }}} -->
@@ -1580,7 +1442,7 @@ $ svn merge -r 100:200 http://svn.example.com/repos/trunk
 </screen>
 
       <!-- @ENGLISH {{{
-      <para>The first syntax lays out all three arguments explicitly,
+      <para>The first syntax lays out all three arguments explictly,
         naming each tree in the form <emphasis>URL@REV</emphasis> and
         naming the working copy target.  The second syntax can be used
         as a shorthand for situations when you're comparing two
@@ -1631,8 +1493,8 @@ $ svn merge -r 100:200 http://svn.example.com/repos/trunk
           fra en gren til en annen, kan du ved en ulykke flette den 
           samme forandringen <emphasis>to ganger</emphasis>.
           Når dette skjer, vil det noen ganger gå bra.
-          Når ei fil blir patchet vil Subversion vanligvis oppdage at 
-          fila inneholder forandringen, og gjør ingenting.
+          Når en fil blir patchet vil Subversion vanligvis oppdage at 
+          filen inneholder forandringen, og gjør ingenting.
           Men hvis den allerede eksisterende forandringen er blitt 
           forandret på en eller annen måte, vil du få en 
           konflikt.</para>
@@ -1906,9 +1768,9 @@ $ svn status
         <para>Til å begynne med, tenk deg at arbeidskopien din ikke 
           inneholder noen lokale redigeringer.
           Når du <command>svn update</command>-er til en spesiell 
-          revisjon, vil forandringene sendt fra &the_server; alltid bli 
-          lagt inn på en <quote>renslig</quote> måte i arbeidskopien.
-          &The_server; produsererer deltaet ved å sammenligne to trær:
+          revisjon, vil forandringene sendt fra tjeneren alltid bli lagt 
+          inn på en <quote>renslig</quote> måte i arbeidskopien.
+          Tjeneren produsererer deltaet ved å sammenligne to trær:
           Et virtuelt øyeblikksbilde av arbeidskopien din, og 
           revisjonstreet du er er interessert i.
           Fordi den venstre siden av sammenligningen er nøyaktig lik det 
@@ -1931,7 +1793,7 @@ $ svn status
         @ENGLISH }}} -->
         <para>Men <command>svn merge</command> har ingen slike garantier 
           og kan være mye mer kaotisk:
-          Brukeren kan be &the_server; om å sammenligne <emphasis>alle 
+          Brukeren kan be tjeneren om å sammenligne <emphasis>alle 
           mulige</emphasis> trær, til og med trær som ikke er relatert 
           til arbeidskopien!
           Dette betyr at det er et stort potensiale for menneskelige 
@@ -1946,23 +1808,12 @@ $ svn status
           <command>svn merge</command> klage over <!-- ¤ 
           --><quote>skipped targets</quote>:</para>
 
-        <!-- @ENGLISH {{{
+        <!-- ¤ -->
         <screen>
 $ svn merge -r 1288:1351 http://svn.example.com/repos/branch
 U  foo.c
 U  bar.c
 Skipped missing target: 'baz.c'
-U  glub.c
-C  glorb.h
-
-$
-</screen>
-        @ENGLISH }}} -->
-        <screen>
-$ svn merge -r 1288:1351 http://svn.example.com/repos/branch
-U  foo.c
-U  bar.c
-Hoppet over savnet mål: «baz.c»
 U  glub.c
 C  glorb.h
 
@@ -1987,7 +1838,7 @@ $
         <para>I det forrige eksempelet kan tilfellet være at 
           <filename>baz.c</filename> eksisterer både i øyeblikksbildet 
           av grenen som sammenlignes, og det resulterende deltaet vil 
-          forandre filens innhold, men fila eksisterer ikke i 
+          forandre filens innhold, men filen eksisterer ikke i 
           arbeidskopien.
           Hva som enn er tilfelle, betyr <!-- ¤ 
           --><quote>skipped</quote>-meldingen at brukeren mest 
@@ -2020,7 +1871,7 @@ $
           for å definere og legge til enhver gammel delta til 
           arbeidskopien, kan denne deltaen inneholde tekstmessige 
           forandringer som ikke kan legges helt uproblematisk inn i en 
-          arbeidsfil, selv om denne fila ikke har noen lokale 
+          arbeidsfil, selv om denne filen ikke har noen lokale 
           forandringer.</para>
 
         <!-- @ENGLISH {{{
@@ -2057,7 +1908,7 @@ $
           <filename>filnavn.left</filename> og 
           <filename>filename.right</filename>.
           I dette tilfellet beskriver terminologien <quote>left</quote> 
-          og <quote>right</quote> hvilken side fila kom fra.
+          og <quote>right</quote> hvilken side filen kom fra.
           I alle fall, disse forskjellige navnene vil hjelpe deg å 
           skille mellom filer som er opprettet som følge av en 
           oppdatering versus filer som er opprettet som resultat av en 
@@ -2102,7 +1953,7 @@ $
           or <quote>ancestry</quote>.</para>
         @ENGLISH }}} -->
         <para>For eksempel, tenk deg at du legger inn revisjon 100, som 
-          inkluderer en forandring i ei fil kalt 
+          inkluderer en forandring i en fil kalt 
           <filename>foo.c</filename>.
           Da er <filename>foo.c@99</filename> en <quote>stamfar</quote> 
           til <filename>foo.c@100</filename>.
@@ -2142,8 +1993,8 @@ $
           stier.
           Men hvis du ber <command>svn merge</command> om å sammenligne 
           de samme to objektene, vil den oppdage at de er urelaterte og 
-          først prøve å slette den gamle fila og deretter legge til den 
-          nye fila.
+          først prøve å slette den gamle filen og deretter legge til den 
+          nye filen.
           Utdataene fra programmet vil indikere en sletting etterfulgt 
           av en tillegging:</para>
 
@@ -2366,9 +2217,9 @@ $ svn log --verbose --stop-on-copy \
           http://svn.example.com/repos/calc/branches/my-calc-branch
 …
 ------------------------------------------------------------------------
-r341 | bruker | 2002-11-03 15:27:56 -0600 (tor, 07 nov 2002) | 2 lines
-Endrede filstier:
-   A /calc/branches/my-calc-branch (fra /calc/trunk:340)
+r341 | user | 2002-11-03 15:27:56 -0600 (Thu, 07 Nov 2002) | 2 lines
+Changed paths:
+   A /calc/branches/my-calc-branch (from /calc/trunk:340)
 
 $
 </screen>
@@ -2416,10 +2267,10 @@ Transmitting file data ...
 Committed revision 406.
 </screen>
       @ENGLISH }}} -->
-      <screen>
+      <!-- ¤ --><screen>
 $ cd calc/trunk
 $ svn update
-På revisjon 405.
+At revision 405.
 
 $ svn merge -r 341:405 http://svn.example.com/repos/calc/branches/my-calc-branch
 U   integer.c
@@ -2434,11 +2285,11 @@ M   Makefile
 # … Undersøk forskjellene, kompiler, test osv …
 
 $ svn commit -m "Flettet forandringer mellom r341:405 fra my-calc-branch til trunk."
-Sender        integer.c
-Sender        button.c
-Sender        Makefile
-Sender fildata ...
-La inn revisjon 406.
+Sending        integer.c
+Sending        button.c
+Sending        Makefile
+Transmitting file data ...
+Committed revision 406.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -2500,12 +2351,12 @@ Merged my-calc-branch changes r341:405 into the trunk.
 &hellip;
 </screen>
       @ENGLISH }}} -->
-      <screen>
+      <!-- ¤ --><screen>
 $ cd calc/trunk
 $ svn log
 …
 ------------------------------------------------------------------------
-r406 | bruker | 2004-02-08 11:17:26 -0600 (søn, 08 feb 2004) | 1 line
+r406 | bruker | 2004-02-08 11:17:26 -0600 (Sun, 08 Feb 2004) | 1 line
 
 Flettet forandringer mellom r341:405 fra my-calc-branch til trunk.
 ------------------------------------------------------------------------
@@ -2546,10 +2397,10 @@ Transmitting file data ...
 Committed revision 481.
 </screen>
       @ENGLISH }}} -->
-      <screen>
+      <!-- ¤ --><screen>
 $ cd calc/trunk
 $ svn update
-På revisjon 480.
+At revision 480.
 
 # Vi ser at HEAD er 480 for øyeblikket, så vi bruker den for å utføre 
 # flettingen:
@@ -2560,11 +2411,11 @@ U   button.c
 U   Makefile
 
 $ svn commit -m "Flettet forandringer mellom r406:480 fra my-calc-branch til trunk."
-Sender        integer.c
-Sender        button.c
-Sender        Makefile
-Sender fildata ...
-La inn revisjon 481.
+Sending        integer.c
+Sending        button.c
+Sending        Makefile
+Transmitting file data ...
+Committed revision 481.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -2635,7 +2486,7 @@ Transmitting file data .
 Committed revision 350.
 </screen>
       @ENGLISH }}} -->
-      <screen>
+      <!-- ¤ --><screen>
 $ svn merge -r 303:302 http://svn.example.com/repos/calc/trunk
 U  integer.c
 
@@ -2648,9 +2499,9 @@ $ svn diff
 …
 
 $ svn commit -m "Fjernet forandringen som ble lagt inn i r303."
-Sender        integer.c
-Sender fildata .
-La inn revisjon 350.
+Sending        integer.c
+Transmitting file data .
+Committed revision 350.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -2780,11 +2631,11 @@ La inn revisjon 350.
       @ENGLISH }}} -->
       <para>Det som er fint med versjonskontrollsystemer er at 
         informasjon aldri går tapt.
-        Selv om du sletter ei fil eller en katalog, kan den være borte 
-        fra <literal>HEAD</literal>-revisjonen, men objektet eksisterer 
+        Selv om du sletter en fil eller katalog, kan den være borte fra 
+        <literal>HEAD</literal>-revisjonen, men objektet eksisterer 
         fortsatt i tidligere revisjoner.
         Et av de vanligste spørsmålene nye brukere spør om, er: 
-        <quote>Hvordan får jeg den gamle fila eller katalogen min 
+        <quote>Hvordan får jeg den gamle filen eller katalogen min 
         tilbake?</quote>.</para>
 
       <!-- @ENGLISH {{{
@@ -2805,8 +2656,8 @@ La inn revisjon 350.
         et slags todimensjonalt koordinatsystem.
         Det første koordinatet er et spesifikt revisjonstre, og det 
         andre koordinatet er en sti inne i dette treet.
-        Så hver versjon av fila eller katalogen din kan bli definert som 
-        et spesifikt koordinatpar.</para>
+        Så hver versjon av filen eller katalogen din kan bli definert 
+        som et spesifikt koordinatpar.</para>
 
       <!-- @ENGLISH {{{
       <para>Subversion has no <filename>Attic</filename> directory
@@ -2838,7 +2689,7 @@ La inn revisjon 350.
         i en katalog som inneholdt det slettede elementet ditt.
         Valget <command>--verbose</command> viser en liste over alle 
         forandrede elementer i hver revisjon; alt du trenger å gjøre er 
-        å finne revisjonen der du slettet fila eller katalogen.
+        å finne revisjonen der du slettet filen eller katalogen.
         Du kan gjøre dette visuelt, eller ved å bruke et annet verktøy 
         for å undersøke utdataene fra loggen (ved hjelp av 
         <command>grep</command>, eller kanskje ved hjelp av et 
@@ -2860,16 +2711,17 @@ Removed real.c because code now in double.c.
 &hellip;
 </screen>
       @ENGLISH }}} -->
-      <screen>
+      <!-- ¤ Eksempler tas seinere, men det visste du fra før. 
+      --><screen>
 …
 ------------------------------------------------------------------------
-r808 | joe | 2003-12-26 14:29:40 -0600 (fre, 26 des 2003) | 3 lines
-Endrede filstier:
+r808 | joe | 2003-12-26 14:29:40 -0600 (Fri, 26 Dec 2003) | 3 lines
+Changed paths:
    D /calc/trunk/real.c
    M /calc/trunk/integer.c
 
-La inn Fast Fourier transform-funksjoner i integer.c .
-Slettet real.c fordi koden nå ligger i double.c .
+Added fast fourier transform functions to integer.c.
+Removed real.c because code now in double.c.
 …
 </screen>
 
@@ -2886,8 +2738,8 @@ Slettet real.c fordi koden nå ligger i double.c .
       <para>I eksempelet går vi ut i fra at du ser etter en slettet fil 
         kalt <filename>real.c</filename>.
         Ved å se gjennom loggene for en foreldrekatalog, har du funnet 
-        ut at denne fila ble slettet i revisjon 808.
-        Derfor er den siste versjonen av fila der den fortsatt 
+        ut at denne filen ble slettet i revisjon 808.
+        Derfor er den siste versjonen av filen der den fortsatt 
         eksisterte i revisjonen like før dette.
         Konklusjon:
         Du vil hente tilbake stien 
@@ -2918,8 +2770,8 @@ Slettet real.c fordi koden nå ligger i double.c .
         Dette vil ha samme effekten som å legge til 
         <filename>real.c</filename> en gang til som en lokal 
         modifisering.
-        Fila vil bli klargjort for tillegging, og etter en innlegging 
-        med <command>svn commit</command> vil fila eksistere i 
+        Filen vil bli klargjort for tillegging, og etter en innlegging 
+        med <command>svn commit</command> vil filen eksistere i 
         <literal>HEAD</literal> igjen.</para>
 
       <!-- @ENGLISH {{{
@@ -2982,16 +2834,16 @@ $ svn copy --revision 807 \
 $ svn status
 A  +   real.c
 
-$ svn commit -m "Hentet tilbake real.c from revisjon 807, /calc/trunk/real.c ."
-Legger til         real.c
-Sender fildata .
-La inn revisjon 1390.
+$ svn commit -m "Hentet tilbake real.c from revisjon 807, /calc/trunk/real.c."
+Adding         real.c
+Transmitting file data .
+Committed revision 1390.
 </screen>
 
       <!-- @ENGLISH {{{
       <para>The plus sign in the status output indicates that the item
         isn't merely scheduled for addition, but scheduled for
-        addition <quote>with history</quote>.  Subversion remembers
+        addition <quote>with history</quote>. Subversion remembers
         where it was copied from.  In the future, running <command>svn
         log</command> on this file will traverse back through the
         file's resurrection and through all the history it had prior
@@ -3004,18 +2856,18 @@ La inn revisjon 1390.
         klargjort for tillegging <quote>med historie</quote>.
         Subversion husker hvor det ble kopiert fra.
         I framtiden vil kjøring av <command>svn log</command> på denne 
-        fila gå tilbake forbi gjenoppstandelsen av fila og gjennom hele 
-        historien den hadde før revisjon 807.
+        filen gå tilbake forbi gjenoppstandelsen av filen og gjennom 
+        hele historien den hadde før revisjon 807.
         Med andre ord, denne nye <filename>real.c</filename> er ikke 
         egentlig ny; den er en direkte etterkommer av den originale, 
-        slettede fila.</para>
+        slettede filen.</para>
 
       <!-- @ENGLISH {{{
       <para>Although our example shows us resurrecting a file, note
         that these same techniques work just as well for resurrecting
         deleted directories.</para>
       @ENGLISH }}} -->
-      <para>Selv om eksempelet vårt viser at vi henter tilbake ei fil, 
+      <para>Selv om eksempelet vårt viser at vi henter tilbake en fil, 
         legg merke til at disse samme teknikkene virker like godt når 
         det gjelder å hente tilbake slettede kataloger.</para>
 
@@ -3343,7 +3195,7 @@ La inn revisjon 1390.
           hand-tracked to avoid the problem of repeated merges (as
           described in <xref linkend="svn.branchmerge.copychanges.bestprac.track"/>).  You'll
           need to write careful log messages detailing exactly which
-          revision ranges have been merged already (as
+          revision ranges have been been merged already (as
           demonstrated in <xref linkend="svn.branchmerge.commonuses.wholebr"/>).  It
           may sound intimidating, but it's actually pretty easy to
           do.</para>
@@ -3383,6 +3235,7 @@ La inn revisjon 1390.
           Så i dette spesielle tilfellet, vil du flette ved å 
           sammenligne grenen med <filename>trunk</filename>:</para>
 
+<!-- ¤ -->
 <!-- @ENGLISH {{{
         <screen>
 $ cd trunk-working-copy
@@ -3403,7 +3256,7 @@ A  newdirectory/newfile
 $ cd trunk-i-arbeidskopien
 
 $ svn update
-På revisjon 1910.
+At revision 1910.
 
 $ svn merge http://svn.example.com/repos/calc/trunk@1910 \
             http://svn.example.com/repos/calc/branches/mybranch@1910
@@ -3484,7 +3337,6 @@ A  nykatalog/nyfil
       arbeidskopien din av <filename>/calc/trunk</filename> til å 
       avspeile plasseringen til den nye grenen:</para>
 
-    <!-- @ENGLISH {{{
     <screen>
 $ cd calc
 
@@ -3499,22 +3351,6 @@ Updated to revision 341.
 
 $ svn info | grep URL
 URL: http://svn.example.com/repos/calc/branches/my-calc-branch
-</screen>
-    @ENGLISH }}} -->
-    <screen>
-$ cd calc
-
-$ svn info | grep Nettadresse
-Nettadresse: http://svn.example.com/repos/calc/trunk
-
-$ svn switch http://svn.example.com/repos/calc/branches/my-calc-branch
-U   integer.c
-U   button.c
-U   Makefile
-Oppdatert til revisjon 341.
-
-$ svn info | grep Nettadresse
-Nettadresse: http://svn.example.com/repos/calc/branches/my-calc-branch
 </screen>
 
     <!-- @ENGLISH {{{
@@ -3531,8 +3367,8 @@ Nettadresse: http://svn.example.com/repos/calc/branches/my-calc-branch
       uthenting av katalogen.
       Og det er vanligvis mer praktisk å bruke denne kommandoen, fordi 
       forskjellene mellom grener ofte er ganske små.
-      &The_server; sender bare et minimalt sett med forandringer 
-      nødvendig for å avspeile grenkatalogen.</para>
+      Tjeneren sender bare et minimalt sett med forandringer nødvendig 
+      for å avspeile grenkatalogen.</para>
 
     <!-- @ENGLISH {{{
     <para>The <command>svn switch</command> command also takes a
@@ -3644,8 +3480,8 @@ Nettadresse: http://svn.example.com/repos/calc/branches/my-calc-branch
       Subversion 1.0.<footnote>
         <para>Du <emphasis>kan</emphasis> imidlertid bruke <command>svn 
           switch</command> med <option>--relocate</option>-valget hvis 
-          URL-en til &the_server; forandrer seg og du ikke vil forkaste 
-          en eksisterende arbeidskopi.
+          URL-en til tjeneren forandrer seg og du ikke vil forkaste en 
+          eksisterende arbeidskopi.
           Se <command>svn switch</command>-seksjonen i <xref 
           linkend="svn.ref"/> for mer informasjon og et eksempel.</para>
       </footnote></para>
@@ -3676,7 +3512,7 @@ Nettadresse: http://svn.example.com/repos/calc/branches/my-calc-branch
       <para>When you run <command>svn update</command>, you're asking
         the repository to compare two trees.  The repository does so,
         and then sends a description of the differences back to the
-        client.  The only difference between <command>svn
+        client. The only difference between <command>svn
         switch</command> and <command>svn update</command> is that the
         <literal>update</literal> command always compares two identical
         paths.</para>
@@ -3823,6 +3659,7 @@ Nettadresse: http://svn.example.com/repos/calc/branches/my-calc-branch
         <literal>HEAD</literal>-revisjonen, kan du lage en kopi av 
         den:</para>
 
+      <!-- ¤ -->
       <!-- @ENGLISH {{{
       <screen>
 $ svn copy http://svn.example.com/repos/calc/trunk \
@@ -3837,7 +3674,7 @@ $ svn copy http://svn.example.com/repos/calc/trunk \
            http://svn.example.com/repos/calc/tags/versjon-1.0 \
       -m "Merker 1.0-versjonen av «calc»-prosjektet."
 
-La inn revisjon 351.
+Committed revision 351.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -3985,22 +3822,23 @@ La inn revisjon 351.
 
       <!-- @ENGLISH {{{
       <para>Time to make a snapshot.  Copying one URL to another won't
-        work here.  In this case, you want to make a snapshot of your
+        work here. In this case, you want to make a snapshot of your
         exact working copy arrangement and store it in the repository.
         Luckily, <command>svn copy</command> actually has four
-        different uses (which you can read about in <xref
-        linkend="svn.ref"/>), including the ability to copy a
-        working-copy tree to the repository:</para>
+        different uses (which you can read about in Chapter 9),
+        including the ability to copy a working-copy tree to the
+        repository:</para>
       @ENGLISH }}} -->
       <para>På tide å lagre et øyeblikksbilde.
         Det å kopiere en URL til en annen vil ikke fungere her.
         I dette tilfellet ønsker du å lage et øyeblikksbilde av din 
         eksakte arbeidskopi og lagre den i depotet.
         Heldigvis har <command>svn copy</command> faktisk fire 
-        forskjellige bruksmåter (som du kan lese om i <xref 
-        linkend="svn.ref"/>), inkludert muligheten til å kopiere et tre 
-        av en arbeidskopi til depotet:</para>
+        forskjellige bruksmåter (som du kan lese om i kapittel 9), 
+        inkludert muligheten til å kopiere et tre av en arbeidskopi til 
+        depotet:</para>
 
+      <!-- ¤ -->
       <!-- @ENGLISH {{{
       <screen>
 $ ls
@@ -4018,7 +3856,7 @@ min-arbeidskopi/
 $ svn copy min-arbeidskopi 
 http://svn.example.com/repos/calc/tags/mittmerke
 
-La inn revisjon 352.
+Committed revision 352.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -4051,7 +3889,7 @@ La inn revisjon 352.
         forandringer i arbeidskopien, og du vil at en kollega skal se på 
         dem.
         Istedenfor å kjøre <command>svn diff</command> og sende 
-        patchfila (som ikke vil fange opp treforandringer eller 
+        patchfilen (som ikke vil fange opp treforandringer eller 
         forandringer i symbolske linker eller egenskaper), kan du 
         istedenfor bruke <command>svn copy</command> for å 
         <quote>sende</quote> arbeidskopien til et privat område i 
@@ -4164,8 +4002,8 @@ La inn revisjon 352.
         move</command>-kommandoen flytte eller skifte navn på dem sånn 
         som du ønsker.
         Å bytte fra et utseende til et annet er bare snakk om å utføre 
-        en serie flyttinger på &the_server;; hvis du ikke liker måten 
-        ting er organisert på i depotet, er det bare å ommøblere på 
+        en serie flyttinger på tjeneren; hvis du ikke liker måten ting 
+        er organisert på i depotet, er det bare å ommøblere på 
         katalogene.</para>
 
       <!-- @ENGLISH {{{
@@ -4223,6 +4061,7 @@ La inn revisjon 352.
         <filename>/calc/trunk</filename>, trenger ikke grenkatalogen å 
         ligge der mer:</para>
 
+      <!-- ¤ -->
       <!-- @ENGLISH {{{
       <screen>
 $ svn delete http://svn.example.com/repos/calc/branches/my-calc-branch \
@@ -4235,7 +4074,7 @@ Committed revision 375.
 $ svn delete http://svn.example.com/repos/calc/branches/min-calc-gren \
              -m "Fjerner avlegs gren i calc-prosjektet."
 
-La inn revisjon 375.
+Committed revision 375.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -4284,7 +4123,7 @@ Committed revision 376.
 $ svn copy -r 374 http://svn.example.com/repos/calc/branches/min-calc-gren \
                   http://svn.example.com/repos/calc/branches/min-calc-gren
 
-La inn revisjon 376.
+Committed revision 376.
 </screen>
 
       <!-- @ENGLISH {{{
@@ -4319,6 +4158,7 @@ La inn revisjon 376.
         Så istedenfor lager du en <quote>stabil</quote> gren av 
         programmet som ikke vil forandre seg så mye:</para>
 
+      <!-- ¤ -->
       <!-- @ENGLISH {{{
       <screen>
 $ svn copy http://svn.example.com/repos/calc/trunk \
@@ -4333,7 +4173,7 @@ $ svn copy http://svn.example.com/repos/calc/trunk \
          http://svn.example.com/repos/calc/branches/stabil-1.0 \
          -m "Lager stabil gren av calc-prosjektet."
 
-La inn revisjon 377.
+Committed revision 377.
 </screen>
 
       <!-- @ENGLISH {{{

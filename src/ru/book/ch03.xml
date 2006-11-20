@@ -15,7 +15,7 @@
       perform almost all the tasks you need to use Subversion in a
       normal day's work.  You'll start with an initial checkout of
       your code, and walk through making changes and examining those
-      changes.  You'll also see how to bring changes made by others
+      changes. You'll also see how to bring changes made by others
       into your working copy, examine them, and work through any
       conflicts that might arise.</para>
     @ENGLISH }}} -->
@@ -215,17 +215,17 @@ Committed revision 3.
           of your file, and it's always an exact byte-for-byte copy of
           the file as it exists in the repository.</para>
         @ENGLISH }}} -->
-        <para>В каждом каталоге рабочей копии есть служебный
-          подкаталог <filename>.svn</filename>. Для каждого файла в
-          каталоге Subversion сохраняет копию этого файла в
-          служебной папке. Эта копия является немодифицированной
+        <para>Каждая директория рабочей копии содержит административную
+          поддиректорию <filename>.svn</filename>. Для каждого файла в
+          директории, Subversion сохраняет копию этого файла в
+          административной папке. Эта копия является не модифицированной
           (без раскрытия ключевых слов, без преобразования концовок строк,
           без чего-либо другого) копией файла какой он есть в последней
-          правке (называемой <quote>BASE</quote>) до которой вы обновили
+          правке (названой <quote>BASE</quote>) до которой вы обновили
           его в вашей рабочей копии. Мы обращаемся к этому файлу, как
           к <firstterm>первоисточнику</firstterm> или
-          <firstterm>базовой</firstterm> версии вашего файла; он всегда
-          является точной побайтовой копией файла, находящегося в
+          <firstterm>базовой</firstterm> версии вашего файла и он всегда
+          является точной по байтовой копией того файла который находится в
           хранилище.</para>
         </note>
 
@@ -235,11 +235,9 @@ Committed revision 3.
           <term>HEAD</term>
           <listitem>
             <!-- @ENGLISH {{{
-            <para>The latest (or <quote>youngest</quote>) revision in
-              the repository.</para>
+            <para>The latest revision in the repository.</para>
             @ENGLISH }}} -->
-            <para>Последняя (или <quote>самая новая</quote>) правка
-              хранилища</para>
+            <para>Последняя правка хранилища</para>
           </listitem>
         </varlistentry>
 
@@ -247,14 +245,11 @@ Committed revision 3.
           <term>BASE</term>
           <listitem>
             <!-- @ENGLISH {{{
-            <para>The revision number of an item in a working copy.
-              If the item has been locally modified, the <quote>BASE
-              version</quote> refers to the way the item appears
-              without those local modifications.</para>
+            <para>The <quote>pristine</quote> revision of an item in a
+              working copy.</para>
             @ENGLISH }}} -->
-            <para>Номер правки элемента рабочей копии. Если элемент
-              редактировался, то <quote>BASE версия</quote> соответствует тому,
-              как элемент выглядел до редактирования.</para>
+            <para><quote>Исходная</quote> правка элемента в рабочей
+              копии.</para>
           </listitem>
         </varlistentry>
 
@@ -262,11 +257,11 @@ Committed revision 3.
           <term>COMMITTED</term>
           <listitem>
             <!-- @ENGLISH {{{
-            <para>The most recent revision prior to, or equal to,
-              <literal>BASE</literal>, in which an item changed.</para>
+            <para>The last revision in which an item changed before (or
+              at) <literal>BASE</literal>.</para>
             @ENGLISH }}} -->
-            <para>Правка, в которой элемент последний раз редактировался
-              (предшествующая либо равная <literal>BASE</literal>).</para>
+            <para>Последняя правка в которой элемент изменялся в диапазоне до
+              (или включая) <literal>BASE</literal>.</para>
           </listitem>
         </varlistentry>
 
@@ -274,13 +269,13 @@ Committed revision 3.
           <term>PREV</term>
           <listitem>
             <!-- @ENGLISH {{{
-            <para>The revision immediately <emphasis>before</emphasis>
-              the last revision in which an item changed.
-              (Technically, <literal>COMMITTED</literal> - 1.)</para>
-            @ENGLISH }}} -->
-            <para>Правка, <emphasis>предшествующая</emphasis> последней
-              правке, в которой элемент был изменен. (Технически,
+            <para>The revision just <emphasis>before</emphasis> the last
+              revision in which an item changed.  (Technically,
               <literal>COMMITTED</literal> - 1.)</para>
+            @ENGLISH }}} -->
+            <para>Ревизия, <emphasis>предшествующая</emphasis> последней
+              ревизии, в которой элемент менялся. (Технически, <literal>
+              COMMITTED</literal> - 1.)</para>
           </listitem>
         </varlistentry>
 
@@ -302,9 +297,9 @@ Committed revision 3.
         Don't worry if the commands don't make sense yet; we'll be
         explaining these commands as we go through the chapter:</para>
       @ENGLISH }}} -->
-      <para>Ниже приведено несколько примеров использования ключевых слов
-        правок. Не волнуйтесь, если смысл команд пока не понятен; в дальнейшем
-        мы объясним эти команды:</para>
+      <para>Вот несколько примеров использования ключевых слов правок.
+        Не волнуйтесь, если смысл команд пока не понятен; по мере дальнейшего
+        продвижения мы объясним эти команды:</para>
 
       <screen>
 $ svn diff --revision PREV:COMMITTED foo.c
@@ -321,33 +316,33 @@ $ svn log --revision HEAD
 
 $ svn diff --revision HEAD
 <!-- @ENGLISH {{{
-# compares your working file (with local changes) to the latest version
+# compares your working file (with local mods) to the latest version
 # in the repository
 @ENGLISH }}} -->
-# сравнить ваш рабочый файл (с учетом локальных изменений)
+# сравнение вашего рабочего файла (с учетом локальных изменений)
 # с последней правкой в хранилище
 
 $ svn diff --revision BASE:HEAD foo.c
 <!-- @ENGLISH {{{
-# compares your <quote>pristine</quote> foo.c (no local changes) with the 
+# compares your <quote>pristine</quote> foo.c (no local mods) with the
 # latest version in the repository
 @ENGLISH }}} -->
-# сравнить ваш <quote>исходный</quote> foo.c (без учета локальных
+# сравнение вашего <quote>исходного</quote> foo.c (без учета локальных
 # изменений) с последней версией в хранилище
 
 $ svn log --revision BASE:HEAD
 <!-- @ENGLISH {{{
 # shows all commit logs since you last updated
 @ENGLISH }}} -->
-# показать все логи фиксаций со времени вашего последнего обновления
+# показ всех логов фиксаций со времени вашего последнего обновления
 
 $ svn update --revision PREV foo.c
 <!-- @ENGLISH {{{
 # rewinds the last change on foo.c
 # (foo.c's working revision is decreased)
 @ENGLISH }}} -->
-# отменить последние изменения в foo.c
-# (рабочая правка foo.c понижается)
+# откат последних изменений в foo.c
+# (рабочая ревизия foo.c понижается)
 </screen>
 
       <!-- @ENGLISH {{{
@@ -358,7 +353,7 @@ $ svn update --revision PREV foo.c
       @ENGLISH }}} -->
       <para>Эти ключевые слова позволят вам выполнять многие часто
         используемые (и полезные) операции без необходимости обращаться к
-        конкретным номерам правок или точно помнить номер правке своей рабочей
+        конкретным номерам ревизий или точно помнить ревизию своей рабочей
         копии.</para>
 
     </sect2>
@@ -382,7 +377,7 @@ $ svn update --revision PREV foo.c
         вы так же можете использовать и дату, указав ее в фигурных скобках
         <quote>{}</quote>. Вы даже можете получить доступ к диапазону
         изменений в хранилище, указывая даты и номера
-        правок одновременно!</para>
+        ревизий одновременно!</para>
 
       <!-- @ENGLISH {{{
       <para>Here are examples of the date formats that Subversion
@@ -391,7 +386,7 @@ $ svn update --revision PREV foo.c
       @ENGLISH }}} -->
       <para>Вот примеры форматов, используемых для указания даты,
         которые принимает Subversion. Не забывайте использовать кавычки
-        при написании даты, содержащей пробелы.</para>
+        при написании даты содержащей пробелы.</para>
 
       <screen>
 $ svn checkout --revision {2002-02-17}
@@ -444,7 +439,7 @@ r12 | ira | 2002-11-27 12:31:51 -0600 (Wed, 27 Nov 2002) | 6 lines
           return anything on the day of the 27th.</para>
         @ENGLISH }}} -->
         <para>Указав при обращении к правке только дату, без указания
-          времени (например, <literal>2002-11-27</literal>), возможно
+          времени (например, <literal>2002-11-27</literal>), наверное,
           вы подумаете, что Subversion выдаст вам последнюю правку за 27
           ноября. А вместо этого можете получить правку за 26 число или
           даже более раннюю. Помните, что Subversion будет искать
@@ -460,7 +455,7 @@ r12 | ira | 2002-11-27 12:31:51 -0600 (Wed, 27 Nov 2002) | 6 lines
           23:59"}</literal>), or just specify the next day
           (<literal>{2002-11-28}</literal>).</para>
         @ENGLISH }}} -->
-        <para>Если вам необходимо найти именно 27 число, вы можете либо
+        <para>Если вам необходимо учесть при поиске 27 число вы можете либо
           указать 27 число с временной меткой (<literal>{"2002-11-27
           23:59"}</literal>) либо просто использовать в запросе следующий
           день (<literal>{2002-11-28}</literal>).</para>
@@ -483,7 +478,7 @@ $ svn log --revision {2002-11-20}:{2002-11-29}
       <para>As we pointed out, you can also mix dates and revisions:</para>
       @ENGLISH }}} -->
       <para>Как мы уже говорили, вы можете использовать даты и номера
-        правок одновременно:</para>
+        ревизий одновременно:</para>
 
       <screen>
 $ svn log --revision {2002-11-20}:4040
@@ -501,8 +496,8 @@ $ svn log --revision {2002-11-20}:4040
       @ENGLISH }}} -->
       <para>Пользователи должны осознавать тонкость, которая может стать
         камнем преткновения при работе с Subversion. Так как временная метка
-        правки сохраняется как свойство правки &mdash; как неотслеживаемое,
-        изменяемое свойство правки &mdash; временная метка правки может
+        правки сохраняется как свойство правки &mdash; как не отслеживаемое,
+        изменяемое свойство правки &mdash; временная метка может
         быть изменена, что приведет к искажению истинной хронологии, или даже
         полной ее потере. Такие действия нарушат работу внутреннего механизма
         перевода даты в номер правки используемого Subversion.</para>
@@ -528,11 +523,11 @@ $ svn log --revision {2002-11-20}:4040
       (latest revision) of the Subversion repository that you specify
       on the command line:</para>
     @ENGLISH }}} -->
-    <para>Как правило, работа с хранилищем Subversion начинается с
-      <firstterm>создания рабочей копии</firstterm> проекта.
-      При создании рабочей копии на локальной машине создается копия
+    <para>Как правило использование хранилища Subversion начинается с
+      <firstterm>создания рабочей копии</firstterm> вашего проекта.
+      При создании рабочей копии на вашей локальной машине создается копия
       хранилища. Эта копия содержит <literal>HEAD</literal> (последнюю
-      правку) хранилища, указанного вами в командной строке:</para>
+      ревизию) указанного вами в командной строке хранилища:</para>
 
 
     <screen>
@@ -548,108 +543,19 @@ Checked out revision 2499.
 
     <sidebar>
       <!-- @ENGLISH {{{
-     <title>What's in a Name?</title>
+      <title>Repository Layout</title>
       @ENGLISH }}} -->
-      <title></title>
+      <title>Структура хранилища</title>
 
       <!-- @ENGLISH {{{
-      <para>Subversion tries hard not to limit the type of data you
-        can place under version control.  The contents of files and
-        property values are stored and transmitted as binary data, and
-        <xref linkend="svn.advanced.props.special.mime-type"/>
-        tells you how to give Subversion a hint that
-        <quote>textual</quote> operations don't make sense for a
-        particular file.  There are a few places, however, where
-        Subversion places restrictions on information it
-        stores.</para>
+      <para>If you're wondering what <literal>trunk</literal> is all
+        about in the above URL, it's part of the way we recommend
+        you lay out your Subversion repository which we'll talk a lot
+        more about in <xref linkend="svn.branchmerge"/>.</para>
       @ENGLISH }}} -->
-      <para>Subversion очень старается не ограничивать количество типов данных,
-        которые можно поместить под контроль системы. Содержимое файлов и
-        значения свойств хранятся и передаются в бинарном формате.
-        О том, как объяснить Subversion, что для отдельного файла
-        <quote>текстовые</quote> операции не имеют смысла, вы узнаете в разделе
-        <xref linkend="svn.advanced.props.special.mime-type"/>. Однако есть
-        ситуации, когда Subversion накладывает некоторые ограничения на хранимую
-        информацию.</para>
-
-      <!-- @ENGLISH {{{
-      <para>Subversion internally handles certain bits of
-        data&mdash;for example, property names, path names, and log
-        messages&mdash;as UTF-8 encoded Unicode.  This is not to say
-        that all your interactions with Subversion must involve UTF-8,
-        though.  As a general rule, Subversion clients will gracefully
-        and transparently handle conversions between UTF-8 and the
-        encoding system in use on your computer, if such a conversion
-        can meaningfully be done (which is the case for most common
-        encodings in use today).</para>
-      @ENGLISH }}} -->
-      <para>Внутри Subversion определенная информация &mdash; например,
-        имена свойств, пути и лог-сообщения &mdash; обрабатывается как текст
-        в кодировке UTF-8. Однако это вовсе не означает обязательного
-        использования UTF-8 при работе с Subversion. В случае если
-        преобразования между UTF-8 и локальной кодировкой на компьютере
-        могут быть выполнены (что справедливо для большинства испульзуемых
-        сегодня кодировок), как правило, Subversion-клиент выполняет эти
-        преобразования легко и прозрачно для пользователя.
-      </para>
-
-      <!-- @ENGLISH {{{
-      <para>In addition, path names are used as XML attribute values
-        in WebDAV exchanges, as well in as some of Subversion's
-        housekeeping files.  This means that path names can only
-        contain legal XML (1.0) characters.  Subversion also prohibits
-        TAB, CR, and LF characters in path names, so they aren't
-        broken up in diffs, or in the output of commands like <xref
-        linkend="svn.ref.svn.c.log"/> or <xref
-        linkend="svn.ref.svn.c.status"/>.</para>
-      @ENGLISH }}} -->
-      <para>Кроме того, имена путей при WebDAV тразакциях используются как
-        значения XML-атрибутов, также как и в некоторых собственных файлах
-        Subversion. Это значит, что при указании путей могут
-        использоваться только корректные для XML (1.0) символы. Так же при 
-        указании путей Subversion запрещает использовать символы TAB, CR 
-        и LF, что бы они не повреждали файлы различий и не искжали вывод 
-        таких команд как <xref linkend="svn.ref.svn.c.log"/> или <xref
-        linkend="svn.ref.svn.c.status"/>.</para>
-
-      <!-- @ENGLISH {{{
-      <para>While it may seem like a lot to remember, in practice
-        these limitations are rarely a problem.  As long as your
-        locale settings are compatible with UTF-8, and you don't use
-        control characters in path names, you should have no trouble
-        communicating with Subversion.  The command-line client adds
-        an extra bit of help&mdash;it will automatically escape legal
-        path characters as needed in URLs you type to create
-        <quote>legally correct</quote> versions for internal
-        use.</para>
-      @ENGLISH }}} -->
-      <para>Вам может показаться, что нужно помнить очень много
-        всего, однако на практике эти ограничения не вызывают 
-        сложностей. Если ваши локальные установки совместимы с UTF-8 и 
-        вы не используете специальных символов при указании путей, то
-        проблем при работе с Subversion у вас не возникнет. Клиент для 
-        командной строки немного в этом помогает &mdash; он автоматически 
-        корректирует недопустимые символы, встречающиеся в набранных URL,
-        <quote>юридически правильными</quote> версиями для внутреннего 
-        использования.</para>
-
-      <!-- @ENGLISH {{{
-      <para>Experienced users of Subversion have also developed a set
-        of best-practice conventions for laying out paths in the
-        repository.  While these aren't strict requirements like the
-        syntax described above, they help to organize frequently
-        performed tasks.  The <literal>/trunk</literal> part of URLs
-        you'll find throughout this book is one of these conventions;
-        we'll talk a lot more about it and related recommendations in
-        <xref linkend="svn.branchmerge"/>.</para>
-      @ENGLISH }}} -->
-      <para>Кроме этого, опытные пользователи Subversion разработали 
-        набор правил хорошего тона для организации структуры хранилища.
-        Хотя эти правила и не являются такими же строгими требованиями, как 
-        описанный выше синтаксис, они помогают при выполнении типовых 
-        задач. Используемая по тексту книги часть пути
-        <literal>/trunk</literal> является одним из таких правил; 
-        подробнее об этой и других подобных рекомендациях мы поговорим в
+      <para>Если вас удивляет почему в приведенном выше URL встречается
+        <literal>trunk</literal> &mdash; это часть рекомендуемой нами
+        структуры хранилища Subversion, о ней мы поговорим более подробно в
         <xref linkend="svn.branchmerge"/>.</para>
 
     </sidebar>
@@ -661,9 +567,9 @@ Checked out revision 2499.
       URL:</para>
     @ENGLISH }}} -->
     <para>Хотя в приведенном примере рабочая копия создается на
-      основе корневого каталога, вы можете легко создать рабочую копию на
-      основе подкаталога любой степени вложенности, указав при
-      создании рабочей копии подкаталог в URL:</para>
+      основе корневой директории вы можете легко создать рабочую копию на
+      основе поддиректории любой степени вложенности, указав в URL при
+      создании рабочей копии поддиректорию:</para>
 
     <screen>
 $ svn checkout http://svn.collab.net/repos/svn/trunk/doc/book/tools
@@ -690,7 +596,7 @@ Checked out revision 2499.
       <quote>копирование-изменение-слияние</quote> вместо модели
       <quote>блокирование-изменение-разблокирование</quote> (см.
       <xref linkend="svn.basic"/>) вы уже можете начинать вносить
-      изменения в файлы и каталоги своей рабочей копии. Ваша рабочая
+      изменения в файлы и директории своей рабочей копии. Ваша рабочая
       копия ничем не отличается от любого другого набора файлов на вашей
       системе. Вы можете редактировать и менять их, перемещать, вы даже
       можете полностью удалить рабочую копию и забыть о ней.</para>
@@ -707,13 +613,13 @@ Checked out revision 2499.
           provided by your operating system.  We'll talk more about
           them later in this chapter.</para>
         @ENGLISH }}} -->
-        <para>Несмотря на то, что рабочая копия выглядит <quote>как и любой
+        <para>Не смотря на то что рабочая копия выглядит <quote>как и любой
           другой набор файлов на вашей системе</quote> вы должны поставить в
-          известность Subversion, если вы будете что-либо реорганизовывать в
+          известность Subversion если вы будете что-либо реорганизовывать в
           рабочей копии. Если вы хотите скопировать или переместить элемент в
           рабочей копии вы должны использовать команду <command>svn
           copy</command> или <command>svn move</command> вместо аналогичных
-          команд, предлагаемых операционной системой. Мы поговорим о них
+          команд предлагаемых операционной системой. Мы поговорим о них
           позже в этой главе.</para>
       </note>
 
@@ -722,16 +628,16 @@ Checked out revision 2499.
       changes to existing ones, there's no need to further notify the
       Subversion server that you've done anything.</para>
     @ENGLISH }}} -->
-    <para>Исключение составляют случаи, когда вы готовы зафиксировать новый
-      файл или каталог, либо внести изменения в один из существующих. Для
-      этих операций вы не обязаны дополнительно извещать Subversion-сервер
-      о своих действиях.</para>
+    <para>Исключение составляют случаи когда вы готовы зафиксировать новый
+      файл или директорию, или внести изменения в один из существующих, для
+      этого не нужно дополнительно извещать Subversion-сервер о своих
+      действиях.</para>
 
     <sidebar>
       <!-- @ENGLISH {{{
       <title>What's with the <filename>.svn</filename> directory?</title>
       @ENGLISH }}} -->
-      <title>А как насчет каталога <filename>.svn</filename>?</title>
+      <title>А что на счет директории <filename>.svn</filename>?</title>
 
       <!-- @ENGLISH {{{
       <para>Every directory in a working copy contains an
@@ -742,12 +648,12 @@ Checked out revision 2499.
         change anything in the administrative area!  Subversion
         depends on it to manage your working copy.</para>
       @ENGLISH }}} -->
-      <para>Каждый каталог в рабочей копии содержит служебную
-        область, подкаталог с названием <filename>.svn</filename>.
-        Обычно, команды используемые для вывода содержимого каталогов не
-        показывают этот подкаталог, но в любом случае, это очень важный
-        каталог. Что бы вы не делали, не удаляйте или не меняйте ничего в
-        служебной области! Subversion использует ее при управлении
+      <para>Каждая директория в рабочей копии содержит административную
+        область, поддиректорию с названием <filename>.svn</filename>.
+        Обычно, команды используемые для вывода листинга директории не
+        показывают эту поддиректорию, но тем не менее это важная
+        директория. Что бы вы не делали, не удаляйте или не меняйте ничего в
+        административной области! Subversion зависит от нее при управлении
         рабочей копией.</para>
 
     </sidebar>
@@ -758,10 +664,10 @@ Checked out revision 2499.
       a directory after your repository URL.  This places your working
       copy in the new directory that you name.  For example:</para>
     @ENGLISH }}} -->
-    <para>Несмотря на то, что вы конечно можете создать рабочую копию,
+    <para>Не смотря на то, что вы конечно можете создать рабочую копию
       указав только один аргумент в виде URL хранилища, вы можете
-      после URL хранилища указать каталог. Тогда ваша рабочая копия
-      будет находиться в новом каталоге с указанным вами именем.
+      после URL хранилища указать директорию. Тогда ваша рабочая копия
+      будет находиться в новой директории с указанным вами именем.
       Например:</para>
 
     <screen>
@@ -780,9 +686,9 @@ Checked out revision 2499.
       <literal>subv</literal> instead of a directory named
       <literal>trunk</literal> as we did previously.</para>
     @ENGLISH }}} -->
-    <para>Эта команда создаст рабочую копию в каталоге с именем
-      <literal>subv</literal>, вместо каталога <literal>trunk</literal>
-      как мы делали раньше.</para>
+    <para>Эта команда поместит рабочую копию в директорию с именем
+      <literal>subv</literal>, вместо директории <literal>trunk</literal>
+      как мы сделали раньше.</para>
 
   </sect1>
 
@@ -796,14 +702,13 @@ Checked out revision 2499.
     <title>Простейший рабочий цикл</title>
 
     <!-- @ENGLISH {{{
-    <para>Subversion has numerous features, options, bells and
-      whistles, but on a day-to-day basis, odds are that you will only
-      use a few of them.  In this section we'll run through the most
-      common things that you might find yourself doing with Subversion
-      in the course of a day's work.</para>
+    <para>Subversion has numerous features, options, bells and whistles, but on
+      a day-to-day basis, odds are that you will only use a few of them. In
+      this section we'll run through the most common things that you might
+      find yourself doing with Subversion in the course of a day's work.</para>
     @ENGLISH }}} -->
     <para>Subversion имеет множество возможностей, опций и украшательств, но
-      в ежедневной работе используются только некоторые из них. В этом
+      на постоянной основе используются только некоторые из них. В этом
       разделе мы пройдемся по наиболее часто выполняемым в течение рабочего
       дня задачам.</para>
 
@@ -869,7 +774,7 @@ Checked out revision 2499.
         <!-- @ENGLISH {{{
         <para>Merge others' changes into your working copy</para>
         @ENGLISH }}} -->
-        <para>Слияние изменений, выполненных другими, с вашей рабочей
+        <para>Объединение изменений выполненных другими с вашей рабочей
           копией</para>
         <itemizedlist>
           <listitem>
@@ -909,7 +814,7 @@ Checked out revision 2499.
         sync with the latest revision in the repository.</para>
       @ENGLISH }}} -->
       <para>При командной работе над проектом обновление рабочей копии
-        необходимо для получения любых изменений, внесенных с момента
+        необходимо для получения любых изменений внесенных с момента
         вашего последнего обновления другими разработчиками проекта.
         Используйте <command>svn update</command> для синхронизации вашей
         рабочей копии с последней правкой в хранилище.</para>
@@ -930,7 +835,7 @@ Updated to revision 2.
       <para>В данном случае, кто-то другой зафиксировал изменения в файлах
         <filename>foo.c</filename> и <filename>bar.c</filename> после
         вашего последнего обновления, и Subversion обновила вашу рабочую копию
-        включив эти изменения.</para>
+        для включения этих изменений.</para>
 
       <!-- @ENGLISH {{{
       <para>Let's examine the output of <command>svn update</command>
@@ -939,10 +844,10 @@ Updated to revision 2.
         know what actions Subversion performed to bring your working
         copy up-to-date:</para>
       @ENGLISH }}} -->
-      <para>Рассмотрим выводимую командой <command>svn update</command> информацию
+      <para>Рассмотрим выводимую <command>svn update</command> информацию
         чуть подробнее. Когда сервер отправляет изменения в вашу рабочую копию
-        для каждого элемента выводится латинская буква &mdash; код, определяющий,
-        какое действие выполнила Subversion для приведения ваше рабочей копии в
+        для каждого элемента выводится буквенный код, определяющий, какое
+        действие выполнила Subversion для приведения ваше рабочей копии в
         актуальное состояние:</para>
 
       <variablelist>
@@ -1064,7 +969,7 @@ Updated to revision 2.
 
       <!-- @ENGLISH {{{
       <para>Now you can get to work and make changes in your
-        working copy.  It's usually most convenient to decide on a
+        working copy. It's usually most convenient to decide on a
         particular change (or set of changes) to make, such as writing
         a new feature, fixing a bug, etc.  The Subversion commands
         that you will use here are <command>svn add</command>,
@@ -1308,11 +1213,11 @@ Updated to revision 2.
         <!-- @ENGLISH {{{
         <para>Earlier in this chapter, we said that you have to commit
           any changes that you make in order for the repository to
-          reflect these changes.  That's not entirely true&mdash;there
+          reflect these changes. That's not entirely true&mdash;there
           <emphasis>are</emphasis> some use cases that immediately
           commit tree changes to the repository.  This only happens
           when a subcommand is operating directly on a URL, rather
-          than on a working-copy path.  In particular, specific uses
+          than on a working-copy path. In particular, specific uses
           of <command>svn mkdir</command>, <command>svn
           copy</command>, <command>svn move</command>, and
           <command>svn delete</command> can work with URLs.</para>
@@ -1361,7 +1266,7 @@ Updated to revision 2.
         them to the repository, but before you do so, it's usually a
         good idea to take a look at exactly what you've changed.  By
         examining your changes before you commit, you can make a
-        more accurate log message.  You may also discover that
+        more accurate log message. You may also discover that
         you've inadvertently changed a file, and this gives you a
         chance to revert those changes before committing.
         Additionally, this is a good opportunity to review and
@@ -1839,16 +1744,12 @@ R       xyz.c               # файл запланирован для заме�
 
         <!-- @ENGLISH {{{
         <para>The sixth column shows information about locks, which is
-          further explained in <xref linkend="svn.advanced.locking"/>.
-          (These are not the same locks as the ones indicated by an
-          <computeroutput>L</computeroutput> in the third column;
-          see <xref linkend="svn.advanced.locking.meanings"/>.)</para>
+          further explained in <xref
+          linkend="svn.advanced.locking"/>.</para>
         @ENGLISH }}} -->
-        <para>Шестая колонка показывает информацию о блокировках,
-          которые подробно рассмотрены в <xref
-          linkend="svn.advanced.locking"/>. (Это не те блокировки, которые
-        отмечаются <computeroutput>L</computeroutput> в третьей колонке;
-        см. <xref linkend="svn.advanced.locking.meanings"/>)</para>
+        <para>Шестая колонка показывает информацию о блокировке,
+          которая подробно объяснена в <xref
+          linkend="svn.advanced.locking"/>.</para>
 
         <!-- @ENGLISH {{{
         <para>If you pass a specific path to <command>svn
@@ -2194,7 +2095,7 @@ $ svn status README
           <command>svn revert</command>) can be used without any
           network access.  This makes it easy to manage your
           changes-in-progress when you are somewhere without a network
-          connection, such as travelling on an airplane, riding a
+          connection, such as traveling on an airplane, riding a
           commuter train or hacking on the beach.</para>
         @ENGLISH }}} -->
         <para>Все эти три команды (<command>svn
@@ -2328,7 +2229,7 @@ Updated to revision 46.
 
         <listitem>
           <!-- @ENGLISH {{{
-          <para>If Subversion considers the file to be of a mergeable
+          <para>If Subversion considers the file to be of a mergable
             type, it places <firstterm>conflict
             markers</firstterm>&mdash;special strings of text which
             delimit the <quote>sides</quote> of the
@@ -3127,13 +3028,13 @@ Frozzled the sub-space winch.
       <para>
         <command>svn log</command> also takes a <option>-&#64738;-quiet</option>
         (<option>-q</option>) switch, which suppresses the body of the
-        log message.  When combined with <option>-&#64738;-verbose</option>, it
+        log message. When combined with <option>-&#64738;-verbose</option>, it
         gives just the names of the changed files.</para>
       @ENGLISH }}} -->
       <para>Кроме того<command>svn log</command> имеет параметр 
         <option>--quiet</option> (<option>-q</option>), сокращающий лог
-        сообщение. При его объединении с <option>--verbose</option>
-        выдаются только имена измененных файлов.</para>
+	сообщение. При его объединении с <option>--verbose</option>
+	выдаются только имена измененных файлов.</para>
 
       <sidebar>
         <!-- @ENGLISH {{{
@@ -3542,14 +3443,11 @@ $ svn update --revision 1729 # Updates an existing working copy to r1729
       <para>When Subversion modifies your working copy (or any
         information within <filename>.svn</filename>), it tries to do
         so as safely as possible.  Before changing the working copy,
-        Subversion writes its intentions to a log file.  Next it
-        executes the commands in the log file to apply the requested
-        change, holding a lock on the relevant part of the working
-        copy while it works &mdash; to prevent other Subversion clients
-        from accessing the working copy in mid-change.  Finally,
-        Subversion removes the log file.  Architecturally, this is
-        similar to a journaled filesystem.  If a Subversion operation
-        is interrupted (if the process is killed, or if the machine
+        Subversion writes its intentions to a log file. Next it executes
+        the commands in the log file to apply the requested change.
+        Finally, Subversion removes the log file. Architecturally, this
+        is similar to a journaled filesystem.  If a Subversion operation is
+        interrupted (if the process is killed, or if the machine
         crashes, for example), the log files remain on disk.  By
         re-executing the log files, Subversion can complete the
         previously started operation, and your working copy can get
@@ -3557,22 +3455,18 @@ $ svn update --revision 1729 # Updates an existing working copy to r1729
 
       <para>And this is exactly what <command>svn cleanup</command>
         does: it searches your working copy and runs any leftover
-        logs, removing working copy locks in the process.
-        If Subversion ever tells you that some part of your working copy
-        is <quote>locked</quote>, then this is the command that you
+        logs, removing locks in the process.  If Subversion ever tells
+        you that some part of your working copy is
+        <quote>locked</quote>, then this is the command that you
         should run.  Also, <command>svn status</command> will display
         an <literal>L</literal> next to locked items:</para>
       @ENGLISH }}} -->
       <para>Когда Subversion изменяет рабочую копию (или любую информацию
         в области <filename>.svn</filename>) она пытается делать это
-        как можно более безопасно. Перед изменением рабочей
+        безопасно настолько, насколько это возможно. Перед изменением рабочей
         копии Subversion записывает свои намерения в лог файл. Затем
         для выполнения запрошенных изменений она выполняет  команды из лог
-        файла, устанавливая блокировку той части рабочей копии, с которой
-        работает &mdash; делается это для невозможности работы других
-        Subversion-клиентов с рабочей копией, которая находится в
-        промежуточном состоянии. После выполнения запрошеных действий
-        Subversion удаляет лог файл. Архитектурно, это
+        файла. И в конце Subversion удаляет лог файл. Архитектурно, это
         напоминает журналируемую файловую систему. Если работа Subversion
         была прервана (в результате того, что процесс был убит или, например,
         из-за машинного сбоя) лог файлы остаются на диске. Перезапустив
@@ -3580,13 +3474,13 @@ $ svn update --revision 1729 # Updates an existing working copy to r1729
         начатые операции и рабочая копия снова вернется в согласованное
         состояние.</para>
 
-      <para>Что собственно и делает <command>svn cleanup</command>:
+      <para>Что собственно делает <command>svn cleanup</command>:
         в рабочей копии выполняет поиск и выполнение незавершенных лог файлов,
-        удаляя по ходу выполнения блокировки в рабочей копии. Если Subversion
-        когда-нибудь говорила вам о том, что часть рабочей копии
-        <quote>заблокирована</quote> тогда вам нужно запустить эту команду.
-        Кроме того <command>svn status</command> покажет для заблокированных
-        элементов букву <literal>L</literal>:</para>
+        удаляя походу блокировки. Если Subversion когда-нибудь говорила вам о
+        том, что часть рабочей копии <quote>заблокирована</quote> тогда вам
+        нужно запустить эту команду. Кроме того <command>svn status</command>
+        покажет для заблокированных элементов букву
+        <literal>L</literal>:</para>
 
       <screen>
 $ svn status
@@ -3597,21 +3491,6 @@ $ svn cleanup
 $ svn status
 M      somedir/foo.c
 </screen>
-
-      <!-- @ENGLISH {{{
-      <para>Don't confuse these working copy locks with the ordinary
-        locks that Subversion users create when using
-        the <quote>lock-modify-unlock</quote> model of concurrent
-        version control; see
-        <xref linkend="svn.advanced.locking.meanings"/> for
-        clarification.</para>
-      @ENGLISH }}} -->
-      <para>Не путайте эти блокировки рабочей копии с обычными 
-        блокировками, устанавливаемыми пользоватлями Subversion,
-        использующими модель конкурентного управления версиями
-        <quote>lock-modify-unlock</quote>; за более подробным 
-        определением обратитесь к <xref
-        linkend="svn.advanced.locking.meanings"/></para>
 
     </sect2>
 
@@ -3683,7 +3562,7 @@ subdir/
       <para>Now we've covered most of the Subversion client commands.
         Notable exceptions are those dealing with branching and
         merging (see <xref linkend="svn.branchmerge"/>) and properties (see
-        <xref linkend="svn.advanced.props"/>).  However, you may want to
+        <xref linkend="svn.advanced.props"/>). However, you may want to
         take a moment to skim through <xref linkend="svn.ref"/> to
         get an idea of all the many different commands that Subversion
         has&mdash;and how you can use them to make your work

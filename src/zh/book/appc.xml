@@ -1,0 +1,360 @@
+﻿<appendix id="svn-ap-c">
+<title>WebDAV和自动版本化</title>
+
+  <simplesect>
+
+    <para>WebDAV是HTTP的一个扩展，作为一个文件共享的标准不断发展。当今的操作系统变得极端的web化，许多内置了对装配WebDAV服务器导出的<quote>共享</quote>的支持。
+   </para>
+
+    <para>如果你使用Apache/mod_dav_svn作为你的Subversion网络服务器，某种程度上，你也是在运行一个WebDAV服务器。这个附录提供了这种协议一些背景知识，Subversion如何使用它，Subversion如何和认识WebDAV的软件交互工作。
+   </para>
+
+  </simplesect>
+
+  <sect1 id="svn-ap-c-sect-1">
+    <title>WebDAV基本概念</title> 
+
+    <para>这个小节提供了对WebDAV背后思想的一个非常简短和普通的总体看法，为理解WebDAV在客户端和服务器之间的兼容性问题打下基础。
+   </para>
+
+    <sect2 id="svn-ap-c-sect-1.1">
+      <title>仅是平常的WebDAV</title>
+
+      <para>RFC 2518为HTTP 1.1定义了一组概念和附加扩展方法来把web变成一个更加普遍的读/写媒体，基本思想是一个WebDAV兼容的web服务器可以像普通的文件服务器一样工作；客户端可以装配类似于NFS或SMB的WebDAV<quote>共享</quote>。
+      </para>
+      
+      <para>然而，必须注意到RFC 2518并<emphasis>没有</emphasis>提供任何版本控制模型，尽管DAV中有<quote>V</quote>。基本的DAV客户端和服务器只是假定每个文件或目录只有一个版本存在，可以重复的覆盖。<footnote><para>因为这个原因，一些人开玩笑说WebDAV的客户端是<quote>WebDA</quote>客户端！
+        </para></footnote></para>
+  
+      <para>这是基本的WebDAV引入的新概念和方法：
+      </para>
+
+      <variablelist>
+
+        <varlistentry>
+          <term>新的写方法</term>
+          <listitem>
+            <para>超出了标准HTTP的<literal>PUT</literal>方法（用来创建和覆盖web资源），WebDAV定义了新的<literal>COPY</literal>和<literal>MOVE</literal>方法用来复制或重新组织资源。
+           </para>
+          </listitem>
+        </varlistentry>
+                
+        <varlistentry>
+          <term>集合</term>
+          <listitem>
+            <para>这是一个简单的WebDAV术语用来表示一组资源（URI），在大多数情况下，你可以说以<quote>/</quote>结尾的东西是一个集合，文件资源可以使用<literal>PUT</literal>方法写或创建，而集合资源使用<literal>MKCOL</literal>方法创建。
+           </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>属性</term>
+          <listitem>
+            <para>这与Subversion中是同一个思想&mdash;附加在文件和集合上的元数据，一个客户端可以使用新方法<literal>PROPFIND</literal>列出或检索附加在一个资源上的属性，也可以使用<literal>PROPPATCH</literal>方法修改这些属性。一些属性是完全由用户控制的（例如，一个<quote>color</quote>属性），还有一些是WebDAV服务器创建和控制的（例如，一个保存文件最后修改时间的属性）。前一种叫做<quote>dead</quote>属性，后一种叫做<quote>live</quote>属性。
+           </para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry>
+          <term>锁定</term>
+          <listitem>
+            <para>WebDAV服务器可以决定为客户端提供一个锁定特性&mdash;这部分的规范是可选的，尽管大多数WebDAV服务器提供了这个特性。如果提供这个特性，客户端可以使用新的<literal>LOCK</literal>和<literal>UNLOCK</literal>方法来调节访问资源的过程，在大多数情况下是使用独占写锁（在<xref linkend="svn-ch-2-sect-2.2"/>讨论的），尽管共享写锁也是可以的。
+           </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+
+    </sect2>
+
+    <sect2 id="svn-ap-c-sect-1.2">
+      <title>DeltaV扩展</title>
+  
+      <para>因为RFC 2518漏下了版本概念，另一个小组留下来负责撰写RFC 3253来添加WebDAV的版本化。WebDAV/DeltaV客户端和服务器经常叫做<quote>DeltaV</quote>客户端和服务器，因为DeltaV暗含了基本的WebDAV。
+      </para>
+
+      <para>DeltaV引入了完全的新的首字母缩写，但并不是被逼迫的。想法相当的直接，如下是DeltaV引入的新概念和方法：
+     </para>
+
+      <variablelist>
+
+        <varlistentry>
+          <term>每资源的版本化</term>
+          <listitem>
+            <para>像CVS和其他版本控制系统，DeltaV假定每个资源有一个潜在的无穷的状态，一个客户端可以使用<literal>VERSION-CONTROL</literal>放置一个版本控制之下的资源，这创建了一个新的版本控制资源（VCR），每次你修改VCR（通过<literal>PUT</literal>、<literal>PROPPATCH</literal>等），这个资源的新状态就会创建，叫做一个版本资源（Version Resource，VR）。VCR和VR还是普通的web资源，使用URL定义，特定的VR也会拥有易读的名字。
+           </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>服务器端的工作拷贝模型</term>
+          <listitem>
+            <para>一些DeltaV服务器支持在服务器创建虚拟<quote>工作区</quote>，所有的工作在这里执行。客户端使用<literal>MKWORKSPACE</literal>方法来创建私有区域，然后他们说明修改特定的VCR，<quote>把它们检出到</quote>工作拷贝，编辑，然后再次<quote>检入</quote>。在HTTP术语里，方法的顺序可能是<literal>CHECKOUT</literal>、<literal>PUT</literal>、<literal>CHECKIN</literal>，会创建一个新的VR，每个VCR也有一个<quote>历史</quote>资源用来追踪和排序它的各种VR状态。
+           </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>客户端工作拷贝模型</term>
+          <listitem>
+            <para>一些DeltaV服务器也支持客户端可以有完全特定VR的私有工作拷贝的思想，（这就是CVS和Subversion的工作原理。）当客户端希望提交修改到服务器，它通过使用<literal>MKACTIVITY</literal>方法创建一个临时服务器事务（叫做一个活动）开始。然后客户端在每个希望修改的VR上执行一个<literal>CHECKOUT</literal>操作，这在活动里创建了一些临时<quote>工作资源</quote>，然后可以使用<literal>PUT</literal>和<literal>PROPPATCH</literal>方法修改。最后，客户端对每个工作资源执行一个<literal>CHECKIN</literal>，在每个VCR创建了一个VR，并且整个活动会被删除。
+           </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>配置</term>
+          <listitem>
+            <para>DeltaV允许你定义叫做<quote>配置</quote>的灵活的VCR集合，不需要对应特定的目录，每个VCR的内容可以使用<literal>UPDATE</literal>方法指向特定的VR。一旦配置是理想的，客户端可以创建一个整个配置的<quote>快照</quote>，叫做<quote>基线</quote>。客户端使用<literal>CHECKOUT</literal>和<literal>CHECKIN</literal>方法捕捉特定的配置状态，很像它们使用这些方法创建VCR的特定VR状态。
+           </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>扩展性</term>
+          <listitem>
+            <para>DeltaV定义了新方法<literal>REPORT</literal>，允许客户端和服务器执行自定义的数据交换。客户端发送一个带有包含自定义数据的完全标记的XML主体的<literal>REPORT</literal>请求；假定服务器理解特定的报告类型，它使用一个等同的XML主体来响应，这个技术与XML-RPC很类似。
+           </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>自动版本化</term>
+          <listitem>
+            <para>对大多数，这是DeltaV的<quote>杀手</quote>特性，如果DeltaV服务器支持这个特性，然后基本的WebDAV客户端（例如，那些不知道版本化的客户端）仍然可以对服务器进行写操作，服务器可以悄无声息的执行版本操作。在最简单的例子里，一个从基本的WebDAV客户端发送的无知的<literal>PUT</literal>可能会被服务器转化为<literal>CHECKOUT</literal>、<literal>PUT</literal>、<literal>CHECKIN</literal>。
+           </para>
+          </listitem>
+        </varlistentry>
+        
+      </variablelist>
+      
+    </sect2>
+
+  </sect1>
+
+  <sect1 id="svn-ap-c-sect-2">
+    <title>Subversion和DeltaV</title> 
+    
+    <para>所以Subversion与其他DeltaV的兼容性如何？两个字：不好，至少在Subversion 1.0还不好。
+    </para>
+    
+    <para>当libsvn_ra_dav发送DeltaV到服务器，Subversion客户端<emphasis>不是</emphasis>一个普通目的的DeltaV客户端。实际上，它希望服务器一些自定义的特性（特别是通过自定义的<literal>REPORT</literal>请求）。更进一步，mod_dav_svn<emphasis>不是</emphasis>一个普通目的的DeltaV服务器，它只实现了DeltaV的一个严格子集，一个更加普通的WebDAV或DeltaV客户端可能与之很好的交互工作，但是只有在服务器非常窄的已经实现的特性范围之内。Subversion开发团队计划会设法在以后的版本中完成普通的WebDAV交互性。
+   </para>
+
+    <sect2 id="svn-ap-c-sect-2.1">
+      <title>影射Subversion到DeltaV</title>
+      
+      <para>这里是多种Subversion客户端如何使用DeltaV操作的一个非常<quote>高级别</quote>描述。在很多种情况下，这些解释过于粗略，这<emphasis>不</emphasis>能作为阅读Subversion源代码和与开发者交谈的替代。
+     </para>
+      
+      <variablelist>
+        
+        <varlistentry>
+          <term>svn checkout/list</term>
+          <listitem>
+            <para>对集合执行一个深度为1的<literal>PROPFIND</literal>来得到直接孩子的列表，对每个孩子执行一个<literal>GET</literal>（也可能是一个<literal>PROPFIND</literal>），递归到集合并且重复。
+            </para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry>
+          <term>svn commit</term>
+          <listitem>
+            <para>
+              使用<literal>MKACTIVITY</literal>创建一个活动，然后对每个修改项目执行一个<literal>CHECKOUT</literal>，紧跟一个对新数据的<literal>PUT</literal>。最终，一个<literal>MERGE</literal>请求导致一个隐含的对所有工作资源的<literal>CHECKIN</literal>。
+            </para>
+          </listitem>
+        </varlistentry>
+        
+        <varlistentry>
+          <term>svn update/switch/status/merge/diff</term>
+          <listitem>
+            <para>
+              发送一个自定义的描述工作拷贝混合修订版本（和混合URL）状态的<literal>REPORT</literal>请求，服务器发送一个描述需要更新的项目和文件内容增量数据的响应。解析响应，对于update和switch，在工作拷贝安装新数据，对于diff和merge，与工作拷贝的数据比较，应用修改作为本地修改。
+            </para>
+          </listitem>
+        </varlistentry>
+
+      </variablelist>
+      
+    </sect2>
+    
+    <sect2 id="svn-ap-c-sect-2.2">
+      <title>自动版本化支持</title>
+      
+      <para>在写作的时候，有一个事实就是这个世界只有很少的DeltaV客户端；RFC 3253一直是相对比较新。然而用户有一些<quote>普通的</quote>客户端，因为几乎所有的现代操作系统现在拥有集成的基本WebDAV客户端，因为这一点，Subversion开发者认识到如果Subversion 1.0可以支持DeltaV自动版本化这一交互特性会是最好的方法。
+      </para>
+      
+      <para>为了激活mod_dav_svn的自动版本化，使用<filename>httpd.conf</filename> <literal>Location</literal>区块的<literal>SVNAutoversioning</literal>指示，例如：
+      </para>
+      
+              <screen>
+&lt;Location /repos&gt;
+  DAV svn
+  SVNPath /absolute/path/to/repository
+  SVNAutoversioning on
+&lt;/Location&gt;
+</screen>
+
+      <para>通常情况下，如果一个原始的WebDAV客户端尝试<literal>PUT</literal>到你的版本库位置的一个路径，mod_dav_svn会直接拒绝这个请求。（通常只允许对于DeltaV<quote>活动</quote>里面的对于<quote>工作资源</quote>的操作。）通过打开<literal>SVNAutoversioning</literal>，无论何时，服务器会把<literal>PUT</literal>请求转化为内部的<literal>MKACTIVITY</literal>、<literal>CHECKOUT</literal>、<literal>PUT</literal>和<literal>CHECKIN</literal>。一个普通的日志信息是自动生成的，并且创建一个新的文件系统修订版本。
+     </para>
+
+      <para>因为有这样多的操作系统已经集成了WebDAV能力，这个特性的用例近似于空想：想象一个普通用户运行Microsoft Windows或Mac OS的办公室，每个电脑<quote>装配</quote>了一个Subversion版本库，作为一个普通的网络共享。他们向普通目录一样操作服务器：从服务器打开文件，修改并且保存回服务器。但在这个幻想中，服务器自动版本化所有的事情，之后，一个系统管理员可以使用Subversion客户端来查找和检索所有旧的版本。
+     </para>
+
+      <para>这个幻想是现实吗？完全不是，主要的障碍是Subversion 1.0不支持WebDAV的<literal>LOCK</literal>方法<literal>UNLOCK</literal>，大多数操作系统的DAV客户端尝试<literal>LOCK</literal>一个直接从DAV装配的网络共享的资源，到目前为止，用户必须要把文件从DAV共享拷贝到本地磁盘，编辑文件，然后再拷贝回去。没有理想的自动版本化，但还是可行的。
+      </para>
+
+    </sect2>
+
+    <sect2 id="svn-ap-c-sect-2.3">
+      <title>选择mod_dav_lock</title>
+      
+      <para>Apache模块mod_dav是一个复杂的野兽：它理解和解析所有的WebDAV和DeltaV方法，然而它依赖于后端<quote>提供者</quote>来访问资源本身。
+     </para>
+
+      <para>在最简单的化身里，一个用户可以使用mod_dav_fs可以作为mod_dav的提供者，mod_dav_fs使用普通的文件系统来存放文件和目录，只理解平凡的WebDAV方法，不是DeltaV。
+     </para>
+
+      <para>在另一方面，Subversion使用mod_dav_svn作为mod_dav的提供者，mod_dav_svn理解除了<literal>LOCK</literal>以外的所有WebDAV方法，并且理解相当大的DeltaV方法子集，它访问Subversion版本库的数据，而不是真实的文件系统。Subversion 1.0不支持锁定，因为这会非常难于实现，因为Subversion使用拷贝-修改-合并模型。<footnote><para>Subversion可能有一天会开发一个保留检出的锁定模型，可以与拷贝-修改-合并和平相处，但是可能不会立刻发生。
+     </para></footnote></para>
+
+      <para>在Apache httpd-2.0里，mod_dav可以通过追踪私有数据库的锁来支持<literal>LOCK</literal>方法，假定提供者会乐于接受这一点。在Apache httpd-2.1或以后的版本，这个锁定支持会拆到一个独立的模块，mod_dav_lock。它允许任何mod_dav提供者利用锁数据库的好处，包括mod_dav_svn，即使mod_dav_svn实际上不理解锁定。
+      </para>
+
+      <para>感到困惑？</para>
+
+      <para>简言之，你可以使用Apache
+        httpd-2.1（或更晚的）的mod_dav_lock来创建一个错觉，也就是mod_dav_svn负责了<literal>LOCK</literal>操作。确定mod_dav_lock已经编译到httpd或已经在<filename>httpd.conf</filename>中加载，然后只需要在<literal>Location</literal>简单的添加如下的<literal>DAVGenericLockDB</literal>指示：
+        </para>
+
+              <screen>
+&lt;Location /repos&gt;
+  DAV svn
+  SVNPath /absolute/path/to/repository
+  SVNAutoversioning on
+  DavGenericLockDB /path/to/store/locks
+&lt;/Location&gt;
+</screen>
+
+      <para>这个技术是一个有危险的业务；在一些情况，mod_dav_svn现在已经接近WebDAV客户端，它宣称接受<literal>LOCK</literal>请求，但是实际上锁并不是在所有的级别上强制执行。如果第二个WebDAV客户端尝试<literal>LOCK</literal>锁住同样的资源，然后mod_dav_lock会注意到并且正确的拒绝这个请求，但是完全没有办法来防止一个普通的Subversion客户端使用<command>svn commit</command>来修改文件！如果你使用这个技术，你给用户权利来践踏其他人的修改，更具体一点，一个WebDAV客户端会不小心覆盖普通Subversion客户端提交的修改。
+     </para>
+
+      <para>在另一方面，如果你小心设置你的环境变量，你会减轻这个风险，例如，如果<emphasis>所有</emphasis>用户使用WebDAV客户端（而不是Subversion客户端），然后事情变得美好了。
+     </para>
+
+    </sect2>
+    
+  </sect1>
+  
+  <sect1 id="svn-ap-c-sect-3">
+    <title>自动版本化交互性</title> 
+
+      <para>在这个小节，我们会描述最普通的原始WebDAV客户端（写作的时刻），和它们是如何与使用<literal>SVNAutoversioning</literal>指示的mod_dav_svn服务器的运作。RFC 2518是一个有点大，并且有一点太灵活。每个WebDAV客户端的行为都有些许区别，并且产生许多不同的小问题。
+     </para>
+        
+        <!-- list of subsections goes here. -->
+
+    <sect2 id="svn-ap-c-sect-3.1">
+      <title>Win32网络文件夹</title>
+
+      <para>Windows 98、2000和XP有一个集成的WebDAV客户端叫做<quote>网络文件夹</quote>，在Windows 98，这个特性需要明确安装；如果提供，一个<quote>网络文件夹</quote>就会出现在我的电脑，在Windows 2000和XP，只需要简单得打开我的网络位置，运行添加网络位置图标。当出现提示，输入一个WebDAV的URL，我的网络位置中就会出现一个共享文件夹。
+      </para>
+
+      <para>大多数写操作对于自动版本化的mod_dav_svn服务器工作正常，但是有一些问题：
+      </para>
+
+      <itemizedlist>
+
+        <listitem>
+          <para>如果一个Windows XP电脑是一个NT域的成员，它看起来不能连接到WebDAV共享，重复提示要输入用户名和密码，即使Apache服务器没有要求进行认证！如果这个机器不是NT域的一部分，这个共享可以成功装载。
+          </para>
+            
+          <para>这个问题源于Windows XP创建网络文件夹快捷方式（<filename>.lnk</filename>文件）的方法的bug。它有时候会使用<quote>UNC</quote> （Universal Naming Convention） 路径来代替WebDAV共享URL，这导致资源管理器尝试使用SMB而不是HTTP来进行连接。
+          </para>
+            
+          <para>这个问题的解决方法是在Windows 2000创建<filename>.lnk</filename>快捷方式，然后拷贝到Windows XP电脑，如果有人可以逆转<filename>.lnk</filename>文件的格式，也可以使用十六进制编辑器来<quote>修正</quote>快捷方式。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>一个文件不可以直接在共享中打开编辑；它可能一直是只读的。mod_dav_lock技术也无能为力，因为网络文件夹根本不使用<literal>LOCK</literal>方法，前面提到的<quote>拷贝、编辑和再拷贝</quote>根本不工作。在共享中的文件可以成功的被本地修改的拷贝覆盖。
+         </para>
+        </listitem>
+
+      </itemizedlist>
+
+    </sect2>
+
+    <sect2 id="svn-ap-c-sect-3.2">
+      <title>Mac OS X</title>
+
+      <para>Apple的OS X操作系统也集成了WebDAV客户端，从Finder选择Go菜单的<quote>Connect to
+          Server</quote>，输入一个WebDAV的URL，它会作为一个磁盘在桌面出现，就像任何文件服务器。<footnote><para>Unix用户也可以运行<command>mount
+        -t webdav URL /mountpoint</command>。
+      </para></footnote></para>
+      
+      <para>很不幸，客户端拒绝与一个自动版本化的mod_dav_svn工作，因为它缺乏<literal>LOCK</literal>支持，Mac OS X在初始化HTTP的<literal>OPTIONS</literal>特性交换时会发现缺失了<literal>LOCK</literal>能力，因而决定以只读方式装配Subversion版本库，之后，不可以进行写操作。为了将版本库按照读写方式装配，你<emphasis>必须</emphasis>使用前面讨论的mod_dav_lock技巧。一旦锁定看起来工作了，共享会运作良好：文件可以直接以读/写模式打开，尽管每次存储操作会导致客户端对临时位置执行一个<literal>PUT</literal>，对原文件的<literal>DELETE</literal>操作和把临时资源<literal>MOVE</literal>到原文件。每次存盘会产生三个新的Subversion修订版本！
+      </para>
+
+      <para>还要警告一点：OS X的WebDAV客户端可以对HTTP重定向完全敏感，如果你不能装配版本库，你可以在<filename>httpd.conf</filename>开启<literal>BrowserMatch</literal>指示：
+      </para>
+
+              <screen>
+BrowserMatch "^WebDAVFS/1.[012]" redirect-carefully
+</screen>
+
+    </sect2>
+
+    <sect2 id="svn-ap-c-sect-3.3">
+      <title>Unix: Nautilus 2</title>
+
+      <para>Nautilus是GNOME桌面的官方文件管理器/浏览器，它的主页在<systemitem
+        class="url">http://www.gnome.org/projects/nautilus/</systemitem>，只需要在Nautilus窗口中输入一个WebDAV的URL，DAV共享就会像本地磁盘一样出现。
+       </para>
+
+      <para>通常情况下，Nautilus 2与自动版本化的mod_dav_svn一起工作相当的好，只是有下面一些警告：
+      </para>
+
+      <itemizedlist>
+
+        <listitem>
+          <para>任何在共享里直接打开的文件是只读的，即使mod_dav_lock的技巧也看起来无效。Nautilus看起来从没有关注过<literal>LOCK</literal>方法，<quote>本地拷贝、编辑和拷贝回去</quote>的技巧还可以工作，但是很不幸，Nautilus的覆盖旧文件是通过首先<literal>DELETE</literal>进行的，这创建了一个额外的修订版本。
+         </para>
+        </listitem>
+
+        <listitem>
+          <para>当覆盖或创建一个文件，Nautilus首先<literal>PUT</literal>一个空文件，然后使用第二个<literal>PUT</literal>覆盖它，这创建了两个Subversion文件系统修订版本，而不是一个。
+         </para>
+        </listitem>
+
+        <listitem>
+          <para>当删除了一个集合，它对每个独立的孩子而不是集合本身发出HTTP的<literal>DELETE</literal>操作，这会创建一系列新的修订版本。
+         </para>
+        </listitem>
+
+      </itemizedlist>
+
+    </sect2>
+
+    <sect2 id="svn-ap-c-sect-3.4">
+      <title>Linux davfs2</title>
+
+      <para>Linux davfs2是一个Linux内核的文件系统模块，它的开发位于<systemitem
+        class="url">http://dav.sourceforge.net/</systemitem>。一旦安装，一个WebDAV网络共享可以使用普通的Linux的<command>mount</command>命令装配。
+       </para>
+
+      <para>一个公开的秘密就是DAV客户端不会与mod_dav_svn的自动版本化完全工作正常，即使一个单独对服务器的写尝试需要<literal>LOCK</literal>请求作为前提，而这是mod_dav_svn不支持的。此时，还没有数据表明是否可以使用mod_dav_lock解决这个问题。
+     </para>
+
+    </sect2>
+
+  </sect1>
+
+</appendix>
+
+<!--
+local variables: 
+sgml-parent-document: ("book.xml" "appendix")
+end:
+-->

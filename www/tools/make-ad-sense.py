@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-"""Usage: 'make-ad-sense.py BOOK-HTML-DIR'
-
-Add AdSense bits to BOOK-HTML-DIR/*.html.  Note that if you run this
-twice, it will dumbly add the bits again, resulting in weirdness."""
-
 import sys
 import os
 import os.path
@@ -17,7 +12,7 @@ google_ad_client = "pub-0505104349866057";
 google_ad_width = 120;
 google_ad_height = 600;
 google_ad_format = "120x600_as";
-google_ad_type = "text_image";
+google_ad_type = "text";
 google_ad_channel ="";
 google_color_border = "CC99CC";
 google_color_bg = "E7C6E8";
@@ -52,23 +47,17 @@ def die(msg):
     sys.stderr.write(msg + "\n")
     sys.exit(1)
 
+_body_open_re = re.compile('^(.*<body[^>]*>)(.*)$')
+
 def add_adsense_html(file):
     lines = open(file, 'r').readlines()
     for i in range(len(lines)):
-        start_offset = lines[i].find('<body')
-        if start_offset == -1:
-            continue
-        for j in range(i, len(lines)):
-            end_offset = lines[j][start_offset:].find('>')
-            if end_offset == -1:
-                start_offset = 0
-            else:
-                end_offset = start_offset + end_offset
-                lines[j] = '%s%s%s' \
-                           % (lines[j][:end_offset + 1],
-                              adsense_data, lines[j][end_offset + 1:])
-                open(file, 'w').writelines(lines)
-                return
+        match = _body_open_re.match(lines[i])
+        if match and match.groups():
+            lines[i] = '%s%s%s' \
+                       % (match.group(1), adsense_data, match.group(2))
+            open(file, 'w').writelines(lines)
+            return
     raise Exception, "Never found <body> tag in file '%s'" % (file)
 
 def add_adsense_css(file):

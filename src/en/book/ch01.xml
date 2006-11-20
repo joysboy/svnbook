@@ -68,11 +68,11 @@
 
     <title>Subversion's History</title>
 
-    <para>In early 2000, CollabNet,
-      Inc. (<ulink url="http://www.collab.net"/>) began seeking
+    <para>In early 2000, CollabNet, Inc. (<systemitem
+      class="url">http://www.collab.net</systemitem>) began seeking
       developers to write a replacement for CVS.  CollabNet offers a
-      collaboration software suite called CollabNet Enterprise Edition
-      (CEE)
+      collaboration software suite called CollabNet Enterprise
+      Edition (CEE)
       <footnote>
         <para>There's also a CollabNet Team Edition (CTE)
           offering aimed at smaller groups.</para>
@@ -315,12 +315,13 @@
 
     <para>The easiest way to get Subversion is to download a binary
       package built for your operating system.  Subversion's website
-      (<ulink url="http://subversion.tigris.org"/>) often has these
-      packages available for download, posted by volunteers.  The site
-      usually contains graphical installer packages for users of
-      Microsoft operating systems.  If you run a Unix-like operating
-      system, you can use your system's native package distribution
-      system (RPMs, DEBs, the ports tree, etc.) to get
+      (<systemitem
+      class="url">http://subversion.tigris.org</systemitem>) often has
+      these packages available for download, posted by volunteers.
+      The site usually contains graphical installer packages for users
+      of Microsoft operating systems.  If you run a Unix-like
+      operating system, you can use your system's native package
+      distribution system (RPMs, DEBs, the ports tree, etc.) to get
       Subversion.</para>
 
     <para>Alternately, you can build Subversion directly from source
@@ -428,10 +429,10 @@
     <title>A Quick Start</title>
     
     <para>Some people have trouble absorbing a new technology by
-      reading the sort of <quote>top down</quote> approach provided by
-      this book.  This section is a very short introduction to
-      Subversion, and is designed to give <quote>bottom up</quote>
-      learners a fighting chance.  If you prefer to learn by
+      reading the sort of <quote>top down</quote> approach provided by this
+      book.  This section is a very short introduction to Subversion, and is
+      designed to give <quote>bottom up</quote> learners a fighting chance.
+      If you're one of those folks who prefers to learn by
       experimentation, the following demonstration will get you up and
       running.  Along the way, we give links to the relevant chapters
       of this book.</para>
@@ -499,10 +500,10 @@ conf/  dav/  db/  format  hooks/  locks/  README.txt
 /tmp/myproject/branches/
 /tmp/myproject/tags/
 /tmp/myproject/trunk/
-                     foo.c
-                     bar.c
-                     Makefile
-                     &hellip;
+                    foo.c
+                    bar.c
+                    Makefile
+                    &hellip;
 </screen>
 
     <para>The <filename>branches</filename>, <filename>tags</filename>,

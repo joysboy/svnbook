@@ -9,16 +9,16 @@
 
     <!-- @ENGLISH {{{
     <blockquote>
-      <attribution>Brian W. Fitzpatrick</attribution>
       <para><quote>If C gives you enough rope to hang yourself, think
-        of Subversion as a sort of rope storage facility.</quote></para>
+        of Subversion as a sort of rope storage facility.</quote>
+        &mdash;Brian W. Fitzpatrick</para>
     </blockquote>
     @ENGLISH }}} -->
     <blockquote>
-      <attribution>Brian W. Fitzpatrick</attribution>
       <para><quote>Если язык C &mdash; это клубок верёвок, в
           которых можно легко запутаться, то Subversion &mdash; это
-          что-то вроде склада для верёвок.</quote></para>
+          что-то вроде склада для верёвок</quote>. &mdash; Брайан У.
+        Фитцпатрик</para>
     </blockquote>
 
     <!-- @ENGLISH {{{
@@ -72,7 +72,7 @@
     мощное, удобное и гибкое средство.</para>
 
     <!-- @ENGLISH {{{
-    <para>This book is written to document the 1.3 series of the
+    <para>This book is written to document the 1.2 series of the
       Subversion version control system.  We have made every attempt to be
       thorough in our coverage.  However, Subversion has a thriving
       and energetic development community, so there are already a
@@ -82,7 +82,7 @@
     </para>
     @ENGLISH }}} -->
     <para>Эта книга описывает систему управления версиями Subversion
-      поколения 1.3. Мы стремились охватить материал как можно шире.
+      поколения 1.2. Мы стремились охватить материал как можно шире.
       В то же время следует иметь в виду, что разработкой Subversion
       занимается активное энергичное сообщество, так что уже сейчас идёт
       работа над рядом особенностей и улучшений, которые будут внесены в
@@ -145,22 +145,22 @@
       самые незначительные различия.</para>
 
     <!-- @ENGLISH {{{
-    <para>Most readers are probably programmers or system
-      administrators who need to track changes to source code.  This
-      is the most common use for Subversion, and therefore it is the
-      scenario underlying all of the book's examples.  But Subversion
-      can be used to manage changes to any sort of information:
-      images, music, databases, documentation, and so on.  To
-      Subversion, all data is just data.</para>
+    <para>Most readers are probably programmers or sysadmins who need
+      to track changes to source code.  This is the most common use
+      for Subversion, and therefore it is the scenario underlying all
+      of the book's examples.  But Subversion can be used to manage
+      changes to any sort of information: images, music, databases,
+      documentation, and so on.  To Subversion, all data is just
+      data.</para>
     @ENGLISH }}} -->
-    <para>Многие наши читатели &mdash; программисты или системные
-      администраторы, испытывающие потребность отслеживать изменения
-      в исходном коде. Такое использование Subversion является самым
-      распространённым и положено в основу всех примеров в этой книге.
-      Однако, Subversion можно использовать для управления информацией
-      самого разного рода: графика, музыка, базы данных, документация
-      &mdash; этот список можно продолжать до бесконечности. Для Subversion
-      любые данные &mdash; это просто данные.</para>
+    <para>Многие наши читатели &mdash; программисты или сисадмины,
+      испытывающие потребность отслеживать изменения в исходном коде.
+      Такое использование Subversion является самым распространённым и
+      положено в основу всех примеров в этой книге. Однако, Subversion
+      можно использовать для управления информацией самого разного
+      рода: графика, музыка, базы данных, документация &mdash; этот
+      список можно продолжать до бесконечности. Для Subversion любые
+      данные &mdash; это просто данные.</para>
 
     <!-- @ENGLISH {{{
     <para>While this book is written with the assumption that the
@@ -191,47 +191,43 @@
     <!-- @ENGLISH {{{
     <para>This book aims to be useful to people of widely different
       backgrounds&mdash;from people with no previous experience in
-      version control to experienced system administrators.  Depending
-      on your own background, certain chapters may be more or less
-      important to you.  The following can be considered a
-      <quote>recommended reading list</quote> for various types of
-      readers:</para>
+      version control to experienced sysadmins.  Depending on your own
+      background, certain chapters may be more or less important to
+      you.  The following can be considered a <quote>recommended
+      reading list</quote> for various types of readers:</para>
     @ENGLISH }}} -->
     <para>Книга предназначена для людей с самым разным уровнем
       подготовки &mdash; от новичков, не имевших дела с управлением
-      версиями ранее, до опытных системных администраторов. Важность
-      той или иной главы для читателя будет зависеть от уровня его подготовки.
+      версиями ранее, до опытных сисадминов. Важность той или иной
+      главы для читателя будет зависеть от уровня его подготовки.
       Приведём наши рекомендации для разных групп читателей:</para>
 
+    <!-- @ENGLISH {{{
     <variablelist>
-      <!-- @ENGLISH {{{
       <varlistentry>
-        <term>Experienced System Administrators</term>
+        <term>Experienced sysadmins</term>
         <listitem>
           <para>The assumption here is that you've probably used CVS
             before, and are dying to get a Subversion server up and
-            running ASAP.  <xref linkend="svn.reposadmin"/> and <xref
-              linkend="svn.serverconfig"/> will show you how to create
+            running ASAP.  Chapters 5 and 6 will show you how to create
             your first repository and make it available over the
-            network.  After that's done, <xref linkend="svn.tour"/> and
-            <xref linkend="svn.forcvs"/> are the fastest routes to
-            learning the Subversion client while drawing on your CVS
-            experience.</para>
+            network.  After that's done, chapter 3 and appendix A are
+            the fastest routes to learning the Subversion client while
+            drawing on your CVS experience.</para>
         </listitem>
       </varlistentry>
       @ENGLISH }}} -->
+    <variablelist>
       <varlistentry>
-        <term>Опытные системные администраторы</term>
+        <term>Опытные сисадмины</term>
         <listitem>
           <para>Предполагается, что читатели этой группы раннее уже
             использовали CVS и теперь им не терпится поднять сервер
-            Subversion как можно скорее. В <xref linkend="svn.reposadmin"/>
-            и <xref linkend="svn.serverconfig"/> показано, как
+            Subversion как можно скорее. В главах 5 и 6 показано, как
             создать первое хранилище и сделать его доступным в сети.
             Далее можно перейти к изучению клиента Subversion, причём
             для пользователей CVS наиболее быстрым путём к цели будет
-            чтение <xref linkend="svn.tour"/> и <xref
-            linkend="svn.forcvs"/>.</para>
+            чтение главы 3 и приложения A.</para>
         </listitem>
       </varlistentry>
 
@@ -242,8 +238,7 @@
           <para>Your administrator has probably set up Subversion
             already, and you need to learn how to use the client.  If
             you've never used a version control system (like CVS),
-            then <xref linkend="svn.basic"/> and <xref
-              linkend="svn.tour"/> are a vital introduction.  If you're
+            then chapters 2 and 3 are a vital introduction.  If you're
             already an old hand at CVS, chapter 3 and appendix A are
             the best place to start.</para>
         </listitem>
@@ -255,10 +250,10 @@
           <para>По-видимому, администратор уже установил Subversion в
             сети и вам необходимо научиться пользоваться клиентом. Если
             вы раньше не использовали систему управления версиями
-            (например, CVS), то начать следует с <xref linkend="svn.basic"/>
-            и <xref linkend="svn.tour"/>, где содержатся основные вводные
-            сведения. Если же вы хорошо знакомы с CVS, то вам больше подойдёт
-            изучение главы 3 и приложения A.</para>
+            (например, CVS), то начать следует с глав 2 и 3, где
+            содержатся основные вводные сведения. Если же вы хорошо
+            знакомы с CVS, то вам больше подойдёт изучение главы 3 и
+            приложения A.</para>
         </listitem>
       </varlistentry>
 
@@ -269,12 +264,11 @@
           <para>Whether you're a user or administrator, eventually
             your project will grow larger.  You're going to want to
             learn how to do more advanced things with Subversion, such
-            as how to use branches and perform merges (<xref
-              linkend="svn.branchmerge"/>), how to use Subversion's
-            property support, how to configure runtime options (<xref
-              linkend="svn.advanced"/>), and other things.  These two
-            chapters aren't vital at first, but be sure to read them
-            once you're comfortable with the basics.</para>
+            as how to use branches and perform merges (chapter 4),
+            how to use Subversion's property support, how to configure
+            runtime options (chapter 7), and other things.  Chapters 4
+            and 7 aren't vital at first, but be sure to read them once
+            you're comfortable with the basics.</para>
         </listitem>
       </varlistentry>
       @ENGLISH }}} -->
@@ -284,10 +278,9 @@
           <para>Рано или поздно ваш проект будет разрастаться, и тогда,
             независимо от того, администратор вы или пользователь, вам
             потребуется узнать, как делать в Subversion более сложные
-            вещи: использовать ветки и осуществлять слияния (<xref
-            linkend="svn.branchmerge"/>), работать со свойствами,
-            настраивать рабочую среду (<xref linkend="svn.advanced"/>)
-            и т.д. Эти главы не являются важными в самом начале
+            вещи: использовать ветки и осуществлять слияния (глава 4),
+            работать со свойствами, настраивать рабочую среду (глава 7)
+            и т.д. Главы 4 и 7 не являются важными в самом начале
             работы, но их следует прочесть, когда вы разберётесь с
             основами.</para>
         </listitem>
@@ -299,8 +292,7 @@
         <listitem>
           <para>Presumably, you're already familiar with Subversion,
             and now want to either extend it or build new software on
-            top of its many APIs.  <xref linkend="svn.developer"/> is
-            just for you.</para>
+            top of its many APIs.  Chapter 8 is just for you.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -312,25 +304,24 @@
             либо расширить её, либо создать новое программное
             обеспечение на основе её многочисленных
             API<footnote><para>Application Program
-            Interface, интерфейс прикладного
-            программирования</para></footnote>. Что ж,
-            <xref linkend="svn.developer"/> написана именно для вас.</para>
+                Interface, интерфейс прикладного
+                программирования</para></footnote>. Что ж, глава 8
+            написана именно для вас.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
     <!-- @ENGLISH {{{
-    <para>The book ends with reference material&mdash;<xref
-        linkend="svn.ref"/> is a reference guide for all Subversion
-      commands, and the appendices cover a number of useful topics.
-      These are the chapters you're mostly likely to come back to after
-      you've finished the book.</para>
+    <para>The book ends with reference material&mdash;chapter 9 is a
+      reference guide for all Subversion commands, and the appendices
+      cover a number of useful topics.  These are the chapters you're
+      mostly likely to come back to after you've finished the
+      book.</para>
     @ENGLISH }}} -->
-    <para>Книга завершается справочным материалом &mdash; <xref
-      linkend="svn.ref"/> представляет собой справочное руководство
-      по всем командам Subversion, а несколько полезных тем раскрыто в
-      приложениях. К этим разделам вы скорее всего будете обращаться
-      уже после прочтения книги.</para>
+    <para>Книга завершается справочным материалом &mdash; глава 9 представляет
+      собой справочное руководство по всем командам Subversion, а несколько
+      полезных тем раскрыто в приложениях. К этим разделам вы
+      скорее всего будете обращаться уже после прочтения книги.</para>
 
   </sect1>
 
@@ -449,7 +440,7 @@
 
     <!-- @ENGLISH {{{
     <para>Note that the source code examples are just
-      that&mdash;examples.  While they will compile with the proper
+      that&mdash;examples. While they will compile with the proper
       compiler incantations, they are intended to illustrate the
       problem at hand, not necessarily serve as examples of good
       programming style.</para>
@@ -482,7 +473,7 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.intro"/></term>
+          <term>Chapter 1, <emphasis>Introduction</emphasis></term>
           <listitem>
             <para>Covers the history of Subversion as well as its
               features, architecture, components, and install
@@ -491,7 +482,7 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.intro"/></term>
+          <term>Глава 1. <emphasis>Введение</emphasis>.</term>
           <listitem>
             <para>В этой главе приводятся сведения об истории
               Subversion, обсуждаются её возможности, архитектура,
@@ -504,7 +495,7 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.basic"/></term>
+          <term>Chapter 2, <emphasis>Basic Concepts</emphasis></term>
           <listitem>
             <para>Explains the basics of version control and different
               versioning models, along with Subversion's repository,
@@ -513,18 +504,18 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.basic"/></term>
+          <term>Глава 2. <emphasis>Основные понятия</emphasis>.</term>
           <listitem>
             <para>Глава объясняет основы управления версиями, в ней
               разбираются различные модели работы с версиями, а также
-              рассказано о хранилищах, рабочих копиях и правках в
+              рассказано о хранилищах, рабочих копиях и редакциях в
               Subversion.</para>
           </listitem>
         </varlistentry>
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.tour"/></term>
+          <term>Chapter 3, <emphasis>Guided Tour</emphasis></term>
           <listitem>
             <para>Walks you through a day in the life of a Subversion
               user.  It demonstrates how to use Subversion to obtain,
@@ -533,18 +524,18 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.tour"/></term>
+          <term>Глава 3. <emphasis>Экскурсия по Subversion</emphasis>.</term>
           <listitem>
             <para>Один день из жизни пользователя Subversion. Глава
               поясняет, как использовать Subversion для получения
-              данных, внесения в них изменений и фиксации изменённых
+              данных, внесения в них изменений и закрепления состояния
               данных в хранилище.</para>
           </listitem>
         </varlistentry>
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.branchmerge"/></term>
+          <term>Chapter 4, <emphasis>Branching and Merging</emphasis></term>
           <listitem>
             <para>Discusses branches, merges, and tagging, including
               best practices for branching and merging, common
@@ -554,10 +545,10 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.branchmerge"/></term>
+          <term>Глава 4. <emphasis>Ветвление и слияние</emphasis>.</term>
           <listitem>
             <para>В этой главе рассматриваются ветки, метки и слияния,
-              показаны эффективные методы выполнения ветвлений и
+              показаны эффективные методы выполнения ветвления и
               слияний, приводятся типичные примеры использования этих
               возможностей, а также даются сведения об отмене внесённых
               изменений. Глава также показывает, как легко переключиться
@@ -567,7 +558,8 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.reposadmin"/></term>
+          <term>Chapter 5, <emphasis>Repository
+            Administration</emphasis></term>
           <listitem>
             <para>Describes the basics of the Subversion repository,
               how to create, configure, and maintain a repository, and
@@ -576,7 +568,8 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.reposadmin"/></term>
+          <term>Глава 5. <emphasis>Администрирование
+              хранилища</emphasis>.</term>
           <listitem>
             <para>В главе рассматриваются основные особенности хранилища
               Subversion, включая использование инструментов для
@@ -586,7 +579,7 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.serverconfig"/></term>
+          <term>Chapter 6, <emphasis>Server Configuration</emphasis></term>
           <listitem>
             <para>Explains how to configure your Subversion server and
               the three ways to access your repository:
@@ -598,7 +591,7 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.serverconfig"/></term>
+          <term>Глава 6. <emphasis>Настройка сервера</emphasis>.</term>
           <listitem>
             <para>В этой главе показано, как настроить сервер
               Subversion. Здесь же рассматриваются три способа
@@ -612,7 +605,7 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.advanced"/></term>
+          <term>Chapter 7, <emphasis>Advanced Topics</emphasis></term>
           <listitem>
             <para>Explores the Subversion client configuration files,
               file and directory properties, how to
@@ -623,7 +616,8 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.advanced"/></term>
+          <term>Глава 7. <emphasis>Профессиональное использование
+              Subversion</emphasis>.</term>
           <listitem>
             <para>В этой главе подробно рассмотрены файлы для настройки
               клиента Subversion, свойства файлов и каталогов, показано,
@@ -635,7 +629,7 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.developer"/></term>
+          <term>Chapter 8, <emphasis>Developer Information</emphasis></term>
           <listitem>
             <para>Describes the internals of Subversion, the
               Subversion filesystem, and the working copy
@@ -647,7 +641,8 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.developer"/></term>
+          <term>Глава 8. <emphasis>Информация для
+              разработчиков</emphasis>.</term>
           <listitem>
             <para>В этой главе обсуждается внутреннее устройство
               Subversion, файловая система Subversion и служебные
@@ -661,7 +656,8 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.ref"/></term>
+          <term>Chapter 9, <emphasis>Subversion Complete
+            Reference</emphasis></term>
           <listitem>
             <para>Explains in great detail every subcommand of
               <command>svn</command>, <command>svnadmin</command>, and
@@ -671,7 +667,8 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.ref"/></term>
+          <term>Глава 9. <emphasis>Полное справочное руководство по
+              Subversion</emphasis>.</term>
           <listitem>
             <para>Глава подробно объясняет использование всех подкоманд
               <command>svn</command>, <command>svnadmin</command> и
@@ -682,7 +679,8 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.forcvs"/></term>
+          <term>Appendix A, <emphasis>Subversion for CVS
+            Users</emphasis></term>
           <listitem>
             <para>Covers the similarities and differences between
               Subversion and CVS, with numerous suggestions on how to
@@ -696,25 +694,27 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.forcvs"/></term>
+          <term>Приложение A. <emphasis>Subversion для пользователей
+              CVS</emphasis>.</term>
           <listitem>
             <para>В приложении рассматриваются сходства и различия между
               Subversion и CVS, приводится ряд рекомендаций, позволяющих
               избавиться от вредных привычек, приобретённых с годами
               работы с CVS. Здесь также приводится информация
-              о нумерации правок в Subversion, рассказывается о возможности
+              о номерах редакций в Subversion, рассказано о возможности
               управления версиями для каталогов, приводятся сведения об
               автономных операциях, ветках, метках и метаданных,
               поясняется различие между подкомандами
               <command>update</command> и <command>status</command>,
-              затронуты вопросы, связанные с разрешением конфликтов и
+              затронуты вопросы, связанные с разрешением противоречий и
               установлением личности пользователя.</para>
           </listitem>
         </varlistentry>
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.webdav"/></term>
+          <term>Appendix B, <emphasis>WebDAV and
+            Autoversioning</emphasis></term>
           <listitem>
             <para>Describes the details of WebDAV and DeltaV, and how
               you can configure your Subversion repository to be
@@ -723,7 +723,8 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.webdav"/></term>
+          <term>Приложение B. <emphasis>WebDAV и автоматическое управление
+              версиями</emphasis>.</term>
           <listitem>
             <para>Это приложение подробно рассматривает WebDAV и DeltaV
               и показывает, как настроить хранилище Subversion для
@@ -734,7 +735,7 @@
 
         <!-- @ENGLISH {{{
         <varlistentry>
-          <term><xref linkend="svn.3rdparty"/></term>
+          <term>Appendix C, <emphasis>Third Party Tools</emphasis></term>
           <listitem>
             <para>Discusses tools that support or use Subversion,
               including alternative client programs, repository
@@ -743,12 +744,14 @@
         </varlistentry>
         @ENGLISH }}} -->
         <varlistentry>
-          <term><xref linkend="svn.3rdparty"/></term>
+          <term>Приложение C. <emphasis>Инструменты от сторонних
+              разработчиков</emphasis>.</term>
           <listitem>
             <para>Здесь представлены некоторые программы, которые
               используют Subversion в своей работе, включая
               клиенты от сторонних производителей, инструменты для
-              просмотра содержимого хранилища и другие программы.</para>
+              просмотра содержимого хранилища и другие
+              программы.</para>
           </listitem>
         </varlistentry>
 
@@ -813,21 +816,21 @@
     </itemizedlist>
 
     <!-- @ENGLISH {{{
-    <!-&#64738;- O'Reilly Hardcopy Only
     <para>You can send publishing comments and questions to O'Reilly
-      here: <remark>###insert boilerplate.</remark></para>
-    -&#64738;->
+      here: ###insert boilerplate.</para>
     @ENGLISH }}} -->
-    <!--<para>Комментарии и вопросы, связанные с публикацией книги,
+    <para>Комментарии и вопросы, связанные с публикацией книги,
       направляйте в адрес издательства O'Reilly:
-      ###insert boilerplate.</para>-->
+      ###insert boilerplate.</para>
 
     <!-- @ENGLISH {{{
     <para>A relatively recent online version of this book can be found
-      at <ulink url="http://svnbook.red-bean.com"/>.</para>
+      at <systemitem
+      class="url">http://svnbook.red-bean.com</systemitem>.</para>
     @ENGLISH }}} -->
-    <para>Достаточно свежую версию этой книги можно взять в Интернете
-      по адресу <ulink url="http://svnbook.red-bean.com"/>.</para>
+    <para>Относительно свежую версию этой книги можно взять в Интернете
+      по адресу <systemitem
+        class="url">http://svnbook.red-bean.com</systemitem>.</para>
 
   </sect1>
 
@@ -840,7 +843,6 @@
     @ENGLISH }}} -->
     <title>Благодарности</title>
 
-    <!-- @ENGLISH {{{
     <para>This book would not be possible (nor very useful) if
       Subversion did not exist.  For that, the authors would like to
       thank Brian Behlendorf and CollabNet for the vision to fund such
@@ -850,24 +852,10 @@
       leader, in that order.<footnote><para>Oh, and thanks, Karl, for
       being too overworked to write this book yourself.</para>
       </footnote></para>
-    @ENGLISH }}} -->
-    <para>Этой книги не было б (или была б не столь полезна), если б не
-      было Subversion. Поэтому, авторы хотят поблагодарить Brian
-      Behlendorf и CollabNet за их решение финансировать такой
-      рискованный и амбициозный проект; Jim Blandy за оригинальное
-      название и дизайн Subversion &mdash; мы любим тебя, Jim; Karl
-      Fogel за то, что ты хороший друг и великолепный лидер нашего
-      сообщества.<footnote><para>Да, и спасибо, Karl, за твой
-      трудоголизм при написании этой книги.</para></footnote></para>
 
-    <!-- @ENGLISH {{{
     <para>Thanks to O'Reilly and our editors, Linda Mui and Tatiana
       Diaz for their patience and support.</para>
-    @ENGLISH }}} -->
-    <para>Благодарим издательство O'Reilly и наших редакторов, Linda
-      Mui и Tatiana Diaz за их терпение и поддержку.</para>
 
-    <!-- @ENGLISH {{{
     <para>Finally, we thank the countless people who contributed to
       this book with informal reviews, suggestions, and fixes: While
       this is undoubtedly not a complete list, this book would be
@@ -890,133 +878,58 @@
       Johan Sundstroem, John Szakmeister, Mason Thomas, Eric
       Wadsworth, Colin Watson, Alex Waugh, Chad Whitacre, Josef Wolf,
       Blair Zajac, and the entire Subversion community.</para>
-    @ENGLISH }}} -->
-    <para>Наконец, мы благодарим всех тех людей, которые участвовали
-      в создании этой книги своими обзорами, мнениями и исправлениями:
-      Без сомнения, это далеко не полный список людей, без помощи
-      которых эта книга была бы неполной и неточной: Jani Averbach,
-      Ryan Barrett, Francois Beausoleil, Jennifer Bevan, Matt Blais,
-      Zack Brown, Martin Buchholz, Brane Cibej, John R. Daily, Peter
-      Davis, Olivier Davy, Robert P. J. Day, Mo DeJong, Brian Denny,
-      Joe Drew, Nick Duffek, Ben Elliston, Justin Erenkrantz, Shlomi
-      Fish, Julian Foad, Chris Foote, Martin Furter, Dave Gilbert,
-      Eric Gillespie, Matthew Gregan, Art Haas, Greg Hudson, Alexis
-      Huxley, Jens B. Jorgensen, Tez Kamihira, David Kimdon, Mark
-      Benedetto King, Andreas J. Koenig, Nuutti Kotivuori, Matt Kraai,
-      Scott Lamb, Vincent Lefevre, Morten Ludvigsen, Paul Lussier,
-      Bruce A. Mah, Philip Martin, Feliciano Matias, Patrick Mayweg,
-      Gareth McCaughan, Jon Middleton, Tim Moloney, Mats Nilsson, Joe
-      Orton, Amy Lyn Pilato, Kevin Pilch-Bisson, Dmitriy Popkov,
-      Michael Price, Mark Proctor, Steffen Prohaska, Daniel Rall,
-      Tobias Ringstrom, Garrett Rooney, Joel Rosdahl, Christian Sauer,
-      Larry Shatzer, Russell Steicke, Sander Striker, Erik Sjoelund,
-      Johan Sundstroem, John Szakmeister, Mason Thomas, Eric
-      Wadsworth, Colin Watson, Alex Waugh, Chad Whitacre, Josef Wolf,
-      Blair Zajac, а также всё сообщество Subversion.</para>
 
     <!-- =============================================================== -->
     <sect2 id="svn.preface.acks.sussman">
-      <!-- @ENGLISH {{{
       <title>From Ben Collins-Sussman</title>
-      @ENGLISH }}} -->
-      <title>От Ben Collins-Sussman</title>
 
-      <!-- @ENGLISH {{{
       <para>Thanks to my wife Frances, who, for many months, got to
         hear, <quote>But honey, I'm still working on the book</quote>,
         rather than the usual, <quote>But honey, I'm still doing
         email.</quote>  I don't know where she gets all that patience!
         She's my perfect counterbalance.</para>
-      @ENGLISH }}} -->
-      <para>Благодарю мою жену Frances, которая много месяцев вместо
-        обычного <quote>Дорогая, я ещё пишу e-mail</quote> слышала
-        <quote>Дорогая, я ещё работаю над книгой</quote>. Я представить
-        не могу, откуда у неё столько терпения! Она &mdash; великолепный
-        противовес моему трудоголизму.</para>
 
-      <!-- @ENGLISH {{{
       <para>Thanks to my extended family for their sincere
         encouragement, despite having no actual interest in the
         subject.  (You know, the ones who say, <quote>Ooh, you're
         writing a book?</quote>, and then when you tell them it's a
         computer book, sort of glaze over.)</para>
-      @ENGLISH }}} -->
-      <para>Благодарю всю мою родню за их искреннюю поддержку, несмотря
-        на отсутствие у них настоящего интереса к моему занятию. (Ну, вы
-        знаете, они говорят <quote>О, ты пишешь книгу?</quote>, а когда
-        ты говоришь, что это &mdash; компьютерная книга, они сразу
-        теряют весь интерес).</para>
 
-      <!-- @ENGLISH {{{
       <para>Thanks to all my close friends, who make me a rich, rich man.
         Don't look at me that way&mdash;you know who you are.</para>
-      @ENGLISH }}} -->
-      <para>Благодарю всех моих близких друзей, сделавших меня очень
-        богатым человеком. Не смотрите на меня так, вы же знаете, кто
-        вы.</para>
 
     </sect2>
 
     <!-- =============================================================== -->
     <sect2 id="svn.preface.acks.fitz">
-      <!-- @ENGLISH {{{
       <title>From Brian W. Fitzpatrick</title>
-      @ENGLISH }}} -->
-      <title>От Brian W. Fitzpatrick</title>
 
-      <!-- @ENGLISH {{{
       <para>Huge thanks to my wife Marie for being incredibly
         understanding, supportive, and most of all, patient.  Thank
         you to my brother Eric who first introduced me to UNIX
-        programming way back when.  Thanks to my Mom and Grandmother
+        programming way back when. Thanks to my Mom and Grandmother
         for all their support, not to mention enduring a Christmas
         holiday where I came home and promptly buried my head in my
         laptop to work on the book.</para>
-      @ENGLISH }}} -->
-      <para>Огромное спасибо моей жене Marie за её невероятные
-        понимание, поддержку и, прежде всего, терпение. Спасибо моему
-        брату Eric, который познакомил меня с программированием под
-        UNIX. Огромная благодарность моим Маме и Бабушке за всю их
-        поддержку, а так же за то, что не вспоминают, как я на Рождество
-        пришёл домой и с головой залез в свой ноутбук и работал над
-        книгой.</para>
 
-      <!-- @ENGLISH {{{
       <para>To Mike and Ben: It was a pleasure working with you on the
         book.  Heck, it's a pleasure working with you at work!</para>
-      @ENGLISH }}} -->
-      <para>Mike и Ben: было очень приятно работать над книгой вместе
-        с вами. Heck, было приятно работать с тобой на работе!</para>
-      
-      <!-- @ENGLISH {{{
+
       <para>To everyone in the Subversion community and the Apache
         Software Foundation, thanks for having me.  Not a day goes by
         where I don't learn something from at least one of you.
       </para>
-      @ENGLISH }}} -->
-      <para>Всем членам сообщества Subversion и "Apache Software
-        Foundation" &mdash; спасибо за то, что был с вами. Не было дня,
-        чтоб я не научился чему-нибудь у кого-нибудь из вас.</para>
 
-      <!-- @ENGLISH {{{
       <para>Lastly, thanks to my Grandfather who always told me that
         <quote>freedom equals responsibility.</quote> I couldn't agree
         more.</para>
-      @ENGLISH }}} -->
-      <para>Наконец, спасибо моему дедушке, который всегда говорил
-        <quote>свобода равна ответственности</quote>. Я не могу не
-        согласиться с этим.</para>
 
     </sect2>
 
     <!-- =============================================================== -->
     <sect2 id="svn.preface.acks.cmpilato">
-      <!-- @ENGLISH {{{
       <title>From C. Michael Pilato</title>
-      @ENGLISH }}} -->
-      <title>От C. Michael Pilato</title>
 
-      <!-- @ENGLISH {{{
       <para>Special thanks to my wife, Amy, for her love and patient
         support, for putting up with late nights, and for even
         reviewing entire sections of this book&mdash;you always go the
@@ -1024,17 +937,7 @@
         you're old enough to read, I hope you're as proud of your
         Daddy as he is of you.  Mom and Dad (and the rest of the
         family), thanks for your constant support and enthusiasm.</para>
-      @ENGLISH }}} -->
-      <para>Отдельное спасибо моей жене, Amy, за её любовь, терпение,
-        поддержку, за понимание поздними ночами, за то, что читала
-        все разделы этой книги &mdash; ты всегда делала больше, чем
-        требовалось, и делала это с невероятным изяществом. Gavin, когда
-        ты дорастёшь до прочтения этой книги, я надеюсь, ты будешь
-        гордиться своим отцом также, как он сейчас гордится тобой. Мама
-        и папа (а также вся моя семья), спасибо вам за вашу постоянную
-        поддержку и энтузиазм.</para>
 
-      <!-- @ENGLISH {{{
       <para>Hats off to Shep Kendall, through whom the world of
         computers was first opened to me; Ben Collins-Sussman, my
         tour-guide through the open-source world; Karl Fogel&mdash;you
@@ -1043,22 +946,9 @@
         Fitzpatrick&mdash;for sharing this writing experience with me.
         To the many folks from whom I am constantly picking up new
         knowledge&mdash;keep dropping it!</para>
-      @ENGLISH }}} -->
-      <para>Снимаю шляпу перед Shep Kendall, который открыл для меня
-        мир компьютеров; перед Ben Collins-Sussman, моим проводником
-        по миру свободного программного обеспечения; перед Karl Fogel
-        &mdash; <emphasis>вы</emphasis> мой <filename>.emacs</filename>;
-        перед Greg Stein, за помощь в программировании; перед Brian
-        Fitzpatrick &mdash; за получение писательского опыта с тобой.
-        Многим людям, от которых я постоянно узнаю что-то новое &mdash;
-        будьте такими всегда!</para>
 
-      <!-- @ENGLISH {{{
       <para>Finally, to the One who perfectly demonstrates creative
         excellence&mdash;thank you.</para>
-      @ENGLISH }}} -->
-      <para>Наконец, Тому, кто великолепно продемострировал венец
-        творения &mdash; спасибо тебе.</para>
 
     </sect2>
 

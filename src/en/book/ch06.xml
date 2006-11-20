@@ -38,12 +38,11 @@
     
     <para>Apache is an extremely popular webserver; using the
       <command>mod_dav_svn</command> module, Apache can access a
-      repository and make it available to clients via the
-      WebDAV/DeltaV protocol, which is an extension of HTTP.  In the
-      other corner is <command>svnserve</command>: a small, standalone
-      server program that speaks a custom protocol with clients.
-      <xref linkend="svn.serverconfig.overview.tbl-1"/> presents a
-      comparison of the two servers.</para>
+      repository and make it available to clients via the WebDAV/DeltaV
+      protocol, which is an extension of HTTP.  In the other corner is
+      <command>svnserve</command>: a small, standalone server
+      program that speaks a custom protocol with clients.  Table 6-1
+      presents a comparison of the two servers.</para>
 
     <para>Note that Subversion, as an open-source project, does not
       officially endorse any server as <quote>primary</quote> or
@@ -117,9 +116,9 @@
             <entry>Web viewing</entry>
             
             <entry>limited built-in support, or via 3rd-party tools
-              such as ViewVC</entry>
+              such as ViewCVS</entry>
 
-            <entry>via 3rd-party tools such as ViewVC</entry>
+            <entry>via 3rd-party tools such as ViewCVS</entry>
           </row>
 
           <row>
@@ -216,9 +215,8 @@
       <para>Happily, the Subversion client has a remedy for this: a
         built-in system for caching authentication credentials on
         disk.  By default, whenever the command-line client
-        successfully responds to a server's authentication challenge,
-        it saves the credentials in the user's private runtime
-        configuration
+        successfully authenticates itself to a server, it saves the
+        credentials in the user's private runtime configuration
         area&mdash;in <filename>~/.subversion/auth/</filename> on
         Unix-like systems or
         <filename>%APPDATA%/Subversion/auth/</filename> on Windows.
@@ -228,8 +226,8 @@
         authentication realm.</para>  
 
       <para>When the client receives an authentication challenge, it
-        first looks for the appropriate credentials in the user's disk
-        cache; if not present, or if the cached credentials fail to
+        first looks for the appropriate credentials in the disk cache;
+        if not present, or if the cached credentials fail to
         authenticate, then the client simply prompts the user for the
         information.</para>
 
@@ -254,10 +252,10 @@
             password on disk.  Because the encryption key is managed
             by Windows and is tied to the user's own login
             credentials, only the user can decrypt the cached
-            password.  (Note: if the user's Windows account password
-            is reset by an administrator, all of the cached passwords
-            become undecipherable.  The Subversion client will behave
-            as if they don't exist, prompting for passwords when
+            password.  (Note: if the the user's Windows account
+            password is changed, all of the cached passwords become
+            undecipherable.  The Subversion client will behave as if
+            they don't exist, prompting for passwords when
             required.)</para>
         </listitem>
 
@@ -909,7 +907,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           form:</para>
 
         <screen>
-  ssh-dsa AAAABtce9euch&hellip; user@example.com
+  ssh-dsa AAAABtce9euch.... user@example.com
 </screen>
           
         <para>The first field describes the type of key, the second
@@ -919,7 +917,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
           field:</para>
 
         <screen>
-  command="program" ssh-dsa AAAABtce9euch&hellip; user@example.com
+  command="program" ssh-dsa AAAABtce9euch.... user@example.com
 </screen>
 
         <para>When the <literal>command</literal> field is set, the
@@ -983,7 +981,7 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
 
         <para>A final word of caution: giving a user access to the
           server via public-key in a shared account might still allow
-          other forms of SSH access, even if you've set
+          other forms of SSH access, even if you've set the
           the <literal>command</literal> value
           in <filename>authorized_keys</filename>.  For example, the
           user may still get shell access through SSH, or be able to
@@ -1016,8 +1014,9 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       network server that Subversion can leverage.  Via a custom
       module, <command>httpd</command> makes Subversion repositories
       available to clients via the WebDAV/DeltaV protocol, which is an
-      extension to HTTP 1.1 (see <ulink url="http://www.webdav.org/"/>
-      for more information).  This protocol takes the ubiquitous HTTP
+      extension to HTTP 1.1
+      (see <systemitem class="url">http://www.webdav.org/</systemitem>
+      for more information). This protocol takes the ubiquitous HTTP
       protocol that is the core of the World Wide Web, and adds
       writing&mdash;specifically, versioned
       writing&mdash;capabilities.  The result is a standardized,
@@ -1037,9 +1036,10 @@ joessh = $JOESSH /opt/alternate/ssh -p 29934
       of the use of these directives, describing them in full is
       outside the scope of this chapter.  The Apache team maintains
       excellent documentation, publicly available on their website at
-      <ulink url="http://httpd.apache.org"/>.  For example, a general
-      reference for the configuration directives is located at <ulink url="
-      http://httpd.apache.org/docs-2.0/mod/directives.html"/>.</para>
+      <systemitem class="url">http://httpd.apache.org</systemitem>.
+      For example, a general reference for the configuration
+      directives is located at <systemitem class="url">
+      http://httpd.apache.org/docs-2.0/mod/directives.html</systemitem>.</para>
     
     <para>Also, as you make changes to your Apache setup, it is likely
       that somewhere along the way a mistake will be made.  If you are
@@ -1299,7 +1299,7 @@ ServerName svn.example.com
 &lt;/Location&gt;
 </screen>
 
-      <para>&hellip;then your repository is <quote>anonymously</quote>
+      <para>...then your repository is <quote>anonymously</quote>
         accessible to the world.  Until you configure some
         authentication and authorization policies, the Subversion
         repositories you make available via the
@@ -1382,7 +1382,7 @@ $
           yet complete, and will not do anything useful.  It's merely
           telling Apache that whenever authorization is required,
           Apache should harvest a username and password from the
-          Subversion client.  What's missing here, however, are
+          Subversion client. What's missing here, however, are
           directives that tell Apache <emphasis>which</emphasis> sorts
           of client requests require authorization.  Wherever
           authorization is required, Apache will demand
@@ -1622,17 +1622,18 @@ ssl-client-cert-password = somepassword
 
         <para>Sometimes you don't need to run such a tight ship.  For
           example, Subversion's own source code repository at
-          <ulink url="http://svn.collab.net/repos/svn"/> allows anyone
-          in the world to perform read-only repository tasks (like
-          checking out working copies and browsing the repository with
-          a web browser), but restricts all write operations to
-          authenticated users.  To do this type of selective
-          restriction, you can use the <literal>Limit</literal> and
-          <literal>LimitExcept</literal> configuration directives.
-          Like the <literal>Location</literal> directive, these blocks
-          have starting and ending tags, and you would nest them
-          inside your <literal>&lt;Location&gt;</literal>
-          block.</para>
+          <systemitem
+          class="url">http://svn.collab.net/repos/svn</systemitem>
+          allows anyone in the world to perform read-only repository
+          tasks (like checking out working copies and browsing the
+          repository with a web browser), but restricts all write
+          operations to authenticated users.  To do this type of
+          selective restriction, you can use the
+          <literal>Limit</literal> and <literal>LimitExcept</literal>
+          configuration directives.  Like the
+          <literal>Location</literal> directive, these blocks have
+          starting and ending tags, and you would nest them inside
+          your <literal>&lt;Location&gt;</literal> block.</para>
   
         <para>The parameters present on the <literal>Limit</literal>
           and <literal>LimitExcept</literal> directives are HTTP
@@ -1669,8 +1670,8 @@ ssl-client-cert-password = somepassword
           information about Apache access control and the
           <literal>Require</literal> directive, take a look at the
           <literal>Security</literal> section of the Apache
-          documentation's tutorials collection at <ulink
-           url="http://httpd.apache.org/docs-2.0/misc/tutorials.html"/>.</para>
+          documentation's tutorials collection at <systemitem
+          class="url">http://httpd.apache.org/docs-2.0/misc/tutorials.html</systemitem>.</para>
               
 
       </sect3>
@@ -1951,7 +1952,7 @@ paint-developers = frank, sally, jane
 everyone = @calc-developers, @paint-developers
 </screen>
 
-        <para>&hellip;and that's pretty much all there is to it.</para>
+        <para>...and that's pretty much all there is to it.</para>
 
       </sect3>
 
@@ -2114,13 +2115,10 @@ everyone = @calc-developers, @paint-developers
             list</command> and <command>svn cat</command> commands.
             To browse old revisions with your web browser, however,
             you can use third-party software.  A good example of this
-            is ViewVC (<ulink url="http://viewvc.tigris.org/"/>).
-            ViewVC was originally written to display CVS repositories
-            through the web,
-            <footnote>
-              <para>Back then, it was called <quote>ViewCVS</quote>.</para>
-            </footnote>
-            and the latest bleeding-edge versions (at
+            is ViewCVS (<systemitem
+            class="url">http://viewcvs.sourceforge.net/</systemitem>).
+            ViewCVS was originally written to display CVS repositories
+            through the web, and the latest bleeding-edge versions (at
             the time of writing) are able to understand Subversion
             repositories as well.</para>
         </sidebar>
