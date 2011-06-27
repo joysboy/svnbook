@@ -1,0 +1,32 @@
+#summary Status of the 1.7 version of the book.
+
+= Version 1.7 Status =
+
+There are no known major reorganizations required to update svnbook to cover Subversion 1.7.  However, the replacement of the old working copy library with the new WC-NG in Subversion 1.7 could necessitate fairly substantial section rewrites.  C. Michael Pilato plans to take the following multi-step approach to the task:
+
+== Step 1: Read-thru ==
+
+Full read-thru of the book, cover-to-cover, updating each of the following chapters for accuracy:
+
+ * Preface
+ * Chapter 1. Fundamental Concepts
+ * Chapter 2. Basic Usage
+ * Chapter 3. Advanced Topics
+ * Chapter 4. Branching and Merging
+ * Chapter 5. Repository Administration
+ * Chapter 6. Server Configuration
+ * Chapter 7. Customizing Your Subversion Experience
+ * Chapter 8. Embedding Subversion
+ * Chapter 9. Subversion Complete Reference
+ * Chapter A. Subversion Quick-Start Guide
+ * Chapter B. Subversion for CVS Users
+ * Chapter C. WebDAV and Autoversioning
+ * Chapter D. Copyright
+
+== Step 2: Review Issues ==
+
+Review outstanding [http://code.google.com/p/svnbook/issues/list?q=label:Milestone-en-1.7 issues] marked for closure in this version.
+
+== Step 3: Update Index ==
+
+We've never had a real index in the open source version of the book, and it would be great to solve this problem.  This shouldn't be considered a showstopper, though.
