@@ -4,7 +4,9 @@
 
 There are no major reorganizations required to update svnbook to cover Subversion 1.6, so C. Michael Pilato plans to take the following multi-step approach to the task:
 
-== Step 1: read-thru of the book cover-to-cover, updating each chapter for accuracy ==
+== Step 1: Read-thru ==
+
+Full read-thru of the book, cover-to-cover, updating each of the following chapters for accuracy:
 
  * Preface
  * Chapter 1. Fundamental Concepts
@@ -21,6 +23,10 @@ There are no major reorganizations required to update svnbook to cover Subversio
  * Chapter C. WebDAV and Autoversioning
  * Chapter D. Copyright
 
-== Step 2: review outstanding issues marked for closure in this release ==
+== Step 2: Review Issues ==
 
-See [http://code.google.com/p/svnbook/issues/list?q=label:Milestone-en-1.6 en-1.6 issues].
+Review outstanding [http://code.google.com/p/svnbook/issues/list?q=label:Milestone-en-1.6 issues] marked for closure in this version.
+
+== Step 3: Update Index ==
+
+We've never had a real index in the open source version of the book, and it would be great to solve this problem.  This shouldn't be considered a showstopper, though.
