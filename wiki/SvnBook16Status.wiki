@@ -1,3 +1,26 @@
 #summary Status of the 1.6 version of the book.
 
 = Version 1.6 Status =
+
+There are no major reorganizations required to update svnbook to cover Subversion 1.6, so C. Michael Pilato plans to take the following multi-step approach to the task:
+
+== Step 1: read-thru of the book cover-to-cover, updating each chapter for accuracy ==
+
+ * Preface
+ * Chapter 1. Fundamental Concepts
+ * Chapter 2. Basic Usage
+ * Chapter 3. Advanced Topics
+ * Chapter 4. Branching and Merging
+ * Chapter 5. Repository Administration
+ * Chapter 6. Server Configuration
+ * Chapter 7. Customizing Your Subversion Experience
+ * Chapter 8. Embedding Subversion
+ * Chapter 9. Subversion Complete Reference
+ * Chapter A. Subversion Quick-Start Guide
+ * Chapter B. Subversion for CVS Users
+ * Chapter C. WebDAV and Autoversioning
+ * Chapter D. Copyright
+
+== Step 2: review outstanding issues marked for closure in this release ==
+
+See [http://code.google.com/p/svnbook/issues/list?q=label:Milestone-en-1.6 en-1.6 issues].
