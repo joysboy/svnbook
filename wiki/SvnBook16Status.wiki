@@ -9,7 +9,7 @@ There are no major reorganizations required to update svnbook to cover Subversio
 Full read-thru of the book, cover-to-cover, updating each of the following chapters for accuracy:
 
  * ~~Preface~~
- * Chapter 1. Fundamental Concepts
+ * ~~Chapter 1. Fundamental Concepts~~
  * Chapter 2. Basic Usage
  * Chapter 3. Advanced Topics
  * Chapter 4. Branching and Merging
