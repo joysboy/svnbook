@@ -20,7 +20,7 @@ Full read-thru of the book, cover-to-cover, updating each of the following chapt
  * ~~Chapter 1. Fundamental Concepts~~
  * ~~Chapter 2. Basic Usage~~
  * ~~Chapter 3. Advanced Topics~~
- * Chapter 4. Branching and Merging
+ * ~~Chapter 4. Branching and Merging~~
  * ~~Chapter 5. Repository Administration~~
  * ~~Chapter 6. Server Configuration~~
  * ~~Chapter 7. Customizing Your Subversion Experience~~
