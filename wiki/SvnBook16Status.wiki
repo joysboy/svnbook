@@ -25,7 +25,7 @@ Full read-thru of the book, cover-to-cover, updating each of the following chapt
  * ~~Chapter 6. Server Configuration~~
  * ~~Chapter 7. Customizing Your Subversion Experience~~
  * ~~Chapter 8. Embedding Subversion~~
- * Chapter 9. Subversion Complete Reference
+ * ~~Chapter 9. Subversion Complete Reference~~
  * ~~Chapter A. Subversion Quick-Start Guide~~
  * ~~Chapter B. Subversion for CVS Users~~
  * ~~Chapter C. WebDAV and Autoversioning~~
