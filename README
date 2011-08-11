@@ -1,0 +1,29 @@
+This is the source code repository for "the Subversion book", also
+known as "Version Control With Subversion".  This repository is
+organized like so:
+
+   trunk/
+
+      This is where the bleeding-edge English original book material
+      is developed, and includes the book's DocBook XML sources plus
+      the tooling required to tranform those sources into more easily
+      consumable formats (HTML, PDF, etc.)
+
+   branches/
+
+      Older versions of the English original book, plus various
+      translations of those versions into other languages, live here.
+      As with the trunk/ directory, each branch in this directory
+      contains both book source files and copies of the build tools.
+
+   wiki/
+
+      This is the versioned store for the Google Code Project Hosting
+      wiki tool used by this project at http://svnbook.googlecode.com/.
+
+   www/
+
+      Source material for the http://svnbook.red-bean.com/ (aka
+      svnbook.org) website is housed here, including scripts for
+      building and deploying the various versions of the book and its
+      translations found in the trunk/ and branches/ directories.
