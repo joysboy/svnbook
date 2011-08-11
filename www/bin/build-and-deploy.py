@@ -393,10 +393,10 @@ def main(conf_file, dry_run, verbose):
     cfg = ConfigParser.RawConfigParser()
     cfg.read(conf_file)
     build_sections = []
-    mail_from = get_option(cfg, 'general', 'report_sender')
     mail_to = get_option(cfg, 'general', 'report_target')
-    mail_from = get_option(cfg, 'general', 'report_sender',
-                           'SvnBook Build Daemon')
+    mail_from = get_option(cfg, 'general', 'report_sender')
+    mail_from_name = get_option(cfg, 'general', 'report_sender',
+                                'SvnBook Build Daemon')
     for section in cfg.sections():
         if section == 'general':
             continue
