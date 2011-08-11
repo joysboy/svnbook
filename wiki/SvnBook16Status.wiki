@@ -30,7 +30,3 @@ Full read-thru of the book, cover-to-cover, updating each of the following chapt
  * ~~Chapter B. Subversion for CVS Users~~
  * ~~Chapter C. WebDAV and Autoversioning~~
  * ~~Chapter D. Copyright~~
-
-== Step 4: Update Index ==
-
-We've never had a real index in the open source version of the book, and it would be great to solve this problem.  This shouldn't be considered a showstopper, though.
