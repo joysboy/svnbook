@@ -6,7 +6,7 @@ There are no known major reorganizations required to update svnbook to cover Sub
 
 == Step 1: Review Release Notes ==
 
-The Subversion project's [http://subversion.apache.org/docs/release-notes/1.7.html release notes] are generally pretty good at pointing out subtle (and major) behavior changes.  Check these for stuff missed elsewhere, and file appropriately milestones issues for changes that need to be made.
+~~The Subversion project's [http://subversion.apache.org/docs/release-notes/1.7.html release notes] are generally pretty good at pointing out subtle (and major) behavior changes.  Check these for stuff missed elsewhere, and file appropriately milestones issues for changes that need to be made.~~
 
 == Step 2: Review Issues ==
 
