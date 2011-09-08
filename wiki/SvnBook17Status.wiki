@@ -16,9 +16,9 @@ Review outstanding [http://code.google.com/p/svnbook/issues/list?q=label:Milesto
 
 Full read-thru of the book, cover-to-cover, updating each of the following chapters for accuracy and coherancy:
 
- * Preface
- * Chapter 1. Fundamental Concepts
- * Chapter 2. Basic Usage
+ * ~~Preface~~
+ * ~~Chapter 1. Fundamental Concepts~~
+ * ~~Chapter 2. Basic Usage~~
  * Chapter 3. Advanced Topics
  * Chapter 4. Branching and Merging
  * Chapter 5. Repository Administration
