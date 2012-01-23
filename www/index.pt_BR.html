@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-BR">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Controle de Versão com Subversion</title>
@@ -16,7 +16,7 @@ google_ad_client = "pub-0505104349866057";
 google_ad_width = 120;
 google_ad_height = 600;
 google_ad_format = "120x600_as";
-google_ad_type = "text";
+google_ad_type = "text_image";
 google_ad_channel ="";
 //--></script>
 <script type="text/javascript"
@@ -25,10 +25,13 @@ google_ad_channel ="";
 
 <p><a href="http://www.onShore.com/"><img 
       src="./images/onShore.jpg"
-      alt="Hosted by onShore" /></a></p>
+      alt="Hospedado por onShore" /></a></p>
 <p><a href="/buy/"><img 
       src="./images/gngrey120x60.gif" 
-      alt="Compre da Amazon o livro agora!" /></a></p>
+      alt="Compre este livro agora na Amazon!" /></a></p>
+<p><a href="http://safari.oreilly.com/9780596510336"><img 
+      src="./images/safari-logo.png" 
+      alt="Leia este livro usando o Safari Online Books" /></a></p>
 <p><a href="http://creativecommons.org/licenses/by/2.0/"><img 
       src="./images/somerights20.png"
       alt="Alguns direitos reservados" /></a></p>
@@ -39,134 +42,152 @@ google_ad_channel ="";
 <td id="content">
 
 <h1 class="bar">&nbsp;</h1>
-<h1 class="tagline">Controle de Versão Open Source da Próxima Geração</h1>
+<h1 class="tagline">O Controle de Versão Open Source da Próxima Geração</h1>
 <h1 class="title1">Controle de Versão com</h1>
 <h1 class="title2">Subversion</h1>
 
-<!-- INÍCIO DO CONTEÚDO -->
+<!-- CONTENT STARTS -->
 
 <h2>Introdução</h2>
 
-<p>Esta é a página online do <span style="text-decoration: underline">Controle
-   de Versão com Subversion</span>, um
-   livro <a href="http://svnbook.red-bean.com/en/1.1/ape.html">gratuito</a>
-   sobre <a href="http://subversion.tigris.org/">Subversion</a>, um novo sistema
-   de controle de versão projetado para suplantar o CVS. Como você já pode ter
-   adivinhado a partir do layout desta página, este livro é publicado pela
-   <a href="http://www.oreilly.com/catalog/0596004486/">O'Reilly Media</a>.</p>
+<p>Esta é a página online do <span class="underline">Controle de Versão com Subversion</span>,
+   um livro <a href="http://svnbook.red-bean.com/en/1.7/svn.copyright.html"
+   >gratuito</a> sobre o ubíquo sistema de controle de versão
+   <a href="http://subversion.apache.org/" >Apache&trade;
+   Subversion&reg;</a>, escrito por alguns dos próprios desenvolvedores do Subversion.</p>
 
-<p>Aqui é o lugar para
-   obter as versões HTML e PDF do livro (embora você pode certamente
-   <a href="/buy/">comprar</a> uma cópia se desejar). Nós faremos o melhor
-   possível para manter este site atualizado. À medida que o desenvolvimento do
-   Subversion continua, o produto continuará crescendo em funcionalidades, e nós
-   desejamos continuar documentando essas mudanças.</p>
-
-<p><strong>NOT&Iacute;CIAS!</strong>  A O'Reilly assinou um contrato com Ben,
-   Fitz, e Mike para a produ&ccedil;&atilde;o do <span style="text-decoration:
-   underline">Version Control with Subversion, Second Edition</span>.
-   Acompanhe aqui os detalhes &agrave; medida que eles s&atilde;o disponibilizados
-   por n&oacute;s.</p>
+<p>Como você pode deduzir pelo leiaute desta página, é com muita satisfação
+   que temos algumas versões deste livro <a href="http://www.oreilly.com/catalog/0596004486/"
+   >publicadas</a> pela O'Reilly Media.  Certamente que você pode
+   <a href="/buy/">comprar</a> uma cópia tradicional impressa do livro 
+   se você quiser, mas você sempre vai encontrar as versões mais recentes
+   aqui neste site, disponíveis tanto nos formatos HTML e PDF.</p>
 
 <h2>Versões Online do Livro</h2>
 
-<p>As seguintes versões do livro estão disponíveis online:</p>
+<p>As versões deste livro usam um sistema de numeração desenvolvido de
+   forma a corresponder àquele utilizado pelo próprio software Subversion&mdash;a versão 1.7 do
+   <span class="underline">Controle de Versão com Subversion</span>
+   aborda o Subversion 1.7, por exemplo.  Aqui estão as últimas versões
+   do livro que estão disponíveis online:</p>
 
 <div id="versionlist" class="versionlist">
 
-<h3>Para Subversion 1.4 em ingl&ecirc;s</h3>
+<h3>Para o Subversion 1.7 em inglês</h3>
 
 <ul>
-<li>Veja a <a href="./en/1.4/svn-book.html">edi&ccedil;&atilde;o simples em HTML</a> (em uma &uacute;nica p&aacute;gina)
-    do livro (1.2MB).</li>
-<li>Veja a <a href="./en/1.4/index.html">edi&ccedil;&atilde;o em m&uacute;ltiplas p&aacute;ginas HTML</a>
-    do livro.</li>
-<li>Veja a <a href="./en/1.4/svn-book.pdf">edi&ccedil;&atilde;o PDF</a> do livro
-    (1.4MB).</li>
-<li>Baixe a <a href="./en/1.4/svn-book-html.tar.bz2"
-   >edi&ccedil;&atilde;o simples em HTML</a> do livro em um arquivo <tt>.tar.bz2</tt>
-    (~364KB).</li>
-<li>Baixe a <a href="./en/1.4/svn-book-html-chunk.tar.bz2"
-   >edi&ccedil;&atilde;o em m&uacute;ltiplas p&aacute;ginas HTML</a> do livro em um arquivo <tt>.tar.bz2</tt>
-    (~380KB).</li>
-<li>Veja o <a
-    href="http://code.google.com/p/svnbook/source/browse/tags/en-1.4-final/src/en/book/">c&oacute;digo-fonte
-    DocBook</a> do livro.</li>
+<li>Veja a <a href="./en/1.7/index.html">edição HTML em múltiplas páginas</a>
+    do livro.
+    [<a href="./en/1.7/svn-book-html-chunk.tar.bz2">tar.bz</a>]</li>
+<li>Veja a <a href="./en/1.7/svn-book.html">edição HTML em página única</a>
+    do livro.
+    [<a href="./en/1.7/svn-book-html.tar.bz2">tar.bz</a>]</li>
+<li>Veja a <a href="./en/1.7/svn-book.pdf">edição em PDF</a> do livro.</li>
+<li>Veja os 
+    <a href="http://code.google.com/p/svnbook/source/browse/branches/1.7/en/book/"
+    >fontes em formato XML DocBook</a> do livro.</li>
+</ul>
+
+<h3><i>Nightly Build</i> (Compilações diárias do livro, para o Subversion 1.8 en inglês)</h3>
+
+<p>Por favor, leve em consideração que estas versões ainda estão não estão
+   concluídas: inclusive, algumas novas seções podem surgir e outras podem ser
+   excluídas.  Assim se, por exemplo, você marcar como favorito em uma seção
+   específica, há o risco de que estes links fiquem invalidados ao longo do
+   desenvolvimento do livro.  Se você precisar se referir a uma seção do livro que
+   provavelmente deva permanecer estável por anos, prefira linkar para uma das
+   edições completas acima.</p>
+
+<ul>
+<li>Veja a <a href="./nightly/en/index.html">edição HTML em múltiplas páginas</a>
+    do livro.
+    [<a href="./nightly/en/svn-book-html-chunk.tar.bz2">tar.bz</a>]</li>
+<li>Veja os <a
+    href="http://code.google.com/p/svnbook/source/browse/trunk/en/book/">fontes
+    em formato XML DocBook</a> do livro.</li>
 </ul>
 
 </div>
 
-<p>Voc&ecirc; tamb&eacute;m pode encontrar antigas vers&otilde;es do livro (que possivelmente
-   n&atilde;o s&atilde;o mais de interesse para muitos usu&aacute;rios) <a href="old-versions.html" 
+<p>Você também pode encontrar versões mais antigas do livro (que imaginamos não
+   serem mais tão interessantes à maioria dos usuários) <a href="old-versions.html" 
    >aqui</a>.</p>
 
-<h2>Feedback/Contribuições</h2>
+<h2>Comentários/Contribuições</h2>
 
-<p>Para feedback sobre o livro ou sobre este website, contate
+<p>Para enviar seus comentários e <i>feedback</i> sobre o livro ou sobre este site, mande mensagem (em inglês) para
    <tt>&#115;&#118;&#110;&#98;&#111;&#111;&#107;&#45;&#100;&#101;&#118;&#64;&#114;&#101;&#100;&#45;&#98;&#101;&#97;&#110;&#46;&#99;&#111;&#109;</tt>
    [<a
-   href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#119;&#119;&#119;&#46;&#114;&#101;&#100;&#45;&#98;&#101;&#97;&#110;&#46;&#99;&#111;&#109;&#47;&#109;&#97;&#105;&#108;&#109;&#97;&#110;&#47;&#108;&#105;&#115;&#116;&#105;&#110;&#102;&#111;&#47;&#115;&#118;&#110;&#98;&#111;&#111;&#107;&#45;&#100;&#101;&#118;">info da lista</a>].
-   Se você achou erros neste livro (na cópia impressa da O'Reilly's ou
-   na versão eletrônica), por favor proceda da seguinte maneira:</p>
+   href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#119;&#119;&#119;&#46;&#114;&#101;&#100;&#45;&#98;&#101;&#97;&#110;&#46;&#99;&#111;&#109;&#47;&#109;&#97;&#105;&#108;&#109;&#97;&#110;&#47;&#108;&#105;&#115;&#116;&#105;&#110;&#102;&#111;&#47;&#115;&#118;&#110;&#98;&#111;&#111;&#107;&#45;&#100;&#101;&#118;">informação sobre a lista</a>].
+   Caso você tenha encontrado erros no livro (quer seja na versão impressa da O'Reilly ou não), por gentileza, proceda da seguinte maneira:</p>
 
 <ol>
-<li>Verifique nosso <a
-    href="http://svnbook.red-bean.com/trac/query?status=new&amp;status=assigned&amp;status=reopened"
-    >issue tracker</a> para ver se alguém já relatou o
-    mesmo problema. Nesse caso, não há nada mais a fazer, a não ser que você queira
-    contribuir com um patch que corrige o problema (veja abaixo).</li>
-<li>Verifique se o problema ainda existe nos fontes XML. Você pode
-    pegá-los usando o próprio Subversion, fazendo check out do trunk do nosso
-    repositório Subversion em <tt>http://svnbook.googlecode.com/svn/trunk/</tt>.
-    Se o problema está presente na última versão dos fontes, por favor
-    reporte o problema à lista de discussão acima.</li>
-<li>Se o problema está na versão impressa do livro, cheque a <a
-    href="http://www.oreilly.com/catalog/0596004486/errata/">página de
-    errata</a> do livro da O'Reilly, e reporte o erro lá se ainda não
-    foi reportado.</li>
+<li>Confira nossa <a
+    href="http://code.google.com/p/svnbook/issues/list"
+    >relação de tíquetes</a> para ver se alguém já reportou o mesmo problema anteriormente.
+    Se este for o caso, não é necessário fazer mais nada, a menos que você deseje contribuir
+    sugerindo uma alteração que corrija o problema (veja abaixo).</li>
+<li>Verifique os fontes XML para conferir se o problema ainda existe.  Você pode
+    fazer isso usando o próprio Subversion, obtendo uma cópia local do tronco de nosso
+    repositório Subversion em <a href="http://svnbook.googlecode.com/svn/trunk/" 
+    >http://svnbook.googlecode.com/svn/trunk/</a>.
+    Se você vir que o problema também está presente na última versão dos fontes, por favor 
+    informe-o na lista de discussão acima ou registre um
+    a <a href="http://code.google.com/p/svnbook/issues/entry">novo tíquete</a>.</li>
+<li>Se o problema está na edição impressa do livro, verifique primeiro a <a
+    href="http://www.oreilly.com/catalog/9780596510336/errata/">página de
+    errada</a> da O'Reilly do livro e reporte o erro caso veja que ele ainda não tenha sido
+    reportado.</li>
 </ol>
 
-<p>Relatórios de erros no livro são sempre bem vindos. Relatórios de
-   erros no livro que são acompanhados de uma sugestão para correção do
-   problema são ainda melhores. Para correções técnicas (ortografia, gramática,
-   tipografia, etc.), apenas anexe ao seu e-mail que relata o problema um patch
-   dos fontes XML (e inclua a palavra <tt>[PATCH]</tt> no
-   campo assunto). Para coisas subjetivas sobre a tonalidade ou
-   compreensibilidade de uma passagem, é melhor abrir um tópico na
-   lista de discussão.</p>
+<p>Reportes de possíveis erros no livro são sempre bem-vindas.  Reportes
+   de erros no livro que já estejam acompanhados de sugestões de como corrigir
+   o problema são melhores ainda.  Para correções técnicas (ortografia, gramática,
+   etc.), apenas inclua em <i>patch</i> dos fontes XML com a alteração sugerida
+   em seu e-mail informando o erro (e inclua a palavra <tt>[PATCH]</tt> no
+   título da mensagem).  Para questões mais subjetivas sobre o teor ou a clareza de
+   algum trecho do livro, é melhor a fazer é meramente iniciar a discussão sobre este
+   tópico na lista.</p>
 
 <h2>Traduções</h2>
 
-<p>Este livro tem sido (ou está sendo) traduzido para outros idiomas.
-   Use o menu de navegação que está abaixo para selecionar um idioma
-   diferente. Em cada página traduzida, você pode conseguir
-   instruções sobre como obter o livro traduzido (ou um snapshot
-   do trabalho em andamento se ainda não foi concluído). Note que
-   a versão em Inglês é a principal da qual todas as traduções
-   derivam, e se você tem qualquer comentário sobre a tradução,
-   você deve contatar os autores daquela tradução.</p>
+<p>Este livro foi (ou está sendo) traduzido para outros idiomas.  Utilize o
+   menu de navegação no rodapé desta página para selecionar um idioma
+   diferente.  Para cada página traduzida você terá instruções de como obter
+   o livro traduzido (ou ao menos uma versão mais atual do trabalho em
+   andamento, a tradução ainda não estiver concluída).  Leve em conta que a
+   versão em original deste livro é em inglês e que as demais traduções são
+   todas derivadas dela.  Então, se você tiver quaisquer comentários sobre uma
+   versão traduzida do livro, entre em contato diretamente com os autores da
+   tradução.</p>
 
 <!-- NON-ENGLISH TRANSLATION-SPECIFIC STUFF BEGINS -->
 
-<p>O trabalho de tradu&ccedil;&atilde;o do livro para Português Brasileiro est&aacute; em andamento.
-   Recentemente, o projeto foi movido para o Google Code, e voc&ecirc; pode acess&aacute;-lo a partir
-   <a href="http://code.google.com/p/svnbook-pt-br/">deste link</a>. Se você deseja participar do
-   trabalho de tradu&ccedil;&atilde;o, inscreva-se na lista de discuss&atilde;o em
-   <tt>&#115;&#118;&#110;&#45;&#112;&#116;&#95;&#98;&#114;&#64;&#114;&#101;&#100;&#45;&#98;&#101;&#97;&#110;&#46;&#99;&#111;&#109;</tt>
-   [<a href="&#104;&#116;&#116;&#112;&#58;&#47;&#47;&#119;&#119;&#119;&#46;&#114;&#101;&#100;&#45;&#98;&#101;&#97;&#110;&#46;&#99;&#111;&#109;&#47;&#109;&#97;&#105;&#108;&#109;&#97;&#110;&#47;&#108;&#105;&#115;&#116;&#105;&#110;&#102;&#111;&#47;&#115;&#118;&#110;&#45;&#112;&#116;&#95;&#66;&#82;">info da lista</a>]
-   e fique sintonizado nas novidades.</p>
+<p>A versão em Português do Brasil do livro "Controle de Versão com Subversion" foi <a
+   href="http://br-linux.org/2008/livro-controle-de-versao-com-subversion-disponivel-em-portugues-do-brasil/">disponibilizada no final de 2008</a>
+   e aborda a versão 1.4 do livro.  Eventuais ajustes e correções nesta versão são feitas
+   sob demanda.  Os fontes bem como os arquivos do livro em formato para download
+   estão disponíveis na <a href="http://code.google.com/p/svnbook-pt-br/">página
+   do projeto no Google Code</a>.</p>
+
+<p>Gostaríamos de manter a versão em Português do Brasil tão atualizada quanto a
+   original.  No entanto, no momento não há voluntários suficientes para contribuir com
+   este trabalho.  Assim, se você gosta de ou já usou o Subversion ou mesmo se gostaria
+   de exercitar sua fluência em inglês e ter a experiência de participar de um projeto
+   colaborativo, <a href="http://www.red-bean.com/mailman/listinfo/svn-pt_BR">cadastre-se
+   na lista de discussão do projeto</a> e entre em contato conosco!</p>
 
 <!-- NON-ENGLISH TRANSLATION-SPECIFIC STUFF ENDS -->
 
-<h2>São Tartarugas?</h2>
+<h2>São tartarugas?</h2>
 
-<p>Sim, certamente são tartarugas. É o animal escolhido pela
-   editora para a capa do nosso livro. E antes que você pergunte, "Por que?"
-   &mdash; nós realmente não sabemos. É legal, e nossas esposas estão satisfeitas
-   porque pelo menos não escolheram alguma coisa "nojenta" para representar o
+<p>Sim, de fato são tartarugas.  Foi o animal escolhido pela editora para a
+   capa do nosso livro.  E antes que você pergunte, "Por quê?" &mdash; nós
+   realmente não sabemos.  Mas ficou bem legal, e nossas esposas agradecem
+   por não terem escolhido algum bicho mais "nojento" para representar o
    Subversion.</p>
 
-<!-- FIM DO CONTEÚDO -->
+<!-- CONTENT ENDS -->
 
 <h1 class="authorlist"><a href="http://www.red-bean.com/sussman/">Ben
    Collins-Sussman</a>,<br /><a
@@ -176,9 +197,10 @@ google_ad_channel ="";
 
 <hr />
 
-<p>Esta página está disponível nos seguintes idiomas:<br />
+<p>Esta página também está disponívei nos seguintes idiomas:<br />
 
-<!-- TRANSLATORS: titles here are in your native language; link text
+<!-- For ease of maintenance, keep these sorted by language code.
+     TRANSLATORS: titles here are in your native language; link text
      is in the language of the linked page. -->
 
    <a href="index.de.html" title="Alemão" 
@@ -206,5 +228,11 @@ google_ad_channel ="";
 </tr>
 </table>
 
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-557726-1";
+urchinTracker();
+</script>
 </body>
 </html>
