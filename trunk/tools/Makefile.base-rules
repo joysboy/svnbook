@@ -73,13 +73,23 @@ $(PS_TARGET): $(FO_TARGET) $(IMAGES)
 	$(TOOLS_DIR)/bin/run-fop.sh -fo $(FO_TARGET) -ps $(PS_TARGET)
 
 # Requires at least docbook-xsl-1.74
-epub: $(UNIFIED_XML_TARGET) $(EPUB_TARGET)
-$(EPUB_TARGET): $(ALL_SOURCE) 
+epub: $(EPUB_TARGET)
+$(EPUB_TARGET): $(UNIFIED_XML_TARGET) $(ALL_SOURCE) 
 	$(ENSURE_XSL)
 	if [ -x /usr/bin/dbtoepub ] ; then \
-	  /usr/bin/dbtoepub -v -o $(EPUB_TARGET) $(UNIFIED_XML_TARGET) ;\
+	  /usr/bin/dbtoepub -v -o $(EPUB_TARGET) $(UNIFIED_XML_TARGET) ; \
 	else \
-	  $(TOOLS_DIR)/xsl/epub/bin/dbtoepub -v -o $(EPUB_TARGET)$(UNIFIED_XML_TARGET) ; \
+	  $(TOOLS_DIR)/xsl/epub/bin/dbtoepub -v -o $(EPUB_TARGET) $(UNIFIED_XML_TARGET) ; \
+	fi
+
+mobi: $(MOBI_TARGET)
+$(MOBI_TARGET): $(EPUB_TARGET)
+	if [ -x /usr/bin/ebook-convert ] ; then \
+	  /usr/bin/ebook-convert $(EPUB_TARGET) $(MOBI_TARGET) \
+            --dont-justify --cover book/images/ebook-cover.jpg -v ; \
+	else \
+	  $(TOOLS_DIR)/xsl/epub/bin/ebook-convert $(EPUB_TARGET) $(MOBI_TARGET) \
+            --dont-justify --cover book/images/ebook-cover.jpg -v ; \
 	fi
 
 $(UNIFIED_XML_TARGET): version
@@ -117,7 +127,7 @@ install-ps: $(PS_TARGET) $(INSTALL_SUBDIR)
 clean:
 	rm -f $(VERSION_SOURCE) $(HTML_TARGET) $(UNIFIED_XML_TARGET)
 	rm -f $(HTML_ARCH_TARGET) $(HTML_CHUNK_ARCH_TARGET)
-	rm -f $(FO_TARGET) $(PDF_TARGET) $(PS_TARGET) $(EPUB_TARGET)
+	rm -f $(FO_TARGET) $(PDF_TARGET) $(PS_TARGET) $(EPUB_TARGET) $(MOBI_TARGET)
 	rm -rf $(HTML_CHUNK_DIR)
 
 # Utility targets
