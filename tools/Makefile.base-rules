@@ -83,7 +83,7 @@ $(EPUB_TARGET): $(ALL_SOURCE)
 	fi
 
 $(UNIFIED_XML_TARGET): version
-	xmllint --nonet --noent --xinclude --postvalid --output $(UNIFIED_XML_TARGET) book/book.xml
+	$(XMLLINT) --nonet --noent --xinclude --postvalid --output $(UNIFIED_XML_TARGET) book/book.xml
 
 # Install targets
 $(INSTALL_SUBDIR):
