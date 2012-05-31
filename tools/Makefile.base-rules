@@ -77,11 +77,10 @@ epub: $(UNIFIED_XML_TARGET) $(EPUB_TARGET)
 $(EPUB_TARGET): $(ALL_SOURCE) 
 	$(ENSURE_XSL)
 	if [ -x /usr/bin/dbtoepub ] ; then \
-	  /usr/bin/dbtoepub -c book/styles.css -v $(UNIFIED_XML_TARGET) ;\
+	  /usr/bin/dbtoepub -v -o $(EPUB_TARGET) $(UNIFIED_XML_TARGET) ;\
 	else \
-	  $(TOOLS_DIR)/xsl/epub/bin/dbtoepub -c book/styles.css -v $(UNIFIED_XML_TARGET) ; \
+	  $(TOOLS_DIR)/xsl/epub/bin/dbtoepub -v -o $(EPUB_TARGET)$(UNIFIED_XML_TARGET) ; \
 	fi
-	mv svn-book.epub $(EPUB_TARGET)
 
 $(UNIFIED_XML_TARGET): version
 	xmllint --nonet --noent --xinclude --postvalid --output $(UNIFIED_XML_TARGET) book/book.xml
