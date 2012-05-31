@@ -54,9 +54,10 @@ PDF_TARGET = $(DIR)/$(OUTNAME).pdf
 PS_TARGET = $(DIR)/$(OUTNAME).ps
 FO_TARGET = $(DIR)/$(OUTNAME).fo
 EPUB_TARGET = $(DIR)/$(OUTNAME).epub
+UNIFIED_XML_TARGET = $(DIR)/$(OUTNAME).xml
 XML_SOURCE = $(DIR)/$(NAME).xml
 VERSION_SOURCE = $(DIR)/version.xml
-ALL_SOURCE = $(filter-out $(DIR)/version.xml $(DIR)/svn-book.xml, $(wildcard $(DIR)/*.xml))
+ALL_SOURCE = $(filter-out $(DIR)/version.xml $(UNIFIED_XML_TARGET), $(wildcard $(DIR)/*.xml))
 STYLESHEET = $(DIR)/styles.css
 INSTALL_SUBDIR = $(INSTALL_DIR)/$(NAME)
 
