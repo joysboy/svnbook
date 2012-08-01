@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2004-2007
+ * Copyright (c) 2004-2012
  * Ben Collins-Sussman, Brian W. Fitzpatrick, C. Michael Pilato.  
  * 
  * This work is licensed under the Creative Commons Attribution License.
@@ -79,6 +79,33 @@ img
 .status-bad, .status-medium, .status-good
 {
 	text-align: center;
+}
+
+#main
+{
+    width: 700px;
+    position: absolute;
+    top: 0px;
+    left: 130px;
+}
+
+#rightcolumn
+{
+    width: 200px;
+    position: absolute;
+    top: 0px;
+    left: 835px;
+}
+
+#rightcolumn p
+{
+    margin: 0.25em 0;
+    font-size: 0.8em;
+}
+
+#googlesearch 
+{
+    margin: 1em 0;
 }
 
 #pagetable

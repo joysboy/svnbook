@@ -22,7 +22,22 @@ google_ad_channel ="";
 <script type="text/javascript"
   src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 </script>
+</div> <!-- #leftcolumn -->
 
+<div id="rightcolumn">
+
+<form id="googlesearch" method="get" action="http://www.google.com/search">
+<div style="width: 100px; display: inline;">
+<input value="svnbook.red-bean.com" name="sitesearch" type="hidden" />
+<input type="text" name="q" style="width: 140px; color: gray;"
+       value="Search the site..."
+       onclick="if(this.value == 'Search the site...') { this.value = '';
+                this.style.color = 'black'; }" />
+<input type="submit" value="Go" />
+<p>Powered by Google.</p>
+</div>
+</form>
+<hr/>
 <p><a href="http://www.onShore.com/"><img 
       src="./images/onShore.jpg"
       alt="Hosted by onShore" /></a></p>
@@ -35,11 +50,10 @@ google_ad_channel ="";
 <p><a href="http://creativecommons.org/licenses/by/2.0/"><img 
       src="./images/somerights20.png"
       alt="Some Rights Reserved" /></a></p>
-</div>
+</div> <!-- #rightcolumn -->
 
-<table id="pagetable">
-<tr>
-<td id="content">
+<div id="main">
+<div id="content">
 
 <h1 class="bar">&nbsp;</h1>
 <h1 class="tagline">The Standard in Open Source Version Control</h1>
@@ -214,9 +228,8 @@ google_ad_channel ="";
       hreflang="zh" lang="zh" rel="alternate">&#20013;&#25991;</a>
 </p>
 
-</td>
-</tr>
-</table>
+</div> <!-- #content -->
+</div> <!-- #main -->
 
 <script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
 </script>
