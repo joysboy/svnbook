@@ -26,7 +26,7 @@ Full read-thru of the book, cover-to-cover, updating each of the following chapt
  * Chapter 7. Customizing Your Subversion Experience
  * Chapter 8. Embedding Subversion
  * Chapter 9. Subversion Complete Reference
- * Chapter A. Subversion Quick-Start Guide
- * Chapter B. Subversion for CVS Users
- * Chapter C. WebDAV and Autoversioning
- * Chapter D. Copyright
+ * Appendix A. Subversion Quick-Start Guide
+ * Appendix B. Subversion for CVS Users
+ * Appendix C. WebDAV and Autoversioning
+ * ~~Appendix D. Copyright~~
