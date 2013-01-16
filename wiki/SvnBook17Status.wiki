@@ -10,7 +10,7 @@ There are no known major reorganizations required to update svnbook to cover Sub
 
 == Step 2: Review Issues ==
 
-Review outstanding [http://code.google.com/p/svnbook/issues/list?q=label:Milestone-en-1.7 issues] marked for closure in this version.
+~~Review outstanding [http://code.google.com/p/svnbook/issues/list?q=label:Milestone-en-1.7 issues] marked for closure in this version.~~
 
 == Step 3: Read-thru ==
 
