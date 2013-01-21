@@ -93,7 +93,7 @@ $(MOBI_TARGET): $(EPUB_TARGET)
 	fi
 
 $(UNIFIED_XML_TARGET): version
-	$(XMLLINT) --nonet --noent --xinclude --postvalid --output $(UNIFIED_XML_TARGET) book/book.xml
+	$(XMLLINT) --noent --xinclude --postvalid --output $(UNIFIED_XML_TARGET) book/book.xml
 
 # Install targets
 $(INSTALL_SUBDIR):
@@ -132,4 +132,4 @@ clean:
 
 # Utility targets
 valid: $(VERSION_SOURCE)
-	$(XMLLINT) --noout --nonet --valid $(XML_SOURCE)
+	$(XMLLINT) --noout --valid $(XML_SOURCE)
