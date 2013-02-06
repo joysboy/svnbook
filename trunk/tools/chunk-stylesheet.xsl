@@ -18,21 +18,19 @@
   <xsl:param name="chunk.first.sections">1</xsl:param>
   <xsl:param name="chunk.quietly" select="1"></xsl:param>
 
-  <!-- Override the TOC generation settings in base-stylesheet.xsl, -->
-  <!-- because for chunked HTML output, we want a few more TOCs.    -->
-  <!-- ### FIXME: This override doesn't seem to work!               -->
+  <!-- TOC generation settings -->
   <xsl:param name="generate.toc">
 appendix  toc,title
 article   nop
 book      toc,title,figure,table,example,equation
-chapter   toc
-part      title
+chapter   toc,title
+part      toc,title
 preface   toc,title
 qandadiv  nop
 qandaset  nop
 reference toc,title
-sect1     toc
-sect2     toc
+sect1     nop
+sect2     nop
 sect3     nop
 sect4     nop
 sect5     nop
