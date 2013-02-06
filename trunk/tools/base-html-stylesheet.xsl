@@ -17,6 +17,27 @@
   <xsl:param name="callout.graphics" select="1" />
   <xsl:param name="callout.graphics.extension">.png</xsl:param>
 
+  <!-- Turn off most of the TOC generation.  (For chunked HTML output, -->
+  <!-- we re-enabled some of these in chunk-stylesheet.xsl.)           -->
+  <xsl:param name="generate.toc">
+appendix  nop
+article   nop
+book      toc,title,figure,table,example,equation
+chapter   nop
+part      nop
+preface   nop
+qandadiv  nop
+qandaset  nop
+reference nop
+sect1     nop
+sect2     nop
+sect3     nop
+sect4     nop
+sect5     nop
+section   nop
+set       nop
+  </xsl:param>
+
   <xsl:template match="sect1" mode="toc">
     <xsl:param name="toc-context" select="."/>
     <xsl:call-template name="subtoc">
