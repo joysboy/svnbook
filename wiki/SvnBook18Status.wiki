@@ -25,7 +25,16 @@ Full read-thru of the book, cover-to-cover, updating each of the following chapt
  * Chapter 6. Server Configuration
  * Chapter 7. Customizing Your Subversion Experience
  * Chapter 8. Embedding Subversion
- * Chapter 9. Subversion Complete Reference
+ * Reference I. svn
+ * Reference II. svnadmin
+ * Reference III. svnlook
+ * Reference IV. svnserve
+ * Reference V. svnversion
+ * Reference VI. svnsync
+ * Reference VII. svnrdump
+ * Reference VIII. svndumpfilter
+ * Reference IX. svnmucc
+ * Reference X. Repository Hook Scripts
  * Appendix A. Subversion Quick-Start Guide
  * Appendix B. Subversion for CVS Users
  * Appendix C. WebDAV and Autoversioning
