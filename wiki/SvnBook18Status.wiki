@@ -16,26 +16,30 @@ Review outstanding [http://code.google.com/p/svnbook/issues/list?q=label:Milesto
 
 Full read-thru of the book, cover-to-cover, updating each of the following chapters for accuracy and coherancy:
 
+ * ~~Foreword~~
  * Preface
- * Chapter 1. Fundamental Concepts
- * Chapter 2. Basic Usage
- * Chapter 3. Advanced Topics
- * Chapter 4. Branching and Merging
- * Chapter 5. Repository Administration
- * Chapter 6. Server Configuration
- * Chapter 7. Customizing Your Subversion Experience
- * Chapter 8. Embedding Subversion
- * Reference I. svn
- * Reference II. svnadmin
- * Reference III. svnlook
- * Reference IV. svnserve
- * Reference V. svnversion
- * Reference VI. svnsync
- * Reference VII. svnrdump
- * Reference VIII. svndumpfilter
- * Reference IX. svnmucc
- * Reference X. Repository Hook Scripts
- * Appendix A. Subversion Quick-Start Guide
- * Appendix B. Subversion for CVS Users
- * Appendix C. WebDAV and Autoversioning
+ * Part 1: Getting to Know Subversion
+  * Chapter 1. Fundamental Concepts
+  * Chapter 2. Basic Usage
+  * Chapter 3. Advanced Topics
+  * Chapter 4. Branching and Merging
+  * Chapter 5. Repository Administration
+  * Chapter 6. Server Configuration
+  * Chapter 7. Customizing Your Subversion Experience
+  * Chapter 8. Embedding Subversion
+ * Part 2: Subversion Command Reference
+  * Reference I. svn
+  * Reference II. svnadmin
+  * Reference III. svnlook
+  * Reference IV. svnserve
+  * Reference V. svnversion
+  * Reference VI. svnsync
+  * Reference VII. svnrdump
+  * Reference VIII. svndumpfilter
+  * Reference IX. svnmucc
+  * Reference X. Repository Hook Scripts
+ * Part 3: Appendices
+  * Appendix A. Subversion Quick-Start Guide
+  * Appendix B. Subversion for CVS Users
+  * Appendix C. WebDAV and Autoversioning
  * ~~Appendix D. Copyright~~
