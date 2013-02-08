@@ -31,6 +31,12 @@
   <xsl:param name="sans.font.family">sans-serif,SimHei</xsl:param>
   <xsl:param name="dingbat.font.family">serif,SimSun</xsl:param>
   <xsl:param name="monospace.font.family">monospace,FangSong,SimSun</xsl:param>
+  <xsl:attribute-set name="monospace.verbatim.properties"
+                     use-attribute-sets="verbatim.properties monospace.properties">
+    <xsl:attribute name="font-size">
+      <xsl:value-of select="$body.font.master * 0.9"></xsl:value-of><xsl:text>pt</xsl:text>
+    </xsl:attribute>
+  </xsl:attribute-set>
 
   <!-- Admonitions and callouts settings -->
   <xsl:param name="admon.textlabel" select="0" />
