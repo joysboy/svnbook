@@ -204,6 +204,14 @@ body
 #adsense_bottom
 {
 }
+@media print {
+  body {
+    margin: 0;
+  }
+  #adsense_left, #adsense_bottom {
+    display: none;
+  }
+}
 """
 
 def add_adsense_left_html(file):
