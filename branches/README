@@ -1,0 +1,28 @@
+###  NOTE: The immediate children of the branches/ directory in this    ###
+###  repository are not themselves copies of the trunk/.  Rather, they  ###
+###  are placeholders for individual translations which themselves may  ###
+###  or may not be copies of other translations.                        ###
+
+If you wish to create a new translation branch, do the following:
+
+1.  If there's no version collection directory ^/branches/X.Y for
+    your translation, create one:
+
+        svn mkdir ^/branches/X.Y \
+            -m "Create collection directory for version X.Y translations"
+
+    You'll want to initialize also the "tools" subdirectory of that
+    new version collection, too:
+
+        svn cp ^/trunk/tools ^/branches/X.Y/tools \
+            -m "Make a copy of the latest tools for X.Y translations."
+
+2.  Initialize your translation.  You might do this by copying the
+    appropriate English version:
+
+       svn cp ^/trunk/en ^/branches/X.Y/LOCALE \
+           -m "Initialize LOCALE translation as a copy of the English"
+
+    You might also use other sources for your translation, such as the
+    previous version of your translation, or a clean import of new
+    sources, etc.
