@@ -334,7 +334,7 @@ def do_build(locale, version, src_path, dst_path, formats,
                 + map(lambda x: 'install-%s' % x, formats))
     build_log = os.path.join(dst_path, 'nightly-build.log')
     log_fp = open(build_log, 'w', 1)
-    log_fp.write("::: %s :::\n", time.asctime())
+    log_fp.write("::: %s :::\n" % time.asctime())
 
     # Change to the source directory and fire off 'make'.
     cwd = os.getcwd()
