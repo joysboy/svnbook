@@ -59,6 +59,10 @@ import ConfigParser
 #    # to "0".
 #    adsense = "0" | "1"
 #
+#    # A comma-delimited set of email addresses to which notification
+#    # emails should be sent for this build only.
+#    report_targets = 
+#
 #    [BUILD-NAME2]
 #    ...
 #
@@ -86,6 +90,7 @@ import ConfigParser
 #    locale = de
 #    version = 1.5
 #    formats = html, html-chunk
+#    report_targets = maintainer@svnbook.de
 # ----------------------------------------------------------------------
 
 
@@ -394,6 +399,16 @@ def get_option(cfg, section, option, default_value=None):
     return cfg.get(section, option) or default_value
 
 
+def parse_commasep_option(value):
+    """Parse an option value string designed to be interpreted as a
+    comma-separated list of values, trimming whitespace around each
+    value.  Return the list."""
+    
+    if not value:
+        return []
+    return map(lambda x: x.strip(), value.split(','))
+
+
 def main(conf_file, dry_run, verbose):
     """Read CONF_FILE and attempt the builds described there.  If
     DRY_RUN is set, don't really do anything.  If VERBOSE is set, be
@@ -433,9 +448,13 @@ def main(conf_file, dry_run, verbose):
                               'branches/%s/%s' % (version, locale))
         dst_path = get_option(cfg, section, 'dst_path',
                               'www/%s/%s' % (locale, version))
-        formats = map(lambda x: x.strip(),
-                      get_option(cfg, section, 'formats',
-                                 'html, html-chunk, pdf').split(','))
+        formats = parse_commasep_option(get_option(cfg, section, 'formats',
+                                                   'html, html-chunk, pdf'))
+        mail_tos = parse_commasep_option(get_option(cfg, section,
+                                                    'report_targets'))
+        if mail_to:
+            mail_tos.append(mail_to)
+                             
         build_log = os.path.join(dst_path, 'nightly-build.log')
         try:
             build_begin_time = time.time()
@@ -451,9 +470,10 @@ def main(conf_file, dry_run, verbose):
                 body = "The svnbook build for the '%s' locale has failed.\n" \
                        "Please investigate.\n\n%s\n" \
                        "-- Svnbook Build Daemon.\n" % (locale, build_log)
-                if mail_to and mail_from:
-                    sendmail(mail_from, mail_from_name, mail_to,
-                             "Build Failure Alert: '%s'" % locale, body)
+                if mail_tos and mail_from:
+                    for mail_to in mail_tos:
+                        sendmail(mail_from, mail_from_name, mail_to,
+                                 "Build Failure Alert: '%s'" % locale, body)
                 else:
                     sys.stderr.write(body)
                     sys.stderr.write(str(e) + "\n")

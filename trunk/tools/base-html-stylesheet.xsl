@@ -17,7 +17,8 @@
   <xsl:param name="callout.graphics" select="1" />
   <xsl:param name="callout.graphics.extension">.png</xsl:param>
 
-  <xsl:param name="ignore.image.scaling" select="1" />
+  <xsl:param name="pixels.per.inch">120</xsl:param>
+  <!-- <xsl:param name="ignore.image.scaling" select="1" /> -->
 
   <xsl:template match="sect1" mode="toc">
     <xsl:param name="toc-context" select="."/>
